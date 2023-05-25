@@ -6,35 +6,54 @@
 #    By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/04 11:42:14 by yrhiba            #+#    #+#              #
-#    Updated: 2023/05/24 23:07:19 by yrhiba           ###   ########.fr        #
+#    Updated: 2023/05/25 17:59:42 by yrhiba           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 
 SRCS_BUILTINS = srcs/builtins/cd/cd.c \
-				srcs/builtins/echo/echo.c \
+				srcs/builtins/echo/echo.c
 
-SRCS_FOOTER = srcs/presh/presh.c
+SRCS_FOOTER =	srcs/presh/presh.c
 
-SRCS_HEADER = 
+SRCS_HEADER =	srcs/evaluator/evaluator.c \
+				srcs/executor/eval_tree_utils.c \
+				srcs/executor/eval_tree.c \
+				srcs/executor/executor_utils.c \
+				srcs/executor/handle_redir.c \
+				srcs/lexer/lexer_utils.c \
+				srcs/lexer/lexer.c \
+				srcs/parser/parser_utils.c \
+				srcs/parser/parser.c \
+				srcs/tokenizer/tokenizer_utils.c \
+				srcs/tokenizer/tokenizer_utils2.c \
+				srcs/tokenizer/tokenizer.c \
+				srcs/tokenizer/tokenizer2.c \
+				srcs/utils/environ_utils.c \
+				srcs/utils/free_tokens.c \
+				srcs/utils/garbage_cleaner.c \
+				srcs/utils/path_utils.c \
+				srcs/utils/queue_utils.c \
+				srcs/utils/stack_utils.c \
+				srcs/utils/utils_minishell.c \
+				srcs/utils/readinput.c
 
-SRCS =	mnsh.c \
-		$(SRCS_BUILTINS) $(SRCS_HEADER) $(SRCS_FOOTER)
-
-OTHER_INCS =	incs/builtins/cd.h \
-				incs/builtins/echo.h \
-				incs/footer/presh.h \
-				incs/header/minishell.h \
-				incs/header/utils.h \
-				incs/header/parser.h \
-				incs/header/lexer.h \
-				incs/header/tokenizer.h
+SRCS =	mnsh.c $(SRCS_BUILTINS) $(SRCS_HEADER) $(SRCS_FOOTER)
 
 INCS =  incs/header.h \
 		incs/footer.h \
 		incs/mnsh.h \
-		$(OTHER_INCS)
+		incs/builtins/cd.h \
+		incs/builtins/echo.h \
+		incs/footer/presh.h \
+		incs/header/evaluator.h \
+		incs/header/executor.h \
+		incs/header/lexer.h \
+		incs/header/minishell.h \
+		incs/header/parser.h \
+		incs/header/tokenizer.h \
+		incs/header/utils.h
 
 INCLINK =	-I . -I incs \
 			-I libs/libmylist \
