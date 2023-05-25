@@ -6,7 +6,7 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 22:54:04 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/05/24 21:54:53 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/05/25 18:05:59 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 # define LIBFT_H
 
 # include <fcntl.h>
-# include <sys/errno.h>
-# include <string.h>
 # include <stdbool.h>
 # include <stdio.h>
 # include <stdlib.h>
+# include <string.h>
+# include <sys/errno.h>
 # include <unistd.h>
 
 # define SQ 39
@@ -57,11 +57,10 @@ typedef enum TokenType
 
 typedef struct s_list
 {
-
 	t_tokentype		type;
 	void			*content;
 	struct s_list	*next_word;
-    int sep;
+	int				sep;
 	struct s_list	*next;
 
 }					t_list;
@@ -134,7 +133,7 @@ char				*ft_strrchr(const char *s, int c);
 t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
 						void (*del)(void *));
 void				show_error(char *s, int exit_status);
-pid_t				ft_fork();
+pid_t				ft_fork(void);
 void				ft_pipe(int fd[]);
 
 #endif

@@ -1,0 +1,14 @@
+{
+	"files.associations": {
+		"libft.h": "c",
+		"utils.h": "c",
+		"header.h": "c",
+		"fcntl.h": "c",
+		"string.h": "c",
+		"executor.h": "c",
+		"lexer.h": "c",
+		"errno.h": "c",
+		"parser.h": "c",
+		"minishell.h": "c"
+	}
+}
