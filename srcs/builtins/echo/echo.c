@@ -6,11 +6,11 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 22:46:31 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/05/03 11:41:21 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/05/25 18:48:26 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "echo.h"
+#include "builtins/echo.h"
 
 static int	addarg(t_echo *data, char *s)
 {

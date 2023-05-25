@@ -1,0 +1,9 @@
+{
+	"files.associations": {
+		"minishell.h": "c",
+		"mnsh.h": "c",
+		"header.h": "c",
+		"footer.h": "c",
+		"echo.h": "c"
+	}
+}

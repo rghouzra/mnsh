@@ -6,7 +6,7 @@
 #    By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/04 11:42:14 by yrhiba            #+#    #+#              #
-#    Updated: 2023/05/25 17:59:42 by yrhiba           ###   ########.fr        #
+#    Updated: 2023/05/25 18:54:57 by yrhiba           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,10 +30,7 @@ SRCS_HEADER =	srcs/evaluator/evaluator.c \
 				srcs/tokenizer/tokenizer_utils2.c \
 				srcs/tokenizer/tokenizer.c \
 				srcs/tokenizer/tokenizer2.c \
-				srcs/utils/environ_utils.c \
 				srcs/utils/free_tokens.c \
-				srcs/utils/garbage_cleaner.c \
-				srcs/utils/path_utils.c \
 				srcs/utils/queue_utils.c \
 				srcs/utils/stack_utils.c \
 				srcs/utils/utils_minishell.c \
@@ -73,7 +70,7 @@ LIBLIST = libs/libmylist/libmylist.a
 LIBFT = libs/libft/libft.a
 
 $(NAME) : $(OBJS) $(LIBLIST) $(LIBSTR) $(LIBFT)
-	cc $(FLAGS) $(OBJS) $(LIBLIST) $(LIBSTR) -o $(NAME)
+	cc $(FLAGS) $(OBJS) $(LIBLIST) $(LIBSTR) $(LIBFT) -o $(NAME)
 
 $(LIBLIST) :
 	make -C libs/libmylist

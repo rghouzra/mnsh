@@ -3,12 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   eval_tree_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 14:54:48 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/02/26 14:57:07 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/05/25 18:49:50 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "mnsh.h"
 
 int	check_is_bultin(char *s)
 {

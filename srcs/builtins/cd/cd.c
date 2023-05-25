@@ -6,11 +6,11 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 11:12:16 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/05/03 11:40:18 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/05/25 18:48:15 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cd.h"
+#include "builtins/cd.h"
 
 int cd(char *path)
 {

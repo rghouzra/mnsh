@@ -1,6 +1,17 @@
 NAME = libft.a
 
-SRCS = 	ft_atoi.c\
+BONUS_SRCS = ft_lstadd_back.c\
+			ft_lstadd_front.c\
+			ft_lstclear.c\
+			ft_lstdelone.c\
+			ft_lstiter.c\
+			ft_lstlast.c\
+			ft_lstnew.c\
+			ft_lstsize.c\
+			ft_lstmap.c\
+			ft_tokennew.c
+
+SRCS = 	ft_atoi.c $(BONUS_SRCS) \
 		ft_free_split.c\
 		ft_bzero.c\
 		ft_calloc.c\
@@ -41,7 +52,6 @@ SRCS = 	ft_atoi.c\
 		ft_putnbr_fd.c\
 		ft_putstr_fd.c\
 		ft_strcmp.c\
-		garbage_cleaner.c\
 		ft_syscalls.c\
 		error_handler.c
 
@@ -49,16 +59,6 @@ OBJECTS = ${SRCS:.c=.o}
 
 HEADER = libft.h
 
-BONUS_SRCS = ft_lstadd_back.c\
-			ft_lstadd_front.c\
-			ft_lstclear.c\
-			ft_lstdelone.c\
-			ft_lstiter.c\
-			ft_lstlast.c\
-			ft_lstnew.c\
-			ft_lstsize.c\
-			ft_lstmap.c\
-			ft_tokennew.c
 
 BONUS_OBJECTS = ${BONUS_SRCS:.c=.o}
 
@@ -66,20 +66,23 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 RM = rm -f
 
-all:$(NAME)
+all: $(NAME)
 
 $(NAME) : $(OBJECTS)
 	ar -rcs $(NAME) $(OBJECTS)
 
 bonus: $(NAME) $(BONUS_OBJECTS)
 	ar -rcs $(NAME) $(BONUS_OBJECTS)
+
 %.o : %.c $(HEADER)
 	$(CC) $(CFLAGS) -c $<
 
 clean:
 	$(RM) ${OBJECTS} ${BONUS_OBJECTS}
+
 fclean: clean
 	$(RM) $(NAME)
+
 re: fclean all
 
 .PHONY: all bonus clean fclean re
