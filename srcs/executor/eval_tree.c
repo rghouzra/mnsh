@@ -6,7 +6,7 @@
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 10:34:18 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/05/25 21:42:33 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/05/25 22:33:02 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,6 @@ void	pipeline(t_ast *tree, t_io x)
 	if (pid1 == 0)
 	{
 		dup_close(fd, x.output,1);
-		// dup2(fd[1], x.output);
-		// close(fd[1]);
-		// close(fd[0]);
 		eval_tree(tree->left, 1, x);
 		exit(0);
 	}
