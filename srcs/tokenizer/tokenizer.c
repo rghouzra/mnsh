@@ -6,7 +6,7 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 17:57:25 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/05/24 22:40:02 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/05/25 20:04:08 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ t_list	*ft_parser(char **line)
 	return (x.token);
 }
 
-char	*get_next_word(t_list *token, char *result, const char *line, char **strs)
+char	*get_next_word(t_list *token, char *result)
 {
 	char	*sep;
     t_list *next_words;
@@ -131,14 +131,14 @@ char	*get_next_word(t_list *token, char *result, const char *line, char **strs)
 	return (result);
 }
 
-void	reconstruct_word(t_list *token, const char *line, char **strs)
+void	reconstruct_word(t_list *token)
 {
 	if (!token)
 		return ;
 	while (token)
 	{
 		if (token->next_word)
-			token->content = get_next_word(token, token->content, line, strs);
+			token->content = get_next_word(token, token->content);
 		token = token->next;
 	}
 }
@@ -154,7 +154,7 @@ t_list	*tokenizer(const char *line)
 	if (!strs)
 		return (NULL);
 	token = ft_parser(strs);
-	reconstruct_word(token, line, strs);
+	reconstruct_word(token);
 	ft_free(strs);
 	return (token);
 }

@@ -6,7 +6,7 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 07:06:05 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/05/25 18:28:30 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/05/25 20:00:56 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@ void	delete_quotes(char *str, char quote)
 
 void	expand_var(char *s)
 {
-	int	i;
-
 	if (!s)
 		return ;
 }

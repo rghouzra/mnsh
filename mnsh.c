@@ -6,7 +6,7 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 06:57:44 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/05/25 18:03:45 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/05/25 20:06:15 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,13 @@ int	main(int ac, char **av, char **env)
 {
 	(void)av;
 	(void)ac;
+	g_mnsh = (t_minishell *)ft_malloc(sizeof(t_minishell));
+	g_mnsh->env_list = 0;
+	g_mnsh->paths_list = 0;
+	g_mnsh->exit_status = 0;
 	presh(env);
-	read_input(env);
+	read_input();
+	my_list_clear(&(g_mnsh->env_list));
+	my_list_clear(&(g_mnsh->paths_list));
+	free(g_mnsh);
 }

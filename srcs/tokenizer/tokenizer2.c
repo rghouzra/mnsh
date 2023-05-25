@@ -6,7 +6,7 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 19:43:59 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/05/24 22:40:18 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/05/25 20:04:16 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ static char	*ft_words(const char *s, char sep)
 static char	*to_strings(char **strings, char const *s, char c)
 {
 	size_t	i;
-	char	cs;
     size_t  j;
 
     j = 0;

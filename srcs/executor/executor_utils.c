@@ -6,7 +6,7 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 08:43:03 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/05/24 22:32:14 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/05/25 20:01:05 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ char	*get_cmd(char *cmnd, char *env)
 {
 	char	**paths;
 	char	*prefixed_cmd;
-	char	*full_cmnd;
 	char	**ptr;
 
 	if (!cmnd || !env)

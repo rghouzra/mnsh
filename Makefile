@@ -6,7 +6,7 @@
 #    By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/04 11:42:14 by yrhiba            #+#    #+#              #
-#    Updated: 2023/05/25 18:54:57 by yrhiba           ###   ########.fr        #
+#    Updated: 2023/05/25 20:00:21 by yrhiba           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,7 +62,7 @@ ODIR = objs/
 
 OBJS = $(addprefix $(ODIR), $(SRCS:.c=.o))
 
-FLAGS = -Wall -Wextra #-Werror
+FLAGS = -Wall -Wextra -Werror
 
 LIBSTR = libs/libmystr/libmystr.a
 
