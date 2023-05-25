@@ -15,30 +15,22 @@
 int	is_an_operator(t_tokentype type, int which)
 {
 	if (which == 1)
-	{
 		if (type == redir_o || type == PIPE || type == redir_i
 			|| type == AND_CMD_CHAIN || type == OR_CMD_CHAIN || type == append_o
 			|| type == heredoc_i)
 			return (1);
-	}
 	else if (which == 2)
-	{
 		if (type == PIPE || type == OR_CMD_CHAIN || type == AND_CMD_CHAIN)
 			return (2);
-	}
 	else if (which == 3)
-	{
 		if (type == PIPE || type == OR_CMD_CHAIN || type == AND_CMD_CHAIN
 			|| type == redir_i || type == redir_o)
 			return (3);
-	}
 	else if (which == 4)
-	{
 		if (type == PIPE || type == OR_CMD_CHAIN || type == AND_CMD_CHAIN
 			|| type == redir_i || type == redir_o || type == heredoc_i
 			|| type == append_o)
 			return (4);
-	}
 	return (0);
 }
 

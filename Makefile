@@ -33,7 +33,8 @@ SRCS_HEADER =	srcs/evaluator/evaluator.c \
 				srcs/utils/free_tokens.c \
 				srcs/utils/queue_utils.c \
 				srcs/utils/stack_utils.c \
-				srcs/utils/utils_minishell.c \
+				srcs/utils/garbage_cleaner.c\
+				srcs/utils/utils_minishell.c\
 				srcs/utils/readinput.c
 
 SRCS =	mnsh.c $(SRCS_BUILTINS) $(SRCS_HEADER) $(SRCS_FOOTER)
@@ -70,7 +71,7 @@ LIBLIST = libs/libmylist/libmylist.a
 LIBFT = libs/libft/libft.a
 
 $(NAME) : $(OBJS) $(LIBLIST) $(LIBSTR) $(LIBFT)
-	cc $(FLAGS) $(OBJS) $(LIBLIST) $(LIBSTR) $(LIBFT) -o $(NAME)
+	cc $(FLAGS) $(OBJS) $(LIBLIST) $(LIBSTR) $(LIBFT) -lreadline -o $(NAME)
 
 $(LIBLIST) :
 	make -C libs/libmylist

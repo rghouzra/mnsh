@@ -49,9 +49,3 @@ int	lexer(t_list *token)
 	}
 	return (0);
 }
-
-/*
-  ls | wc || (cat file && tail)
-  ls wc | cat file tail && ||
-  ls | wc > outfile && (< outfile cat -e | sort -R)
- */

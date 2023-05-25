@@ -4,6 +4,7 @@
 		"mnsh.h": "c",
 		"header.h": "c",
 		"footer.h": "c",
-		"echo.h": "c"
+		"echo.h": "c",
+		"presh.h": "c"
 	}
 }

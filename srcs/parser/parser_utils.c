@@ -29,12 +29,12 @@ void	shunting_op_handler(t_list *token, t_queue **queue, t_list **stack)
 			else if (is_an_operator(token->type, 4)
 					&& is_an_operator((*stack)->type, 4))
 			{
-                while(*stack && get_token_priority(token) >= get_token_priority(*stack))
-                {
-                    x = pop(stack);
-                    enqueue(queue, x.content, x.type, x.next_word);
-                }
-                push(stack, token->content, token->type, token->next_word);
+				while(*stack && get_token_priority(token) >= get_token_priority(*stack))
+				{
+					x = pop(stack);
+					enqueue(queue, x.content, x.type, x.next_word);
+				}
+				push(stack, token->content, token->type, token->next_word);
 			}
 			else if (token->type == cpar)
 			{
@@ -46,9 +46,9 @@ void	shunting_op_handler(t_list *token, t_queue **queue, t_list **stack)
 				}
 				pop(stack);
 			}
-            }
 		}
 	}
+}
 
 
 bool	push_back(t_list **p, void *value, t_tokentype type)

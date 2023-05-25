@@ -30,7 +30,7 @@ void	read_input(char **env)
 		evaluate_expression(token);
 		if(lexer(token))
 		{
-			add_history(s);
+			// add_history(s);
 			tree = shunting_algorithm(token);
 			// if (tree)
 				// eval_tree(tree, 0, (t_io){0, 1, -2, -2, 0});
