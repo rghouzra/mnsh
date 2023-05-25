@@ -6,40 +6,41 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 10:34:18 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/05/24 22:32:04 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/05/25 18:41:14 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
-#define EXEC 111
-# define LEFT 666
-# define RIGHT 999
-# define PARENT 0
+#include "mnsh.h"
 
-void execute_with_fork(char **cmnds, char *env, t_io x)
+#define EXEC 111
+#define LEFT 666
+#define RIGHT 999
+#define PARENT 0
+
+void	execute_with_fork(char **cmnds, t_io x)
 {
 	pid_t	pid;
 
 	pid = ft_fork();
-	if(!pid)
+	if (!pid)
 	{
 		if (x.be_dupped == -1)
 			show_error(strerror(errno), 1);
-		if(!*(cmnds + x.increment))
+		if (!*(cmnds + x.increment))
 		{
-			waitpid(pid, &minishell.exit_status, 0);
+			waitpid(pid, &(g_mnsh->exit_status), 0);
 			return ;
 		}
 		if (x.stream != -2)
 			dup2(x.be_dupped, x.stream);
-		execute(env, cmnds + x.increment);
+		execute(NULL, cmnds + x.increment);
 	}
 	else
-		waitpid(pid, &minishell.exit_status, 0);
+		waitpid(pid, &(g_mnsh->exit_status), 0);
 	ft_free(cmnds);
 }
 
-void pipeline(t_ast *tree, char *env, t_io x)
+void	pipeline(t_ast *tree, t_io x)
 {
 	int		fd[2];
 	pid_t	pid1;
@@ -47,33 +48,33 @@ void pipeline(t_ast *tree, char *env, t_io x)
 
 	if (!tree)
 		return ;
-		ft_pipe(fd);
-		pid1 = fork();
-		if(pid1 == 0)
-		{
-			dup2(fd[1], x.output);
-			close(fd[1]);
-			close(fd[0]);
-			eval_tree(tree->left, env, 1, x);
-			exit(0);
-		}
-		pid2 = fork();
-		if(pid2 == 0)
-		{
-			dup2(fd[0], x.input);
-			close(fd[0]);
-			close(fd[1]);
-			eval_tree(tree->right, env, 1, x);
-			exit(0);
-		}
+	ft_pipe(fd);
+	pid1 = fork();
+	if (pid1 == 0)
+	{
+		dup2(fd[1], x.output);
 		close(fd[1]);
 		close(fd[0]);
-		waitpid(pid1, &minishell.exit_status, 0);
-		waitpid(pid2, &minishell.exit_status, 0);
+		eval_tree(tree->left, 1, x);
+		exit(0);
+	}
+	pid2 = fork();
+	if (pid2 == 0)
+	{
+		dup2(fd[0], x.input);
+		close(fd[0]);
+		close(fd[1]);
+		eval_tree(tree->right, 1, x);
+		exit(0);
+	}
+	close(fd[1]);
+	close(fd[0]);
+	waitpid(pid1, &(g_mnsh->exit_status), 0);
+	waitpid(pid2, &(g_mnsh->exit_status), 0);
 }
 // !TODO: fix broken pipe
 // TODO: free leafs in execute frame
-void get_virual_operands(char *operands, t_openpar x, int is_running, char *env)
+void	get_virual_operands(char *operands, t_openpar x, int is_running)
 {
 	char	**leafs;
 	int		fd;
@@ -89,48 +90,47 @@ void get_virual_operands(char *operands, t_openpar x, int is_running, char *env)
 		if (fd == -1)
 			show_error(strerror(errno), 126);
 		dup2(fd, x.stream);
-		execute(env, leafs + 1);
+		execute(NULL, leafs + 1);
 	}
 	else
-		execute_with_fork(leafs, env, (t_io){-2, -2, fd,  x.stream, 1});
+		execute_with_fork(leafs, (t_io){-2, -2, fd, x.stream, 1});
 	close(fd);
 }
 
-void eval_logical_op(t_ast *tree, char *env, int is_child, t_io x)
+void	eval_logical_op(t_ast *tree, int is_child, t_io x)
 {
 	if (tree->type == AND_CMD_CHAIN)
 	{
-		eval_tree(tree->left, env, is_child, x);
-		if (!minishell.exit_status)
-			eval_tree(tree->right, env, is_child, x);
+		eval_tree(tree->left, is_child, x);
+		if (!g_mnsh->exit_status)
+			eval_tree(tree->right, is_child, x);
 	}
 	if (tree->type == OR_CMD_CHAIN)
 	{
-		eval_tree(tree->left, env, is_child, x);
-		if (minishell.exit_status)
-			eval_tree(tree->right, env, is_child, x);
+		eval_tree(tree->left, is_child, x);
+		if (g_mnsh->exit_status)
+			eval_tree(tree->right, is_child, x);
 	}
 }
-void	eval_tree(t_ast *tree, char *env, int is_child, t_io x)
+void	eval_tree(t_ast *tree, int is_child, t_io x)
 {
 	if (!tree)
 		return ;
-    if (tree->type == redir_o)
-		handle_rediro(tree, x, is_child, env);
-    if (tree->type == redir_i)
-		handle_rediri(tree, x, is_child, env);
-	if(tree->type == append_o)
-		handle_append(tree, x, is_child, env);
+	if (tree->type == redir_o)
+		handle_rediro(tree, x, is_child);
+	if (tree->type == redir_i)
+		handle_rediri(tree, x, is_child);
+	if (tree->type == append_o)
+		handle_append(tree, x, is_child);
 	if (tree->type == PIPE)
-		pipeline(tree, env, x);
+		pipeline(tree, x);
 	if (tree->type == WORD)
 	{
 		if (is_child)
-			execute(env, ft_split(tree->value, ' '));
+			execute(NULL, ft_split(tree->value, ' '));
 		else
-			execute_with_fork(ft_split(tree->value, ' '), env, x);
+			execute_with_fork(ft_split(tree->value, ' '), x);
 	}
 	else
-		eval_logical_op(tree, env, is_child, x);
+		eval_logical_op(tree, is_child, x);
 }
-

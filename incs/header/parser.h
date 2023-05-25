@@ -6,7 +6,7 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 10:51:33 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/05/24 21:56:34 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/05/25 18:26:05 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,6 @@ int		op_priority(t_tokentype type);
 void	shunting_op_handler(t_list *token, t_queue **queue, t_list **stack);
 t_list	*get_stack(t_queue **queue);
 t_ast	*newAstNode(t_tokentype type, void *value, t_list *next_word);
-void swap_stack_operator(t_list **stack);
+void	swap_stack_operator(t_list **stack);
 
 #endif

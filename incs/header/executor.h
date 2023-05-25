@@ -6,7 +6,7 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 18:16:13 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/05/25 18:18:13 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/05/25 18:39:37 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,11 @@ typedef struct s_openpar
 }			t_openpar;
 
 char		*execute(char *env, char **cmnds);
-void		eval_tree(t_ast *tree, char *env, int is_child, t_io x);
+void		eval_tree(t_ast *tree, int is_child, t_io x);
 int			check_access(char *path, int which);
-void		handle_rediro(t_ast *tree, t_io x, int is_child, char *env);
-void		handle_rediri(t_ast *tree, t_io x, int is_child, char *env);
-void		get_virual_operands(char *operands, t_openpar x, int is_running,
-				char *env);
-void		handle_append(t_ast *tree, t_io x, int is_child, char *env);
+void		handle_rediro(t_ast *tree, t_io x, int is_child);
+void		handle_rediri(t_ast *tree, t_io x, int is_child);
+void		get_virual_operands(char *operands, t_openpar x, int is_running);
+void		handle_append(t_ast *tree, t_io x, int is_child);
 
 #endif
