@@ -6,7 +6,7 @@
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 10:34:18 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/05/25 20:32:03 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/05/25 21:42:33 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,12 @@ void	execute_with_fork(char **cmnds, t_io x)
 		waitpid(pid, &(g_mnsh->exit_status), 0);
 	ft_free(cmnds);
 }
-
+void dup_close(int *fd, int new_fd, int index)
+{
+	dup2(fd[index], new_fd);
+	close(fd[1]);
+	close(fd[0]);
+}
 void	pipeline(t_ast *tree, t_io x)
 {
 	int		fd[2];
@@ -52,18 +57,17 @@ void	pipeline(t_ast *tree, t_io x)
 	pid1 = fork();
 	if (pid1 == 0)
 	{
-		dup2(fd[1], x.output);
-		close(fd[1]);
-		close(fd[0]);
+		dup_close(fd, x.output,1);
+		// dup2(fd[1], x.output);
+		// close(fd[1]);
+		// close(fd[0]);
 		eval_tree(tree->left, 1, x);
 		exit(0);
 	}
 	pid2 = fork();
 	if (pid2 == 0)
 	{
-		dup2(fd[0], x.input);
-		close(fd[0]);
-		close(fd[1]);
+		dup_close(fd, x.input, 0);
 		eval_tree(tree->right, 1, x);
 		exit(0);
 	}
@@ -72,8 +76,7 @@ void	pipeline(t_ast *tree, t_io x)
 	waitpid(pid1, &(g_mnsh->exit_status), 0);
 	waitpid(pid2, &(g_mnsh->exit_status), 0);
 }
-// !TODO: fix broken pipe
-// TODO: free leafs in execute frame
+
 void	get_virual_operands(char *operands, t_openpar x, int is_running)
 {
 	char	**leafs;
