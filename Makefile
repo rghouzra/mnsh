@@ -6,14 +6,15 @@
 #    By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/26 15:41:09 by yrhiba            #+#    #+#              #
-#    Updated: 2023/05/26 18:41:21 by rghouzra         ###   ########.fr        #
+#    Updated: 2023/05/26 18:45:23 by rghouzra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 
 SRCS_BUILTINS = srcs/builtins/cd/cd.c \
-				srcs/builtins/echo/echo.c
+				srcs/builtins/echo/echo.c \
+				srcs/builtins/env/env.c
 
 SRCS_FOOTER =	srcs/presh/presh.c \
 				srcs/presh/presh_utils.c
@@ -38,7 +39,8 @@ SRCS_HEADER =	srcs/evaluator/evaluator.c \
 				srcs/utils/utils_minishell.c\
 				srcs/utils/signal_utils.c\
 				srcs/utils/readinput.c \
-				srcs/utils/get_path.c
+				srcs/utils/get_path.c \
+				srcs/utils/export_sort.c
 
 SRCS =	mnsh.c $(SRCS_BUILTINS) $(SRCS_HEADER) $(SRCS_FOOTER)
 

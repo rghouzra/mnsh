@@ -1,31 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   footer.h                                           :+:      :+:    :+:   */
+/*   export_sort.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/24 21:46:25 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/05/26 18:25:48 by yrhiba           ###   ########.fr       */
+/*   Created: 2023/05/26 16:44:32 by yrhiba            #+#    #+#             */
+/*   Updated: 2023/05/26 18:16:47 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FOOTER_H
-# define FOOTER_H
+#include "mnsh.h"
 
-# include "builtins/cd.h"
-# include "builtins/echo.h"
-# include "builtins/env.h"
+static	void	swapstep()
+{
+	t_my_list	*it;
 
-# include "footer/presh.h"
+	it = g_mnsh->export_list;
+	while (it->next)
+	{
+		if (my_string_compare(((char **)it->data)[0], ((char **)it->next->data)[0]) == LS_GREAT)
+			my_string_swap(&((char **)it->data)[0], &((char **)it->next->data)[0]);
+		it = it->next;
+	}
+}
 
-# include "libmystr.h"
-# include "my_list.h"
+void	export_sort()
+{
+	t_my_list	*it;
 
-# include <errno.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <string.h>
-# include <unistd.h>
-
-#endif
+	it = g_mnsh->export_list;
+	while (it)
+	{
+		swapstep();
+		it = it->next;
+	}
+}

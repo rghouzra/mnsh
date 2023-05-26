@@ -1,24 +1,13 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   mnsh.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/26 15:41:31 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/05/26 18:14:18 by rghouzra         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "mnsh.h"
 
 void test()
 {
-	int	i = 0;
-	if (g_mnsh->paths_list)
+	export_sort();
+	t_my_list *it = g_mnsh->export_list;
+	while (it)
 	{
-		while (g_mnsh->paths_list[i])
-			printf("%s\n", g_mnsh->paths_list[i++]);
+		printf("%s=%s\n", ((char **)it->data)[0], ((char **)it->data)[1]);
+		it = it->next;
 	}
 }
 
