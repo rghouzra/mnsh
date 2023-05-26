@@ -6,7 +6,7 @@
 #    By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/26 15:41:09 by yrhiba            #+#    #+#              #
-#    Updated: 2023/05/26 18:45:23 by rghouzra         ###   ########.fr        #
+#    Updated: 2023/05/26 21:16:33 by rghouzra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,7 +75,9 @@ LIBLIST = libs/libmylist/libmylist.a
 
 LIBFT = libs/libft/libft.a
 
-RL = -L$(shell brew --prefix readline)/lib -lreadline -I$(shell brew --prefix readline)/include
+rlpath = /Volumes/REDA/.brew/opt/readline
+
+RL = -L$(rlpath)/lib -lreadline -I$(rlpath)/include
 
 $(NAME) : $(OBJS) $(LIBLIST) $(LIBSTR) $(LIBFT)
 	cc $(FLAGS) $(OBJS) $(LIBLIST) $(LIBSTR) $(LIBFT) -o $(NAME) $(RL)
@@ -91,7 +93,7 @@ $(LIBFT) :
 
 $(ODIR)%.o : %.c $(INCS)
 	@mkdir -p $(dir $@)
-	cc $(FLAGS) -c $< -o $@ $(INCLINK)
+	cc $(FLAGS) -c $< -o $@ $(INCLINK) -I$(rlpath)/include
 
 all : $(NAME)
 

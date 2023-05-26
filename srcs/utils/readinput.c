@@ -6,7 +6,7 @@
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 06:57:44 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/05/26 18:40:44 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/05/26 21:03:53 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	read_input()
 		s = readline("sh-1.0$ ");
 		if (!s)
 		{
-			fprintf(stderr, "exit");
+			ft_putendl_fd("exit", STDERR_FILENO);
 			exit(1);
 		}
 		token = tokenizer(s);
@@ -62,7 +62,7 @@ void	read_input()
 			add_history(s);
 			tree = shunting_algorithm(token);
 			print_tree_dot(tree, s);
-			// if (tree)
+			if (tree)
 				eval_tree(tree, 0, (t_io){0, 1, -2, -2, 0});
 			tree_cleaner(&tree);
 		}
