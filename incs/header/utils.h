@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 18:06:57 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/05/26 16:27:58 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/05/26 18:27:24 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,5 @@ int					peek(t_list *s);
 void				ft_tokencleaner(t_list **token);
 void				tree_cleaner(t_ast **tree);
 char				*getcmdfullpath(char *cmd);
-
+void				signal_utils(void);
 #endif

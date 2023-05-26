@@ -6,7 +6,7 @@
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 06:57:44 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/05/26 16:47:27 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/05/26 18:40:44 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	read_input()
 		evaluate_expression(token);
 		if(lexer(token))
 		{
-			// add_history(s);
+			add_history(s);
 			tree = shunting_algorithm(token);
 			print_tree_dot(tree, s);
 			// if (tree)

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+         #
+#    By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/26 15:41:09 by yrhiba            #+#    #+#              #
-#    Updated: 2023/05/26 16:15:22 by yrhiba           ###   ########.fr        #
+#    Updated: 2023/05/26 18:41:21 by rghouzra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,7 @@ SRCS_HEADER =	srcs/evaluator/evaluator.c \
 				srcs/utils/stack_utils.c \
 				srcs/utils/garbage_cleaner.c\
 				srcs/utils/utils_minishell.c\
+				srcs/utils/signal_utils.c\
 				srcs/utils/readinput.c \
 				srcs/utils/get_path.c
 
@@ -72,8 +73,10 @@ LIBLIST = libs/libmylist/libmylist.a
 
 LIBFT = libs/libft/libft.a
 
+RL = -L$(shell brew --prefix readline)/lib -lreadline -I$(shell brew --prefix readline)/include
+
 $(NAME) : $(OBJS) $(LIBLIST) $(LIBSTR) $(LIBFT)
-	cc $(FLAGS) $(OBJS) $(LIBLIST) $(LIBSTR) $(LIBFT) -lreadline -o $(NAME)
+	cc $(FLAGS) $(OBJS) $(LIBLIST) $(LIBSTR) $(LIBFT) -o $(NAME) $(RL)
 
 $(LIBLIST) :
 	make -C libs/libmylist
