@@ -1,31 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   footer.h                                           :+:      :+:    :+:   */
+/*   env.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/24 21:46:25 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/05/26 18:25:48 by yrhiba           ###   ########.fr       */
+/*   Created: 2023/05/26 18:24:19 by yrhiba            #+#    #+#             */
+/*   Updated: 2023/05/26 18:24:49 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FOOTER_H
-# define FOOTER_H
+#ifndef ENV_H
+# define ENV_H
 
-# include "builtins/cd.h"
-# include "builtins/echo.h"
-# include "builtins/env.h"
-
-# include "footer/presh.h"
-
-# include "libmystr.h"
-# include "my_list.h"
-
-# include <errno.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <string.h>
-# include <unistd.h>
+void	env(void);
 
 #endif

@@ -6,14 +6,15 @@
 #    By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/26 15:41:09 by yrhiba            #+#    #+#              #
-#    Updated: 2023/05/26 16:59:39 by yrhiba           ###   ########.fr        #
+#    Updated: 2023/05/26 18:24:04 by yrhiba           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 
 SRCS_BUILTINS = srcs/builtins/cd/cd.c \
-				srcs/builtins/echo/echo.c
+				srcs/builtins/echo/echo.c \
+				srcs/builtins/env/env.c
 
 SRCS_FOOTER =	srcs/presh/presh.c \
 				srcs/presh/presh_utils.c
