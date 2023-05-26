@@ -6,7 +6,7 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 18:06:57 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/05/25 18:15:54 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/05/26 16:27:58 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,6 @@ bool				push(t_list **p, void *value, t_tokentype type,
 int					peek(t_list *s);
 void				ft_tokencleaner(t_list **token);
 void				tree_cleaner(t_ast **tree);
+char				*getcmdfullpath(char *cmd);
 
 #endif

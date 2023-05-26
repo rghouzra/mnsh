@@ -1,32 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   presh.h                                            :+:      :+:    :+:   */
+/*   get_path.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/04 09:43:43 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/05/26 16:13:43 by yrhiba           ###   ########.fr       */
+/*   Created: 2023/05/26 15:54:31 by yrhiba            #+#    #+#             */
+/*   Updated: 2023/05/26 16:30:43 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PRESH_H
-# define PRESH_H
+#include "mnsh.h"
 
-# include "mnsh.h"
+char	*getcmdfullpath(char *cmd)
+{
+	char	*path;
+	int		i;
 
-/*
-	env double matrice
-	----------------------
-	env 	| variable | value
-			| char *   | char *
-
-	paths command dir
-	----------------
-	path	| dir
-			| char *
-*/
-int	presh(char **env);
-int	contruipaths(void);
-
-#endif
+	i = -1;
+	path = (char *)0;
+	while (g_mnsh->paths_list[++i])
+	{
+		path = my_string_join(g_mnsh->paths_list[i], cmd);
+		if (!path)
+			return (NULL);
+		if (access(path, X_OK) == 0)
+			return (path);
+		free(path);
+		path = (char *)0;
+	}
+	return (NULL);
+}
