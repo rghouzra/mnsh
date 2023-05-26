@@ -6,47 +6,19 @@
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 08:43:03 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/05/25 20:32:09 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/05/26 16:47:02 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-char	*get_cmd(char *cmnd, char *env)
-{
-	char	**paths;
-	char	*prefixed_cmd;
-	char	**ptr;
-
-	if (!cmnd || !env)
-		return (NULL);
-	ptr = NULL;
-	prefixed_cmd = NULL;
-	if (ft_strchr(cmnd, '/') && check_access(cmnd, 3))
-		return (cmnd);
-	prefixed_cmd = ft_strjoin("/", cmnd, 0);
-	paths = ft_split(env, ':');
-	ptr = paths;
-	while (*paths)
-	{
-		cmnd = ft_strjoin(*paths, prefixed_cmd, 0);
-		if (check_access(cmnd, 3) == 1)
-			return (free(prefixed_cmd), ft_free(ptr), cmnd);
-		paths++;
-		free(cmnd);
-	}
-	free(prefixed_cmd);
-	ft_free(ptr);
-	return (perror("command not found"), NULL);
-}
-
-char	*execute(char *env, char **cmnds)
+char	*execute( char **cmnds)
 {
 	char	*cmd;
 
-	if (!env || !cmnds || !*cmnds)
+	if (!cmnds || !*cmnds)
 		return (NULL);
-	cmd = get_cmd(*cmnds, env);
+	cmd = getcmdfullpath(*cmnds);
 	if (!cmnds)
 		show_error(strerror(errno), 1);
 	execve(cmd, cmnds, NULL);

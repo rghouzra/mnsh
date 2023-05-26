@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 18:16:13 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/05/25 18:39:37 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/05/26 16:45:56 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ typedef struct s_openpar
 	int		stream;
 }			t_openpar;
 
-char		*execute(char *env, char **cmnds);
+char		*execute(char **cmnds);
 void		eval_tree(t_ast *tree, int is_child, t_io x);
 int			check_access(char *path, int which);
 void		handle_rediro(t_ast *tree, t_io x, int is_child);

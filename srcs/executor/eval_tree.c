@@ -6,7 +6,7 @@
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 10:34:18 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/05/25 22:33:02 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/05/26 16:46:16 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	execute_with_fork(char **cmnds, t_io x)
 		}
 		if (x.stream != -2)
 			dup2(x.be_dupped, x.stream);
-		execute(NULL, cmnds + x.increment);
+		execute(cmnds + x.increment);
 	}
 	else
 		waitpid(pid, &(g_mnsh->exit_status), 0);
@@ -90,7 +90,7 @@ void	get_virual_operands(char *operands, t_openpar x, int is_running)
 		if (fd == -1)
 			show_error(strerror(errno), 126);
 		dup2(fd, x.stream);
-		execute(NULL, leafs + 1);
+		execute(leafs + 1);
 	}
 	else
 		execute_with_fork(leafs, (t_io){-2, -2, fd, x.stream, 1});
@@ -127,7 +127,7 @@ void	eval_tree(t_ast *tree, int is_child, t_io x)
 	if (tree->type == WORD)
 	{
 		if (is_child)
-			execute(NULL, ft_split(tree->value, ' '));
+			execute(ft_split(tree->value, ' '));
 		else
 			execute_with_fork(ft_split(tree->value, ' '), x);
 	}
