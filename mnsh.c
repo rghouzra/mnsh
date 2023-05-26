@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mnsh.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 15:41:31 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/05/26 16:33:55 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/05/26 18:14:18 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int	main(int ac, char **av, char **env)
 	if (presh(env) == -1)
 		exit(EXIT_FAILURE);
 	// test();
+	signal_utils();
 	read_input();
 	my_list_clear(&(g_mnsh->env_list));
 	my_list_clear(&(g_mnsh->export_list));
