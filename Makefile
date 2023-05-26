@@ -6,7 +6,7 @@
 #    By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/04 11:42:14 by yrhiba            #+#    #+#              #
-#    Updated: 2023/05/25 20:00:21 by yrhiba           ###   ########.fr        #
+#    Updated: 2023/05/26 15:01:49 by yrhiba           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -92,7 +92,7 @@ clean :
 	make fclean -C libs/libmylist
 	make fclean -C libs/libmystr
 	make fclean -C libs/libft
-	rm -rf $(ODIR)
+	rm -rf $(ODIR) *.dot .vscode
 
 fclean : clean
 	rm -rf $(NAME)
