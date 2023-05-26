@@ -6,7 +6,7 @@
 #    By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/26 15:41:09 by yrhiba            #+#    #+#              #
-#    Updated: 2023/05/26 16:15:22 by yrhiba           ###   ########.fr        #
+#    Updated: 2023/05/26 16:59:39 by yrhiba           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,8 @@ SRCS_HEADER =	srcs/evaluator/evaluator.c \
 				srcs/utils/garbage_cleaner.c\
 				srcs/utils/utils_minishell.c\
 				srcs/utils/readinput.c \
-				srcs/utils/get_path.c
+				srcs/utils/get_path.c \
+				srcs/utils/export_sort.c
 
 SRCS =	mnsh.c $(SRCS_BUILTINS) $(SRCS_HEADER) $(SRCS_FOOTER)
 

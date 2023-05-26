@@ -6,7 +6,7 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 15:41:31 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/05/26 16:33:55 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/05/26 18:17:24 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,12 @@
 
 void test()
 {
-	int	i = 0;
-	if (g_mnsh->paths_list)
+	export_sort();
+	t_my_list *it = g_mnsh->export_list;
+	while (it)
 	{
-		while (g_mnsh->paths_list[i])
-			printf("%s\n", g_mnsh->paths_list[i++]);
+		printf("%s=%s\n", ((char **)it->data)[0], ((char **)it->data)[1]);
+		it = it->next;
 	}
 }
 

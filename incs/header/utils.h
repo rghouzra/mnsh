@@ -6,7 +6,7 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 18:06:57 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/05/26 16:27:58 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/05/26 16:59:24 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ typedef struct s_queue
 
 typedef struct s_poped
 {
-
 	t_tokentype		type;
 	void			*content;
 	t_list			*next_word;
@@ -38,6 +37,7 @@ typedef struct s_poped
 
 bool				enqueue(t_queue **q, char *value, enum TokenType type,
 						t_list *next_word);
+
 int					get_token_priority(t_list *q);
 bool				dequeue(t_queue **q);
 void				init_queue(t_queue *q);
@@ -47,6 +47,9 @@ bool				push(t_list **p, void *value, t_tokentype type,
 int					peek(t_list *s);
 void				ft_tokencleaner(t_list **token);
 void				tree_cleaner(t_ast **tree);
+
+
 char				*getcmdfullpath(char *cmd);
+void				export_sort(void);
 
 #endif
