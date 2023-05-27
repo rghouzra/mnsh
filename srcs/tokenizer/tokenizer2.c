@@ -27,8 +27,8 @@ static int	str_in_sep(char cs, char c)
 
 int ft_wrapstring(const char *s, size_t *index, int *checker, t_wrap x)
 {
-    if (index)
-        x.i = (*index);
+	if (index)
+		x.i = (*index);
     if(s[x.i] && s)
     {
         if(s[x.i] == DQ || s[x.i] == SQ)

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -10,6 +11,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+=======
+>>>>>>> c1b31e5d55f1b8761f70f208c10ad35fbd2f4c75
 #include "mnsh.h"
 
 void test()
@@ -28,9 +31,15 @@ int	main(int ac, char **av, char **env)
 	(void)av;
 	(void)ac;
 	g_mnsh = (t_minishell *)ft_malloc(sizeof(t_minishell));
+	rl_catch_signals = 0;
 	if (presh(env) == -1)
 		exit(EXIT_FAILURE);
+<<<<<<< HEAD
 	test();
+=======
+	// test();
+	signal_utils();
+>>>>>>> c1b31e5d55f1b8761f70f208c10ad35fbd2f4c75
 	read_input();
 	my_list_clear(&(g_mnsh->env_list));
 	my_list_clear(&(g_mnsh->export_list));

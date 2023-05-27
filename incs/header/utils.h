@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 18:06:57 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/05/26 16:59:24 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/05/26 18:47:00 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef UTILS_H
 # define UTILS_H
@@ -50,6 +51,6 @@ void				tree_cleaner(t_ast **tree);
 
 
 char				*getcmdfullpath(char *cmd);
+void				signal_utils(void);
 void				export_sort(void);
-
 #endif

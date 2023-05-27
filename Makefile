@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/05/26 15:41:09 by yrhiba            #+#    #+#              #
-#    Updated: 2023/05/27 05:35:31 by yrhiba           ###   ########.fr        #
+#    Created: 2023/05/27 05:38:22 by yrhiba            #+#    #+#              #
+#    Updated: 2023/05/27 05:38:25 by yrhiba           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,7 @@ SRCS_HEADER =	srcs/evaluator/evaluator.c \
 				srcs/utils/stack_utils.c \
 				srcs/utils/garbage_cleaner.c\
 				srcs/utils/utils_minishell.c\
+				srcs/utils/signal_utils.c\
 				srcs/utils/readinput.c \
 				srcs/utils/get_path.c \
 				srcs/utils/export_sort.c
@@ -75,8 +76,12 @@ LIBLIST = libs/libmylist/libmylist.a
 
 LIBFT = libs/libft/libft.a
 
+rlpath = /Volumes/REDA/.brew/opt/readline
+
+RL = -L$(rlpath)/lib -lreadline -I$(rlpath)/include
+
 $(NAME) : $(OBJS) $(LIBLIST) $(LIBSTR) $(LIBFT)
-	cc $(FLAGS) $(OBJS) $(LIBLIST) $(LIBSTR) $(LIBFT) -lreadline -o $(NAME)
+	cc $(FLAGS) $(OBJS) $(LIBLIST) $(LIBSTR) $(LIBFT) -o $(NAME) $(RL)
 
 $(LIBLIST) :
 	make -C libs/libmylist
@@ -89,7 +94,7 @@ $(LIBFT) :
 
 $(ODIR)%.o : %.c $(INCS)
 	@mkdir -p $(dir $@)
-	cc $(FLAGS) -c $< -o $@ $(INCLINK)
+	cc $(FLAGS) -c $< -o $@ $(INCLINK) -I$(rlpath)/include
 
 all : $(NAME)
 
