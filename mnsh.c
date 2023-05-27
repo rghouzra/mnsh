@@ -6,7 +6,7 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 15:41:31 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/05/26 18:17:24 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/05/27 05:34:28 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 void test()
 {
-	export_sort();
-	t_my_list *it = g_mnsh->export_list;
-	while (it)
-	{
-		printf("%s=%s\n", ((char **)it->data)[0], ((char **)it->data)[1]);
-		it = it->next;
-	}
+	// export_sort();
+	// t_my_list *it = g_mnsh->export_list;
+	// while (it)
+	// {
+	// 	printf("%s=%s\n", ((char **)it->data)[0], ((char **)it->data)[1]);
+	// 	it = it->next;
+	// }
 }
 
 int	main(int ac, char **av, char **env)
@@ -30,7 +30,7 @@ int	main(int ac, char **av, char **env)
 	g_mnsh = (t_minishell *)ft_malloc(sizeof(t_minishell));
 	if (presh(env) == -1)
 		exit(EXIT_FAILURE);
-	// test();
+	test();
 	read_input();
 	my_list_clear(&(g_mnsh->env_list));
 	my_list_clear(&(g_mnsh->export_list));

@@ -6,7 +6,7 @@
 #    By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/26 15:41:09 by yrhiba            #+#    #+#              #
-#    Updated: 2023/05/26 18:24:04 by yrhiba           ###   ########.fr        #
+#    Updated: 2023/05/27 05:35:31 by yrhiba           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,6 +48,7 @@ INCS =  incs/header.h \
 		incs/mnsh.h \
 		incs/builtins/cd.h \
 		incs/builtins/echo.h \
+		incs/builtins/env.h \
 		incs/footer/presh.h \
 		incs/header/evaluator.h \
 		incs/header/executor.h \
