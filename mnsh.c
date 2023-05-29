@@ -6,7 +6,7 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 15:41:31 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/05/27 05:34:28 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/05/29 17:35:41 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,12 @@ int	main(int ac, char **av, char **env)
 {
 	(void)av;
 	(void)ac;
+
 	g_mnsh = (t_minishell *)ft_malloc(sizeof(t_minishell));
 	rl_catch_signals = 0;
 	if (presh(env) == -1)
 		exit(EXIT_FAILURE);
 	test();
-	// test();
 	signal_utils();
 	read_input();
 	my_list_clear(&(g_mnsh->env_list));

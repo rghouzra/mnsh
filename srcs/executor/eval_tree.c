@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   eval_tree.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 10:34:18 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/05/26 16:46:16 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/05/29 16:44:44 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,14 @@ void	execute_with_fork(char **cmnds, t_io x)
 		waitpid(pid, &(g_mnsh->exit_status), 0);
 	ft_free(cmnds);
 }
+
 void dup_close(int *fd, int new_fd, int index)
 {
 	dup2(fd[index], new_fd);
 	close(fd[1]);
 	close(fd[0]);
 }
+
 void	pipeline(t_ast *tree, t_io x)
 {
 	int		fd[2];
