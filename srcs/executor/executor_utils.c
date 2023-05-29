@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 08:43:03 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/05/26 16:47:02 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/05/29 16:50:57 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ char	*execute( char **cmnds)
 
 	if (!cmnds || !*cmnds)
 		return (NULL);
+	ifbuiltinbreak(cmnds);
 	cmd = getcmdfullpath(*cmnds);
 	if (!cmnds)
 		show_error(strerror(errno), 1);

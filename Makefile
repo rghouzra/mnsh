@@ -6,7 +6,7 @@
 #    By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/27 05:38:22 by yrhiba            #+#    #+#              #
-#    Updated: 2023/05/27 05:38:25 by yrhiba           ###   ########.fr        #
+#    Updated: 2023/05/29 16:53:55 by yrhiba           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,8 @@ SRCS_HEADER =	srcs/evaluator/evaluator.c \
 				srcs/utils/utils_minishell.c\
 				srcs/utils/signal_utils.c\
 				srcs/utils/readinput.c \
-				srcs/utils/get_path.c \
+				srcs/utils/getcmdfullpath.c \
+				srcs/utils/ifbuiltinbreak.c \
 				srcs/utils/export_sort.c
 
 SRCS =	mnsh.c $(SRCS_BUILTINS) $(SRCS_HEADER) $(SRCS_FOOTER)
@@ -76,7 +77,7 @@ LIBLIST = libs/libmylist/libmylist.a
 
 LIBFT = libs/libft/libft.a
 
-rlpath = /Volumes/REDA/.brew/opt/readline
+rlpath = $(shell brew --prefix readline)
 
 RL = -L$(rlpath)/lib -lreadline -I$(rlpath)/include
 
