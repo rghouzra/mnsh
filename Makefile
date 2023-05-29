@@ -69,7 +69,7 @@ ODIR = objs/
 
 OBJS = $(addprefix $(ODIR), $(SRCS:.c=.o))
 
-FLAGS = -Wall -Wextra
+FLAGS = -Wall -Wextra -fsanitize=address
 
 LIBSTR = libs/libmystr/libmystr.a
 
