@@ -71,7 +71,7 @@ ODIR = objs/
 
 OBJS = $(addprefix $(ODIR), $(SRCS:.c=.o))
 
-FLAGS = -Wall -Wextra
+FLAGS = -Wall -Wextra -fsanitize=address
 
 LIBSTR = libs/libmystr/libmystr.a
 
@@ -79,7 +79,13 @@ LIBLIST = libs/libmylist/libmylist.a
 
 LIBFT = libs/libft/libft.a
 
-rlpath = $(shell brew --prefix readline)
+USER = $(shell whoami)
+
+ifeq ($(USER), rghouzra)
+	rlpath = /Volumes/REDA/.brew/opt/readline
+else
+	rlpath = $(shell brew --prefix readline)
+endif
 
 RL = -L$(rlpath)/lib -lreadline -I$(rlpath)/include
 

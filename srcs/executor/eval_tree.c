@@ -3,19 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   eval_tree.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 10:34:18 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/05/29 16:44:44 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/05/30 10:20:45 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mnsh.h"
-
-#define EXEC 111
-#define LEFT 666
-#define RIGHT 999
-#define PARENT 0
 
 void	execute_with_fork(char **cmnds, t_io x)
 {
@@ -129,9 +124,9 @@ void	eval_tree(t_ast *tree, int is_child, t_io x)
 	if (tree->type == WORD)
 	{
 		if (is_child)
-			execute(ft_split(tree->value, ' '));
+			execute(ft_split(tree->value, '_'));
 		else
-			execute_with_fork(ft_split(tree->value, ' '), x);
+			execute_with_fork(ft_split(tree->value, '_'), x);
 	}
 	else
 		eval_logical_op(tree, is_child, x);
