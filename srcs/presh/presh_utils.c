@@ -12,7 +12,7 @@
 
 #include "mnsh.h"
 
-static	int	update_paths()
+static int	update_paths(void)
 {
 	char	*tmp;
 	int		i;
@@ -41,9 +41,9 @@ static int	addpaths(char *paths)
 	return (0);
 }
 
-int	contruipaths()
+int	contruipaths(void)
 {
-	t_my_list *it;
+	t_my_list	*it;
 
 	it = g_mnsh->env_list;
 	while (it)

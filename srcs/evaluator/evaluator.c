@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   evaluator.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 07:06:05 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/05/25 20:00:56 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/05/30 11:17:50 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	expand_var(char *s)
 
 void	evaluate_expression(t_list *token)
 {
-	if (token == nullptr)
+	if (token == 0x0)
 		return ;
 	while (token)
 	{

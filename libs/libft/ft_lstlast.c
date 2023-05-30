@@ -19,10 +19,10 @@ t_list	*ft_lstlast(t_list *lst)
 
 	last = lst;
 	counter = 0;
-    if (!lst)
-    {
-        return NULL;
-    }
+	if (!lst)
+	{
+		return (NULL);
+	}
 	while (lst)
 	{
 		lst = lst->next;

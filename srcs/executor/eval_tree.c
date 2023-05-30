@@ -35,7 +35,7 @@ void	execute_with_fork(char **cmnds, t_io x)
 	ft_free(cmnds);
 }
 
-void dup_close(int *fd, int new_fd, int index)
+void	dup_close(int *fd, int new_fd, int index)
 {
 	dup2(fd[index], new_fd);
 	close(fd[1]);
@@ -54,7 +54,7 @@ void	pipeline(t_ast *tree, t_io x)
 	pid1 = fork();
 	if (pid1 == 0)
 	{
-		dup_close(fd, x.output,1);
+		dup_close(fd, x.output, 1);
 		eval_tree(tree->left, 1, x);
 		exit(0);
 	}

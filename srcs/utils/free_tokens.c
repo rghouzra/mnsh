@@ -40,5 +40,5 @@ void	ft_tokencleaner(t_list **token)
 		free(tmp);
 	}
 	free(*token);
-    *token =NULL;
+	*token = NULL;
 }

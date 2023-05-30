@@ -12,7 +12,7 @@
 
 #include "header.h"
 
-char	*execute( char **cmnds)
+char	*execute(char **cmnds)
 {
 	char	*cmd;
 

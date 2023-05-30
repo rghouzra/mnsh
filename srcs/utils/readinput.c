@@ -14,41 +14,41 @@
 
 static void	print_dot(t_ast *node, int i, int *count, FILE *p)
 {
-	int     node_id;
+	int	node_id;
 
 	if (node == 0x0)
-	        return ;
+		return ;
 	node_id = ++(*count);
 	fprintf(p, "  node%d [label=\"%s\"];\n", node_id, node->value);
 	if (i != -666)
-	        fprintf(p, "  node%d -> node%d;\n", i, node_id);
+		fprintf(p, "  node%d -> node%d;\n", i, node_id);
 	print_dot(node->left, node_id, count, p);
 	print_dot(node->right, node_id, count, p);
 }
 
-void    print_tree_dot(t_ast *root, char *s)
+void	print_tree_dot(t_ast *root, char *s)
 {
-        int     count;
-        FILE *p;
+	int		count;
+	FILE	*p;
 
-        p = fopen("treegraph.dot", "w");
-        fprintf(p, "/*\n%s\n*/\n", s);
-        fprintf(p, "digraph {\n");
-        count = 0;
-        print_dot(root, -666, &count, p);
-        fprintf(p, "}\n");
-        fflush(p);
+	p = fopen("treegraph.dot", "w");
+	fprintf(p, "/*\n%s\n*/\n", s);
+	fprintf(p, "digraph {\n");
+	count = 0;
+	print_dot(root, -666, &count, p);
+	fprintf(p, "}\n");
+	fflush(p);
 }
 
-void print_tk(t_list *token)
+void	print_tk(t_list *token)
 {
-	while(token)
+	while (token)
 	{
 		printf("[%s]\n", token->content);
 		token = token->next;
 	}
 }
-void	read_input()
+void	read_input(void)
 {
 	char	*s;
 	t_list	*token;
@@ -64,7 +64,7 @@ void	read_input()
 		}
 		token = tokenizer(s);
 		evaluate_expression(token);
-		if(lexer(token))
+		if (lexer(token))
 		{
 			add_history(s);
 			tree = shunting_algorithm(token);
