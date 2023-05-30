@@ -6,22 +6,11 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 11:01:34 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/05/30 11:19:14 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/05/30 11:40:43 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mnsh.h"
-
-static void	free_ev(char ***ev)
-{
-	int	i;
-
-	i = -1;
-	while ((*ev)[++i])
-		free((*ev)[i]);
-	free(*ev);
-	*ev = 0;
-}
 
 static char	*take_ev(char **data)
 {
@@ -35,7 +24,7 @@ static char	*take_ev(char **data)
 	return (r);
 }
 
-char	**contrui_env()
+char	**contrui_env(void)
 {
 	t_my_list	*it;
 	char		**ev;
@@ -51,8 +40,8 @@ char	**contrui_env()
 	{
 		ev[++i] = take_ev((char **)it->data);
 		if (!ev[i])
-			return (free_ev(&ev), NULL);
+			return (my_strings_free(&ev), NULL);
 		it = it->next;
 	}
-	return (ev[i] = NULL, ev);
+	return (ev[++i] = NULL, ev);
 }

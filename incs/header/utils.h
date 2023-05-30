@@ -6,7 +6,7 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 18:06:57 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/05/29 17:04:04 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/05/30 11:29:08 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,6 @@ char				*getcmdfullpath(char *cmd);
 void				signal_utils(void);
 void				export_sort(void);
 void				ifbuiltinbreak(char **cmnds);
+char				**contrui_env(void);
 
 #endif
