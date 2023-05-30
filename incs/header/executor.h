@@ -6,7 +6,7 @@
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 18:16:13 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/05/26 16:45:56 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/05/30 10:19:29 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,11 @@
 # define EXECUTOR_H
 
 # include "header.h"
+
+#define EXEC 111
+#define LEFT 666
+#define RIGHT 999
+#define PARENT 0
 
 typedef struct s_exec
 {
