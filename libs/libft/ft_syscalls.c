@@ -12,18 +12,18 @@
 
 #include "libft.h"
 
-void ft_pipe(int fd[])
+void	ft_pipe(int fd[])
 {
-	if(pipe(fd) == -1)
+	if (pipe(fd) == -1)
 		show_error(strerror(errno), 1);
 }
 
-pid_t ft_fork()
+pid_t	ft_fork(void)
 {
-	pid_t pid;
+	pid_t	pid;
 
 	pid = fork();
-	if(pid == -1)
+	if (pid == -1)
 		show_error(strerror(errno), 1);
 	return (pid);
 }

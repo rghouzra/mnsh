@@ -10,10 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "mnsh.h"
 
-void test()
+void	test(void)
 {
 	// export_sort();
 	// t_my_list *it = g_mnsh->export_list;
@@ -28,7 +27,6 @@ int	main(int ac, char **av, char **env)
 {
 	(void)av;
 	(void)ac;
-
 	g_mnsh = (t_minishell *)ft_malloc(sizeof(t_minishell));
 	// rl_catch_signals = 0;
 	if (presh(env) == -1)

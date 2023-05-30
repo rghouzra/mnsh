@@ -14,7 +14,7 @@
 
 void	env(void)
 {
-	t_my_list *it;
+	t_my_list	*it;
 
 	it = g_mnsh->env_list;
 	while (it)

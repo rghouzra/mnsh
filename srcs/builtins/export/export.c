@@ -6,7 +6,7 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 09:08:01 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/05/30 10:53:37 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/05/30 11:24:03 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ static void	print_export(void)
 		it = it->next;
 	}
 }
- 
+
 static int	export_var(char *av)
 {
-	char **kv;
+	char	**kv;
 
 	kv = my_string_split(av, "=");
 	if (!kv)
@@ -44,7 +44,7 @@ static int	export_var(char *av)
 	return (0);
 }
 
-void export(int ac, char **av)
+void	export(int ac, char **av)
 {
 	int	i;
 

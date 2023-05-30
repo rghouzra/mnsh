@@ -23,8 +23,8 @@ int	get_token_priority(t_list *q)
 {
 	int	type;
 
-    if(!q)
-        return -1;
+	if (!q)
+		return (-1);
 	type = q->type;
 	if (type == OPAR || type == CPAR)
 		return (4);

@@ -20,8 +20,8 @@ t_list	*ft_token_word(char *line, int *ind)
 	i = *ind;
 	while (line[i] && !is_an_op(line[i]))
 		i++;
-    token = ft_tokennew(ft_substr(line, *ind, i - *ind), WORD);
- 	*ind = i;
+	token = ft_tokennew(ft_substr(line, *ind, i - *ind), WORD);
+	*ind = i;
 	return (token);
 }
 
@@ -71,37 +71,38 @@ void	ft_lstwordadd_back(t_list **lst, t_list *new)
 	copy->next_word = new;
 }
 
-t_list *handl_syntax_operrator(t_list **tokens, char *line, int *index, char c)
+t_list	*handl_syntax_operrator(t_list **tokens, char *line, int *index, char c)
 {
-    t_list *token;
+	t_list	*token;
 
-    token = ft_token_op(line, index, c);
-    if(!token)
-        return (ft_tokencleaner(tokens), printf("syntax error\n"), NULL);
-    return (token);
+	token = ft_token_op(line, index, c);
+	if (!token)
+		return (ft_tokencleaner(tokens), printf("syntax error\n"), NULL);
+	return (token);
 }
 
 void	ft_parse_str(char *line, int j, t_list **token)
 {
 	int	i;
-    int sep;
+	int	sep;
 
-    sep = 0;
+	sep = 0;
 	i = 0;
 	while (line[i])
 	{
 		j = i;
 		if (line[i] && !is_an_op(line[i]))
 		{
-            if (check_prev(*token))
-                ft_lstwordadd_back(token, ft_token_word(line, &i));
-            else
-                ft_lstadd_back(token, ft_token_word(line, &i));
+			if (check_prev(*token))
+				ft_lstwordadd_back(token, ft_token_word(line, &i));
+			else
+				ft_lstadd_back(token, ft_token_word(line, &i));
 		}
 		else if (line[i] && is_an_op(line[i]))
-			ft_lstadd_back(token, handl_syntax_operrator(token, line, &i, line[i]));
-        if(!line[i])
-                break;
+			ft_lstadd_back(token, handl_syntax_operrator(token, line, &i,
+						line[i]));
+		if (!line[i])
+			break ;
 	}
 }
 
@@ -119,9 +120,9 @@ t_list	*ft_parser(char **line)
 char	*get_next_word(t_list *token, char *result)
 {
 	char	*sep;
-    t_list *next_words;
+	t_list	*next_words;
 
-    next_words = token->next_word;
+	next_words = token->next_word;
 	while (next_words)
 	{
 		sep = ft_strdup("_");

@@ -6,13 +6,13 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 08:43:03 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/05/29 16:50:57 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/05/30 11:01:19 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-char	*execute( char **cmnds)
+char	*execute(char **cmnds)
 {
 	char	*cmd;
 

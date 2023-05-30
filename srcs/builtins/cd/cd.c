@@ -12,7 +12,7 @@
 
 #include "builtins/cd.h"
 
-int cd(char *path)
+int	cd(char *path)
 {
 	(void)path;
 	return (0);

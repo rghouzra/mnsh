@@ -40,7 +40,7 @@ static int	scan_synp(t_echo *data, char *s)
 	return (1);
 }
 
-static	int	addbn(t_echo *data)
+static int	addbn(t_echo *data)
 {
 	if (!(data->n))
 		if (my_string_append(&(data->buff), "\n") == -1)

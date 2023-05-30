@@ -11,8 +11,8 @@
 /* ************************************************************************** */
 
 #include "header.h"
-#include <readline/readline.h>
 #include <readline/history.h>
+#include <readline/readline.h>
 static void	sigint_handler(int sig)
 {
 	(void)sig;
@@ -27,7 +27,7 @@ static void	sigquit_handler(int sig)
 	(void)sig;
 }
 
-void signal_utils(void)
+void	signal_utils(void)
 {
 	signal(SIGINT, sigint_handler);
 	signal(SIGQUIT, sigquit_handler);

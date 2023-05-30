@@ -83,7 +83,7 @@ void	print_ast(t_ast *tree, int side)
 		return ;
 	print_ast(tree->left, LEFT);
 	print_ast(tree->right, RIGHT);
-	printf("in tree: %s\tside->%d\n",tree->value, side);
+	printf("in tree: %s\tside->%d\n", tree->value, side);
 }
 
 void	print_stack(t_list *stack)
@@ -106,13 +106,13 @@ static t_ast	*generate_ast(t_queue **q)
 	tree = NULL;
 	stack = get_stack(q);
 	// print_stack(stack);
-    if(stack)
-    {
-	    ptr = stack;
-	    ast_constructor(&tree, &stack, 0);
-       //  print_ast(tree, 0);
-	    ft_lstclear(&ptr, del);
-    }
+	if (stack)
+	{
+		ptr = stack;
+		ast_constructor(&tree, &stack, 0);
+		//  print_ast(tree, 0);
+		ft_lstclear(&ptr, del);
+	}
 	return (tree);
 }
 
