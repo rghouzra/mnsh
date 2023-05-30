@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 22:45:36 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/05/29 17:31:06 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/05/30 08:03:58 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef struct s_echo
 	int		n;
 	int		size;
 
-}			t_echo;
+}		t_echo;
 
 void		echo(int ac, char **av);
 

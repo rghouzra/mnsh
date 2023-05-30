@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+         #
+#    By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/27 05:38:22 by yrhiba            #+#    #+#              #
-#    Updated: 2023/05/29 16:53:55 by yrhiba           ###   ########.fr        #
+#    Updated: 2023/05/30 09:02:21 by rghouzra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -77,8 +77,13 @@ LIBLIST = libs/libmylist/libmylist.a
 
 LIBFT = libs/libft/libft.a
 
-rlpath = $(shell brew --prefix readline)
+USER = $(shell whoami)
 
+ifeq ($(USER), rghouzra)
+	rlpath = /Volumes/REDA/.brew/opt/readline
+else
+	rlpath = $(shell brew --prefix readline)
+endif
 RL = -L$(rlpath)/lib -lreadline -I$(rlpath)/include
 
 $(NAME) : $(OBJS) $(LIBLIST) $(LIBSTR) $(LIBFT)

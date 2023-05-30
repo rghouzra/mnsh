@@ -6,24 +6,24 @@
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 06:57:44 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/05/26 21:03:53 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/05/30 08:49:09 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mnsh.h"
 
-static void     print_dot(t_ast *node, int i, int *count, FILE *p)
+static void	print_dot(t_ast *node, int i, int *count, FILE *p)
 {
-        int     node_id;
+	int     node_id;
 
-        if (node == 0x0)
-                return ;
-        node_id = ++(*count);
-        fprintf(p, "  node%d [label=\"%s\"];\n", node_id, node->value);
-        if (i != -666)
-                fprintf(p, "  node%d -> node%d;\n", i, node_id);
-        print_dot(node->left, node_id, count, p);
-        print_dot(node->right, node_id, count, p);
+	if (node == 0x0)
+	        return ;
+	node_id = ++(*count);
+	fprintf(p, "  node%d [label=\"%s\"];\n", node_id, node->value);
+	if (i != -666)
+	        fprintf(p, "  node%d -> node%d;\n", i, node_id);
+	print_dot(node->left, node_id, count, p);
+	print_dot(node->right, node_id, count, p);
 }
 
 void    print_tree_dot(t_ast *root, char *s)
@@ -40,7 +40,14 @@ void    print_tree_dot(t_ast *root, char *s)
         fflush(p);
 }
 
-
+void print_tk(t_list *token)
+{
+	while(token)
+	{
+		printf("[%s]\n", token->content);
+		token = token->next;
+	}
+}
 void	read_input()
 {
 	char	*s;
@@ -56,6 +63,7 @@ void	read_input()
 			exit(1);
 		}
 		token = tokenizer(s);
+		print_tk(token);
 		evaluate_expression(token);
 		if(lexer(token))
 		{
