@@ -6,7 +6,7 @@
 #    By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/27 05:38:22 by yrhiba            #+#    #+#              #
-#    Updated: 2023/05/29 16:53:55 by yrhiba           ###   ########.fr        #
+#    Updated: 2023/05/30 09:10:01 by yrhiba           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,8 @@ NAME = minishell
 
 SRCS_BUILTINS = srcs/builtins/cd/cd.c \
 				srcs/builtins/echo/echo.c \
-				srcs/builtins/env/env.c
+				srcs/builtins/env/env.c \
+				srcs/builtins/export/export.c
 
 SRCS_FOOTER =	srcs/presh/presh.c \
 				srcs/presh/presh_utils.c
@@ -51,6 +52,7 @@ INCS =  incs/header.h \
 		incs/builtins/cd.h \
 		incs/builtins/echo.h \
 		incs/builtins/env.h \
+		incs/builtins/export.h \
 		incs/footer/presh.h \
 		incs/header/evaluator.h \
 		incs/header/executor.h \
