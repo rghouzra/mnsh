@@ -6,7 +6,7 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 09:08:01 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/05/30 11:24:03 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/05/30 23:34:19 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,10 @@ static int	export_var(char *av)
 {
 	char	**kv;
 
-	kv = my_string_split(av, "=");
+	kv = my_string_split_by_first(av, "=");
 	if (!kv)
-		return (perror("export::"), -1);
-	for (int i = 0; kv[i]; i++)
-		printf("%s | ", kv[i]);
-	printf("\n");
-	free(kv);
-	// if (my_list_push_front(&(g_mnsh->export_list), my_list_new_elem(kv)) == -1)
-	// 	return (perror("export::"), -1);
-	// export_sort();
+		return (-1);
+	printf("%s -> %s\n", kv[0], kv[1]);
 	return (0);
 }
 
@@ -51,7 +45,7 @@ void	export(int ac, char **av)
 	if (ac == 1)
 	{
 		print_export();
-		return ;
+		exit(EXIT_SUCCESS);
 	}
 	i = 0;
 	while (++i < ac)
