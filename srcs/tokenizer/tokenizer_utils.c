@@ -14,8 +14,8 @@
 
 int	char_is_op(char c)
 {
-	return (c == '|' || c == '<' || c == '>' || c == '&' || c == '('\
-    || c == ')');
+	return (c == '|' || c == '<' || c == '>' || c == '&' || c == '('
+		|| c == ')');
 }
 
 int	is_an_op(char line)
@@ -25,7 +25,7 @@ int	is_an_op(char line)
 	return (0);
 }
 
-t_tokentype invalid_token(char *line)
+t_tokentype	invalid_token(char *line)
 {
 	if (!ft_strncmp(line, "&", ft_strlen("&")))
 		return (NONE);

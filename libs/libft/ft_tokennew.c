@@ -15,7 +15,7 @@
 t_list	*ft_tokennew(void *content, t_tokentype type)
 {
 	t_list	*new;
-    
+
 	new = (t_list *)ft_malloc(sizeof(t_list));
 	if (new)
 	{

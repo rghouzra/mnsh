@@ -20,14 +20,14 @@ int	check_valid_syntax(t_list *token)
 	return (1);
 }
 
-int check_token(t_list *token)
+int	check_token(t_list *token)
 {
-	if(!token)
+	if (!token)
 		return (1);
-	while(token)
+	while (token)
 	{
 		if (token->type == NONE)
-			return 0;
+			return (0);
 		token = token->next;
 	}
 	return (1);
@@ -37,7 +37,7 @@ int	lexer(t_list *token)
 {
 	if (token)
 	{
-		if(check_token(token) != 1)
+		if (check_token(token) != 1)
 			return (printf("syntax error\n"), 0);
 		if (paranthesis_lexer(token) != 1)
 			return (printf("bash: parse error near`()'\n"), 0);
