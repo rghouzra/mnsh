@@ -13,6 +13,7 @@
 #include "header.h"
 #include <readline/history.h>
 #include <readline/readline.h>
+
 static void	sigint_handler(int sig)
 {
 	(void)sig;
