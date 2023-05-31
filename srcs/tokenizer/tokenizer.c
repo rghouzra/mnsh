@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: redaghouzraf <redaghouzraf@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 17:57:25 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/05/30 10:22:47 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/05/31 19:30:36 by redaghouzra      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,9 +84,7 @@ t_list	*handl_syntax_operrator(t_list **tokens, char *line, int *index, char c)
 void	ft_parse_str(char *line, int j, t_list **token)
 {
 	int	i;
-	int	sep;
 
-	sep = 0;
 	i = 0;
 	while (line[i])
 	{
