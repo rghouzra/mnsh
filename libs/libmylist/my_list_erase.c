@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   my_list_erase.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yrhiba <yrhiba@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 09:35:43 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/01/10 21:28:37 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/05/31 00:03:21 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "my_list.h"
 
-int	my_list_erase(t_my_list **list, long long index)
+int	my_list_erase(t_my_list **list, long long index,
+		void (*data_clear)(void **))
 {
 	t_my_list	*iterator;
 	t_my_list	*prev;
@@ -21,7 +22,7 @@ int	my_list_erase(t_my_list **list, long long index)
 	if (index < 0 || !list || my_list_empty(*list))
 		return (-1);
 	if (index == 0)
-		return (my_list_pop_front(list));
+		return (my_list_pop_front(list, data_clear));
 	iterator = *list;
 	i = 0;
 	while (iterator->next)
@@ -35,5 +36,5 @@ int	my_list_erase(t_my_list **list, long long index)
 	if (i != index)
 		return (-1);
 	prev->next = iterator->next;
-	return (free(iterator->data), free(iterator), 0);
+	return (data_clear(&(iterator->data)), free(iterator), 0);
 }

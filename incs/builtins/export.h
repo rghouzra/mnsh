@@ -6,13 +6,13 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 09:08:42 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/05/30 09:09:28 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/05/31 15:08:18 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EXPORT_H
 # define EXPORT_H
 
-void	export(int ac, char **av);
+void	export(int ac, char **av, int status);
 
 #endif

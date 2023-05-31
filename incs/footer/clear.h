@@ -1,36 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   echo.h                                             :+:      :+:    :+:   */
+/*   clear.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/01 22:45:36 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/05/31 15:07:46 by yrhiba           ###   ########.fr       */
+/*   Created: 2023/05/30 23:39:01 by yrhiba            #+#    #+#             */
+/*   Updated: 2023/05/31 00:54:38 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ECHO_H
-# define ECHO_H
+#ifndef CLEAR_H
+# define CLEAR_H
 
-# include "libmystr.h"
-# include <fcntl.h>
-# include <stdlib.h>
-# include <unistd.h>
-
-/*
-	echo		"print args to stdout whit newline"
-	echo -n		"print args to stdout whitout newline"
-*/
-
-typedef struct s_echo
-{
-	char	*buff;
-	int		n;
-	int		size;
-
-}		t_echo;
-
-void		echo(int ac, char **av, int status);
+void	my_list_data_clear(void **data);
 
 #endif

@@ -6,25 +6,27 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 08:43:03 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/05/29 16:50:57 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/05/31 15:16:10 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#include "mnsh.h"
 
 char	*execute(char **cmnds)
 {
 	char	*cmd;
+	char	**ev;
 
 	if (!cmnds || !*cmnds)
 		return (NULL);
-	ifbuiltinbreak(cmnds);
+	ifbuiltinbreak(cmnds, 0);
 	cmd = getcmdfullpath(*cmnds);
 	if (!cmnds)
 		show_error(strerror(errno), 1);
-	execve(cmd, cmnds, NULL);
+	ev = contrui_env();
+	execve(cmd, cmnds, ev);
 	show_error(strerror(errno), 127);
-	return (NULL);
+	return (my_strings_free(&ev), NULL);
 }
 
 int	check_access(char *path, int which)

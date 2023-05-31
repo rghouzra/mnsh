@@ -45,6 +45,7 @@ int		my_string_have(char *s, int c);
 int		my_string_words_count(char *s, char *deliminators);
 int		my_string_find_first(char *s, char *to_find);
 int		my_string_find_last(char *s, char *to_find);
+char	**my_string_split_by_first(char *s, char *del);
 
 /*
 	part two strings
@@ -52,5 +53,6 @@ int		my_string_find_last(char *s, char *to_find);
 int		my_strings_sort(char **strs);
 int		my_strings_count(char **strs);
 void	my_strings_free(char ***strs);
+void	my_strings_free_count(char ***strs, int count);
 
 #endif

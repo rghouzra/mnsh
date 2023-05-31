@@ -6,7 +6,7 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 22:46:31 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/05/29 17:32:00 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/05/31 15:17:24 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static int	scan_synp(t_echo *data, char *s)
 	return (1);
 }
 
-static	int	addbn(t_echo *data)
+static int	addbn(t_echo *data)
 {
 	if (!(data->n))
 		if (my_string_append(&(data->buff), "\n") == -1)
@@ -52,10 +52,11 @@ static	int	addbn(t_echo *data)
 	return (0);
 }
 
-void	echo(int ac, char **av)
+void	echo(int ac, char **av, int status)
 {
 	t_echo	data;
 	int		i;
+	(void) status;
 
 	data.buff = (char *)0;
 	data.n = 0;
@@ -70,7 +71,11 @@ void	echo(int ac, char **av)
 			}
 	}
 	addbn(&data);
-	write(STDOUT_FILENO, data.buff, my_string_len(data.buff));
+	i = EXIT_SUCCESS;
+	if (write(STDOUT_FILENO, data.buff, my_string_len(data.buff)) == -1)
+		i = EXIT_FAILURE;
 	free(data.buff);
-	exit(EXIT_SUCCESS);
+	if (i == EXIT_FAILURE)
+		perror("echo::");
+	exit(i);
 }

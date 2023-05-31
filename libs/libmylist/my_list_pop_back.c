@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   my_list_pop_back.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yrhiba <yrhiba@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 14:05:14 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/01/10 21:50:58 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/05/30 23:55:16 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int	my_static_list_size(t_my_list *list)
 	return (size);
 }
 
-int	my_list_pop_back(t_my_list **list)
+int	my_list_pop_back(t_my_list **list, void (*data_clear)(void **))
 {
 	t_my_list	*iterator;
 	int			size;
@@ -40,13 +40,13 @@ int	my_list_pop_back(t_my_list **list)
 	if (size == 0)
 		return (0);
 	else if (size == 1)
-		my_list_clear(list);
+		my_list_clear(list, data_clear);
 	else
 	{
 		iterator = *list;
 		while (iterator->next->next)
 			iterator = iterator->next;
-		free(iterator->next->data);
+		data_clear(&(iterator->next->data));
 		free(iterator->next);
 		iterator->next = (t_my_list *)0;
 	}

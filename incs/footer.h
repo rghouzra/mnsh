@@ -6,7 +6,7 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 21:46:25 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/05/30 09:10:35 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/05/30 23:41:47 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include "builtins/export.h"
 
 # include "footer/presh.h"
+# include "footer/clear.h"
 
 # include "libmystr.h"
 # include "my_list.h"

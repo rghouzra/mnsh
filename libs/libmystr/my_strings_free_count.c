@@ -1,36 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   echo.h                                             :+:      :+:    :+:   */
+/*   my_strings_free_count.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/01 22:45:36 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/05/31 15:07:46 by yrhiba           ###   ########.fr       */
+/*   Created: 2023/05/31 00:32:37 by yrhiba            #+#    #+#             */
+/*   Updated: 2023/05/31 00:37:24 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ECHO_H
-# define ECHO_H
+#include "libmystr.h"
 
-# include "libmystr.h"
-# include <fcntl.h>
-# include <stdlib.h>
-# include <unistd.h>
-
-/*
-	echo		"print args to stdout whit newline"
-	echo -n		"print args to stdout whitout newline"
-*/
-
-typedef struct s_echo
+void	my_strings_free_count(char ***strs, int count)
 {
-	char	*buff;
-	int		n;
-	int		size;
+	int	i;
 
-}		t_echo;
-
-void		echo(int ac, char **av, int status);
-
-#endif
+	if (!(*strs))
+		return ;
+	i = -1;
+	while (++i < count)
+	{
+		if ((*strs)[i])
+			free((*strs)[i]);
+	}
+	free(*strs);
+	*strs = NULL;
+}
