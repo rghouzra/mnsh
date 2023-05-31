@@ -6,11 +6,11 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 22:46:31 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/05/31 15:17:24 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/05/31 16:31:35 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "builtins/echo.h"
+#include "mnsh.h"
 
 static int	addarg(t_echo *data, char *s)
 {
@@ -56,7 +56,6 @@ void	echo(int ac, char **av, int status)
 {
 	t_echo	data;
 	int		i;
-	(void) status;
 
 	data.buff = (char *)0;
 	data.n = 0;
@@ -67,7 +66,13 @@ void	echo(int ac, char **av, int status)
 			if (addarg(&data, av[i]) == -1)
 			{
 				free(data.buff);
-				exit(EXIT_FAILURE);
+				if (status == YES_EXIT)
+					exit(EXIT_FAILURE);
+				else
+				{
+					g_mnsh->exit_status = EXIT_FAILURE;
+					return ;
+				}
 			}
 	}
 	addbn(&data);
@@ -77,5 +82,7 @@ void	echo(int ac, char **av, int status)
 	free(data.buff);
 	if (i == EXIT_FAILURE)
 		perror("echo::");
-	exit(i);
+	if (status == YES_EXIT)
+		exit(i);
+	g_mnsh->exit_status = i;
 }

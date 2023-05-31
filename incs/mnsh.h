@@ -6,7 +6,7 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 21:30:50 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/05/26 15:17:06 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/05/31 16:28:01 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 #include "header.h"
 #include "footer.h"
 
+# define YES_EXIT 0
+# define NO_EXIT 1
 
 typedef struct s_minishell
 {

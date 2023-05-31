@@ -6,15 +6,17 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 11:12:16 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/05/31 15:17:03 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/05/31 16:35:29 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "builtins/cd.h"
+#include "mnsh.h"
 
 int	cd(char *path, int status)
 {
 	(void)path;
 	(void)status;
+	if (status == YES_EXIT)
+		exit(EXIT_SUCCESS);
 	return (0);
 }

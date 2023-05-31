@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_handler.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rghouzra <rghouzra@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 08:56:04 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/03/23 17:41:39 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/05/31 16:23:46 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 
 void	show_error(char *s, int exit_status)
 {
+	(void)exit_status;
 	perror(s);
-	exit(exit_status);
 }
