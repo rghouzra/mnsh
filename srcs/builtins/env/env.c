@@ -6,15 +6,16 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 18:21:11 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/05/29 17:40:24 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/05/31 15:17:34 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mnsh.h"
 
-void	env(void)
+void	env(int status)
 {
 	t_my_list	*it;
+	(void)status;
 
 	it = g_mnsh->env_list;
 	while (it)
