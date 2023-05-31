@@ -6,7 +6,7 @@
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 10:34:18 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/05/30 10:20:45 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/05/31 20:54:17 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	execute_with_fork(char **cmnds, t_io x)
 {
 	pid_t	pid;
 
+	if(ifbuiltinbreak(cmnds, NO_EXIT) == EXIT_SUCCESS)
+		return ;
 	pid = ft_fork();
 	if (!pid)
 	{
@@ -77,7 +79,7 @@ void	get_virual_operands(char *operands, t_openpar x, int is_running)
 	int		fd;
 	char	*tmp;
 
-	leafs = ft_split(operands, ' ');
+	leafs = ft_split(operands, '_');
 	if (!leafs)
 		return ;
 	tmp = leafs[0];
@@ -113,6 +115,7 @@ void	eval_tree(t_ast *tree, int is_child, t_io x)
 {
 	if (!tree)
 		return ;
+	printf("value->%s\n", tree->value);
 	if (tree->type == redir_o)
 		handle_rediro(tree, x, is_child);
 	if (tree->type == redir_i)
