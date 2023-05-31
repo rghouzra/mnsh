@@ -3,14 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: redaghouzraf <redaghouzraf@student.42.f    +#+  +:+       +#+        */
+/*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 17:57:25 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/05/31 19:30:36 by redaghouzra      ###   ########.fr       */
+/*   Updated: 2023/05/31 21:09:37 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
+
+t_list	*ft_token_quote(char *line, int *ind, char c)
+{
+	t_list	*token;
+	int		i;
+
+	i = *ind;
+	i++;
+	while (line[i] && line[i] != c)
+		i++;
+	if (c == SQ)
+		token = ft_tokennew(ft_substr(line, *ind + 1, i - *ind - 1), WORD);
+	if (c == DQ)
+		token = ft_tokennew(ft_substr(line, *ind + 1, i - *ind - 1), WORD);
+	i++;
+	*ind = i;
+	return (token);
+}
 
 t_list	*ft_token_word(char *line, int *ind)
 {
@@ -80,7 +98,10 @@ t_list	*handl_syntax_operrator(t_list **tokens, char *line, int *index, char c)
 		return (ft_tokencleaner(tokens), printf("syntax error\n"), NULL);
 	return (token);
 }
-
+int is_a_quote(char c)
+{
+	return (c == DQ || c == SQ);
+}
 void	ft_parse_str(char *line, int j, t_list **token)
 {
 	int	i;
@@ -89,12 +110,19 @@ void	ft_parse_str(char *line, int j, t_list **token)
 	while (line[i])
 	{
 		j = i;
-		if (line[i] && !is_an_op(line[i]))
+		if (line[i] && !is_an_op(line[i]) && !is_a_quote(line[i]))
 		{
 			if (check_prev(*token))
 				ft_lstwordadd_back(token, ft_token_word(line, &i));
 			else
 				ft_lstadd_back(token, ft_token_word(line, &i));
+		}
+		else if (line[i] == DQ || line[i] == SQ)
+		{
+			if (check_prev(*token))
+				ft_lstwordadd_back(token, ft_token_quote(line, &i, line[i]));
+			else
+				ft_lstadd_back(token, ft_token_quote(line, &i, line[i]));
 		}
 		else if (line[i] && is_an_op(line[i]))
 			ft_lstadd_back(token, handl_syntax_operrator(token, line, &i,
