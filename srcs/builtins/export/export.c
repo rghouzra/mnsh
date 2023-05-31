@@ -6,7 +6,7 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 09:08:01 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/05/31 15:15:44 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/05/31 16:34:42 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ void	export(int ac, char **av, int status)
 {
 	(void)ac;
 	(void)av;
-	(void) status;
 	// int	i;
 
 	// if (ac == 1)
@@ -57,4 +56,7 @@ void	export(int ac, char **av, int status)
 	// 	if (export_var(av[i]) == -1)
 	// 		exit(EXIT_FAILURE);
 	// exit(EXIT_SUCCESS);
+	if (status == YES_EXIT)
+		exit(EXIT_SUCCESS);
+	g_mnsh->exit_status = EXIT_SUCCESS;
 }
