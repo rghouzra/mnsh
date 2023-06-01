@@ -1,37 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/26 18:21:11 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/01 01:08:15 by yrhiba           ###   ########.fr       */
+/*   Created: 2023/06/01 00:34:48 by yrhiba            #+#    #+#             */
+/*   Updated: 2023/06/01 00:51:57 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mnsh.h"
 
-void	env(int ac, char **av, int status)
+void	mnsh_exit(int ac, char **av, int status)
 {
-	t_my_list	*it;
-
-	(void)av;
-	if (ac > 1)
+	if (ac > 2)
 	{
-		printf("env:: To many Argument\n");
+		printf("exit::too many arguments\n");
+		g_mnsh->exit_status = EXIT_FAILURE;
 		if (status == YES_EXIT)
-			exit(127);
-		g_mnsh->exit_status = 127;
+			exit(EXIT_FAILURE);
+		g_mnsh->exit_status = EXIT_FAILURE;
 		return ;
 	}
-	it = g_mnsh->env_list;
-	while (it)
-	{
-		printf("%s=%s\n", ((char **)it->data)[0], ((char **)it->data)[1]);
-		it = it->next;
-	}
-	if (status == YES_EXIT)
+	if (ac == 1)
 		exit(EXIT_SUCCESS);
-	g_mnsh->exit_status = EXIT_SUCCESS;
+	exit(ft_atoi(av[1]));
 }

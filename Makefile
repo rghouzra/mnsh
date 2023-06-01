@@ -6,7 +6,7 @@
 #    By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/27 05:38:22 by yrhiba            #+#    #+#              #
-#    Updated: 2023/05/31 00:41:46 by yrhiba           ###   ########.fr        #
+#    Updated: 2023/06/01 00:37:25 by yrhiba           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,8 @@ NAME = minishell
 SRCS_BUILTINS = srcs/builtins/cd/cd.c \
 				srcs/builtins/echo/echo.c \
 				srcs/builtins/env/env.c \
-				srcs/builtins/export/export.c
+				srcs/builtins/export/export.c \
+				srcs/builtins/exit/exit.c
 
 SRCS_FOOTER =	srcs/presh/presh.c \
 				srcs/presh/presh_utils.c \
@@ -54,6 +55,7 @@ INCS =  incs/header.h \
 		incs/builtins/echo.h \
 		incs/builtins/env.h \
 		incs/builtins/export.h \
+		incs/builtins/exit.h \
 		incs/footer/presh.h \
 		incs/footer/clear.h \
 		incs/header/evaluator.h \
@@ -73,7 +75,7 @@ ODIR = objs/
 
 OBJS = $(addprefix $(ODIR), $(SRCS:.c=.o))
 
-FLAGS = -Wall -Wextra #-fsanitize=address
+FLAGS = -Wall -Wextra -Werror #-fsanitize=address
 
 LIBSTR = libs/libmystr/libmystr.a
 
