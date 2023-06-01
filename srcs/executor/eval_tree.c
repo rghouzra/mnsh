@@ -16,6 +16,8 @@ void	execute_with_fork(char **cmnds, t_io x)
 {
 	pid_t	pid;
 
+	if(ifbuiltinbreak(cmnds, NO_EXIT) == EXIT_SUCCESS)
+		return ;
 	pid = ft_fork();
 	if (!pid)
 	{
@@ -77,7 +79,7 @@ void	get_virual_operands(char *operands, t_openpar x, int is_running)
 	int		fd;
 	char	*tmp;
 
-	leafs = ft_split(operands, ' ');
+	leafs = ft_split(operands, '_');
 	if (!leafs)
 		return ;
 	tmp = leafs[0];
