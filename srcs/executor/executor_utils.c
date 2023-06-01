@@ -6,7 +6,7 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 08:43:03 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/01 08:50:14 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/01 09:08:57 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ char	*execute(char **cmnds)
 	cmd = getcmdfullpath(*cmnds);
 	ev = contrui_env();
 	execve(cmd, cmnds, ev);
-	if (cmd)
-		free(cmd);
 	show_error(strerror(errno), 127);
-	return (my_strings_free(&ev), NULL);
+	my_strings_free(&cmnds);
+	printf("no comand -> 127\n");
+	return (my_strings_free(&ev), free(cmd), exit(127), NULL);
 }
 
 int	check_access(char *path, int which)
