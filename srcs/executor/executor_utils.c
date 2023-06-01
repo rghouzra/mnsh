@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 08:43:03 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/05/31 20:53:03 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/01 08:37:30 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,12 @@ char	*execute(char **cmnds)
 
 	if (!cmnds || !*cmnds)
 		return (NULL);
-	ifbuiltinbreak(cmnds, 0);
+	ifbuiltinbreak(cmnds, YES_EXIT);
 	cmd = getcmdfullpath(*cmnds);
-	if (!cmnds)
-		show_error(strerror(errno), 1);
 	ev = contrui_env();
 	execve(cmd, cmnds, ev);
 	show_error(strerror(errno), 127);
-	return (my_strings_free(&ev), NULL);
+	return (my_strings_free(&ev), free(cmd), my_strings_free(&cmnds), NULL);
 }
 
 int	check_access(char *path, int which)
