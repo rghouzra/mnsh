@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   executor_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 08:43:03 by rghouzra          #+#    #+#             */
 /*   Updated: 2023/06/01 09:08:57 by yrhiba           ###   ########.fr       */
@@ -17,15 +17,12 @@ char	*execute(char **cmnds)
 	char	*cmd;
 	char	**ev;
 
-	if (!cmnds || !*cmnds)
-		return (NULL);
 	ifbuiltinbreak(cmnds, YES_EXIT);
 	cmd = getcmdfullpath(*cmnds);
 	ev = contrui_env();
 	execve(cmd, cmnds, ev);
 	show_error(strerror(errno), 127);
 	my_strings_free(&cmnds);
-	printf("no comand -> 127\n");
 	return (my_strings_free(&ev), free(cmd), exit(127), NULL);
 }
 
