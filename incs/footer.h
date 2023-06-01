@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   footer.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 21:46:25 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/01 00:36:23 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/01 08:33:39 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 # include "builtins/env.h"
 # include "builtins/export.h"
 # include "builtins/exit.h"
-
 # include "footer/presh.h"
 # include "footer/clear.h"
 

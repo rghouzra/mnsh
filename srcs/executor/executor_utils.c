@@ -6,7 +6,7 @@
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 08:43:03 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/05/31 20:53:03 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/01 08:26:40 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ char	*execute(char **cmnds)
 	ev = contrui_env();
 	execve(cmd, cmnds, ev);
 	show_error(strerror(errno), 127);
+	exit(127);
 	return (my_strings_free(&ev), NULL);
 }
 
