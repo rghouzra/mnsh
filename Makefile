@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+         #
+#    By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/27 05:38:22 by yrhiba            #+#    #+#              #
-#    Updated: 2023/06/01 00:37:25 by yrhiba           ###   ########.fr        #
+#    Updated: 2023/06/01 08:37:09 by rghouzra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,9 +73,11 @@ INCLINK =	-I . -I incs \
 
 ODIR = objs/
 
+COMPILER = cc
+
 OBJS = $(addprefix $(ODIR), $(SRCS:.c=.o))
 
-FLAGS = -Wall -Wextra -Werror #-fsanitize=address
+FLAGS = -Wall -Wextra -g #-Werror #-fsanitize=address
 
 LIBSTR = libs/libmystr/libmystr.a
 
@@ -94,7 +96,7 @@ endif
 RL = -L$(rlpath)/lib -lreadline -I$(rlpath)/include
 
 $(NAME) : $(OBJS) $(LIBLIST) $(LIBSTR) $(LIBFT)
-	cc $(FLAGS) $(OBJS) $(LIBLIST) $(LIBSTR) $(LIBFT) -o $(NAME) $(RL)
+	$(COMPILER) $(FLAGS) $(OBJS) $(LIBLIST) $(LIBSTR) $(LIBFT) -o $(NAME) $(RL)
 
 $(LIBLIST) :
 	make -C libs/libmylist
@@ -107,7 +109,7 @@ $(LIBFT) :
 
 $(ODIR)%.o : %.c $(INCS)
 	@mkdir -p $(dir $@)
-	cc $(FLAGS) -c $< -o $@ $(INCLINK) -I$(rlpath)/include
+	$(COMPILER) $(FLAGS) -c $< -o $@ $(INCLINK) -I$(rlpath)/include
 
 all : $(NAME)
 
