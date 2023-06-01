@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   eval_tree.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 10:34:18 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/05/30 10:20:45 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/01 00:41:25 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,7 @@ void	eval_logical_op(t_ast *tree, int is_child, t_io x)
 			eval_tree(tree->right, is_child, x);
 	}
 }
+
 void	eval_tree(t_ast *tree, int is_child, t_io x)
 {
 	if (!tree)

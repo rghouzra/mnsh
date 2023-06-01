@@ -1,34 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   footer.h                                           :+:      :+:    :+:   */
+/*   exit.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/24 21:46:25 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/01 00:36:23 by yrhiba           ###   ########.fr       */
+/*   Created: 2023/06/01 00:35:43 by yrhiba            #+#    #+#             */
+/*   Updated: 2023/06/01 00:45:36 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FOOTER_H
-# define FOOTER_H
+#ifndef EXIT_H
+# define EXIT_H
 
-# include "builtins/cd.h"
-# include "builtins/echo.h"
-# include "builtins/env.h"
-# include "builtins/export.h"
-# include "builtins/exit.h"
-
-# include "footer/presh.h"
-# include "footer/clear.h"
-
-# include "libmystr.h"
-# include "my_list.h"
-
-# include <errno.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <string.h>
-# include <unistd.h>
+void	mnsh_exit(int ac, char **av, int status);
 
 #endif
