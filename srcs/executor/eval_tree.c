@@ -6,7 +6,7 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 10:34:18 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/01 00:41:25 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/01 09:04:06 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	execute_with_fork(char **cmnds, t_io x)
 	}
 	else
 		waitpid(pid, &(g_mnsh->exit_status), 0);
-	ft_free(cmnds);
+	my_strings_free(&cmnds);
 }
 
 void	dup_close(int *fd, int new_fd, int index)
