@@ -6,7 +6,7 @@
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 10:34:18 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/01 16:01:46 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/03 19:49:58 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,9 +106,9 @@ void	eval_logical_op(t_ast *tree, int is_child, t_io x)
 	}
 	if (tree->type == OR_CMD_CHAIN)
 	{
-		eval_tree(tree->left, is_child, x);
+		eval_tree(tree->left, 0, x);
 		if (g_mnsh->exit_status)
-			eval_tree(tree->right, is_child, x);
+			eval_tree(tree->right, 0, x);
 	}
 }
 
