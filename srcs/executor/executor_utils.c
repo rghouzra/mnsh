@@ -6,7 +6,7 @@
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 08:43:03 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/01 08:58:51 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/01 16:01:32 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ char	*execute(char **cmnds)
 	char	*cmd;
 	char	**ev;
 
-	if (!cmnds || !*cmnds)
-		return (NULL);
 	ifbuiltinbreak(cmnds, YES_EXIT);
 	cmd = getcmdfullpath(*cmnds);
 	ev = contrui_env();
