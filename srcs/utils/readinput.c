@@ -6,7 +6,7 @@
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 06:57:44 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/05/31 22:22:03 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/03 19:50:18 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,6 @@ void	read_input(void)
 			exit(1);
 		}
 		token = tokenizer(s);
-		// print_tk(token);
-		// goto end;
 		evaluate_expression(token);
 		if (lexer(token))
 		{
