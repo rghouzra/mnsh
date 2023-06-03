@@ -34,7 +34,7 @@ void	execute_with_fork(char **cmnds, t_io x)
 	}
 	else
 		waitpid(pid, &(g_mnsh->exit_status), 0);
-	ft_free(cmnds);
+	my_strings_free(&cmnds);
 }
 
 void	dup_close(int *fd, int new_fd, int index)

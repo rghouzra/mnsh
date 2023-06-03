@@ -22,9 +22,8 @@ char	*execute(char **cmnds)
 	ev = contrui_env();
 	execve(cmd, cmnds, ev);
 	show_error(strerror(errno), 127);
-	exit(127);
-
-	return (my_strings_free(&ev), free(cmd), my_strings_free(&cmnds), NULL);
+	my_strings_free(&cmnds);
+	return (my_strings_free(&ev), free(cmd), exit(127), NULL);
 }
 
 int	check_access(char *path, int which)
