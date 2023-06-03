@@ -6,59 +6,78 @@
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 20:26:19 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/05/25 20:32:40 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/03 16:47:18 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-char	*handle_dq(const char *line, int **index, int *check)
+t_list	*ft_token_quote(char *line, int *ind, char c)
 {
-	int		first;
-	char	*value;
+	t_list	*token;
+	int		i;
 
-	first = **index;
-	while (line[**index])
-	{
-		if (line[**index] && line[**index + 1] == DQ)
-			break ;
-		**index = **index + 1;
-	}
-	if (line[**index] && line[**index + 1] == DQ)
-	{
-		*check = 1;
-		value = ft_substr(line, first, **(index));
-	}
-	else
-	{
-		*check = -1;
-		value = NULL;
-	}
-	printf("%s\n", value);
-	return (value);
+	i = *ind;
+	i++;
+	while (line[i] && line[i] != c)
+		i++;
+	if (c == SQ)
+		token = ft_tokennew(ft_substr(line, *ind + 1, i - *ind - 1), WORD);
+	if (c == DQ)
+		token = ft_tokennew(ft_substr(line, *ind + 1, i - *ind - 1), WORD);
+	i++;
+	*ind = i;
+	return (token);
 }
 
-char	*handle_sq(const char *line, int **index, int *check)
+t_list	*ft_token_word(char *line, int *ind)
 {
-	int		first;
-	char	*value;
+	t_list	*token;
+	int		i;
 
-	first = **index;
-	while (line[**index])
-	{
-		if (line[**index] == SQ)
-			break ;
-		**index = **index + 1;
-	}
-	if (line[**index] == SQ)
-	{
-		*check = 2;
-		value = ft_substr(line, first, **index - 1);
-	}
+	i = *ind;
+	while (line[i] && !is_an_op(line[i]))
+		i++;
+	token = ft_tokennew(ft_substr(line, *ind, i - *ind), WORD);
+	*ind = i;
+	return (token);
+}
+
+t_list	*ft_token_op(char *line, int *index, char c)
+{
+	t_list	*token;
+	int		i;
+	char	*s;
+	int		j;
+
+	j = -1;
+	i = *index;
+	c = line[i];
+	if (c == '(' || c == ')')
+		i++;
 	else
-	{
-		*check = -1;
-		value = NULL;
-	}
-	return (value);
+		while (line[i] && line[i] == c && ++j < 2)
+			i++;
+	s = ft_substr(line, *index, i - *index);
+	token = ft_tokennew(s, get_op_token_type(s));
+	*index = i;
+	return (token);
+}
+
+int	check_prev(t_list *token)
+{
+	if (!token)
+		return (0);
+	return (ft_lstlast(token)->type == WORD || ft_lstlast(token)->type == STR_SQ
+		|| ft_lstlast(token)->type == STRING);
+}
+
+t_list	*handl_syntax_operrator(t_list **tokens, char *line, int *index, char c)
+{
+	t_list	*token;
+
+	token = ft_token_op(line, index, c);
+	if (!token)
+		return (ft_tokencleaner(tokens), printf("syntax error\n"), NULL);
+	return (token);
 }
