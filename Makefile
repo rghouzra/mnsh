@@ -6,7 +6,7 @@
 #    By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/27 05:38:22 by yrhiba            #+#    #+#              #
-#    Updated: 2023/06/01 08:37:09 by rghouzra         ###   ########.fr        #
+#    Updated: 2023/06/01 15:51:32 by rghouzra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -77,7 +77,7 @@ COMPILER = cc
 
 OBJS = $(addprefix $(ODIR), $(SRCS:.c=.o))
 
-FLAGS = -Wall -Wextra -g #-Werror #-fsanitize=address
+FLAGS = -Wall -Wextra -g #-fsanitize=undefined
 
 LIBSTR = libs/libmystr/libmystr.a
 
