@@ -1,0 +1,21 @@
+Minishell
+
+“” => forks for nothing and doesn’t kill process
+env -i ./minishell and ls => SEGV
+((ls)) => shouldnt output
+run binary with relative and absolute path
+((ls))ls => syntax error + leak
+"l"s => should work
+
+ |ls | ls | ls | ls |ls | ls | ls | ls |ls | ls | ls | ls |ls | ls | ls | ls |ls | ls | ls | ls |ls | ls | ls | ls |ls | ls | ls | ls |ls | ls | ls | ls |ls | ls | ls | ls |ls | ls | ls | ls |ls | ls | ls | ls |ls | ls | ls | ls |ls | ls | ls | ls |ls | ls | ls | ls |ls | ls | ls | ls |ls | ls | ls | ls |ls | ls | ls | ls |ls | ls | ls | ls |ls | ls | ls | ls |ls | ls | ls | ls |ls | ls | ls | ls |ls | ls | ls | ls |ls | ls | ls | ls |ls | ls | ls | ls |ls | ls | ls | ls |ls | ls | ls | ls |ls | ls | ls | ls |ls | ls | ls | ls |ls | ls | ls | ls |ls | ls | ls | ls |ls | ls | ls | ls
+UndefinedBehaviorSanitizer:DEADLYSIGNAL
+==82009==ERROR: UndefinedBehaviorSanitizer: stack-overflow on address 0x7ffee4a37ff8 (pc 0x7fff6ec46a38 bp 0x7ffee4a38030 sp 0x7ffee4a38000 T250821)
+[1]    82009 illegal hardware instruction  ./minishell
+
+
+
+heredoc makaynsh
+
+<KKUY K double free
+
+
