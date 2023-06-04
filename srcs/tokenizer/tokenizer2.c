@@ -6,7 +6,7 @@
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 19:43:59 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/05/25 20:32:47 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/03 16:32:25 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,12 +94,8 @@ static char	*to_strings(char **strings, char const *s, char c)
 	return (strings[i] = 0, NULL);
 }
 
-char	**ft_alphasplit(char const *s, char c)
+char	**ft_alphasplit(char const *s, char c, t_alphasplit x)
 {
-	t_alphasplit	x;
-
-	x.str_count = 0;
-	x.i = 0;
 	while (1)
 	{
 		x.checker = 1;

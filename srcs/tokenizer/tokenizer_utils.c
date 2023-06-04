@@ -6,11 +6,28 @@
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 19:02:11 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/05/25 20:32:35 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/03 16:46:58 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
+
+void	ft_lstwordadd_back(t_list **lst, t_list *new)
+{
+	t_list	*copy;
+
+	if ((*lst) == NULL)
+	{
+		*lst = new;
+		return ;
+	}
+	copy = *lst;
+	while (copy->next)
+		copy = copy->next;
+	while (copy->next_word != NULL)
+		copy = copy->next_word;
+	copy->next_word = new;
+}
 
 int	char_is_op(char c)
 {
