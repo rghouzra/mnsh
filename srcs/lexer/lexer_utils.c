@@ -6,7 +6,7 @@
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 20:16:23 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/05/25 20:32:19 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/07 13:56:14 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,9 @@ int	is_there_unexpected_token(t_list *token)
 			else if ((token->type == opar && token->next->type == cpar)
 					|| (token->type == cpar && token->next->type == opar))
 				return (1);
+			else if((token->type == cpar && token->next->type == WORD) \
+			|| (token->type == WORD && token->next->type == opar))
+				return (1);
 		}
 		token = token->next;
 	}
@@ -101,7 +104,3 @@ int	paranthesis_lexer(t_list *token)
 		}
 	return (free(ptr), par == 0);
 }
-
-/*
-<< ls | << s > < dd
-*/
