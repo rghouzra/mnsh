@@ -6,7 +6,7 @@
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 17:57:25 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/03 16:46:41 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/04 08:31:32 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ char	*get_next_word(t_list *token, char *result)
 	next_words = token->next_word;
 	while (next_words)
 	{
-		sep = ft_strdup("_");
+		sep = ft_strdup("\n");
 		result = ft_strjoin(result, ft_strjoin(sep, next_words->content, 2), 2);
 		next_words = next_words->next_word;
 	}

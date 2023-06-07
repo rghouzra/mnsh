@@ -6,7 +6,7 @@
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 10:34:18 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/03 19:49:58 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/04 08:32:49 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	get_virual_operands(char *operands, t_openpar x, int is_running)
 	int		fd;
 	char	*tmp;
 
-	leafs = ft_split(operands, '_');
+	leafs = ft_split(operands, '\n');
 	if (!leafs)
 		return ;
 	tmp = leafs[0];
@@ -96,7 +96,7 @@ void	get_virual_operands(char *operands, t_openpar x, int is_running)
 	close(fd);
 }
 
-void	eval_logical_op(t_ast *tree, int is_child, t_io x)
+void	eval_logical_op(t_ast *tree, t_io x)
 {
 	if (tree->type == AND_CMD_CHAIN)
 	{
@@ -127,10 +127,10 @@ void	eval_tree(t_ast *tree, int is_child, t_io x)
 	if (tree->type == WORD)
 	{
 		if (is_child)
-			execute(ft_split(tree->value, '_'));
+			execute(ft_split(tree->value, '\n'));
 		else
-			execute_with_fork(ft_split(tree->value, '_'), x);
+			execute_with_fork(ft_split(tree->value, '\n'), x);
 	}
 	else
-		eval_logical_op(tree, is_child, x);
+		eval_logical_op(tree, x);
 }
