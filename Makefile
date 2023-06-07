@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+         #
+#    By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/27 05:38:22 by yrhiba            #+#    #+#              #
-#    Updated: 2023/06/07 16:02:35 by rghouzra         ###   ########.fr        #
+#    Updated: 2023/06/07 17:22:24 by yrhiba           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,8 @@ SRCS_BUILTINS = srcs/builtins/cd/cd.c \
 
 SRCS_FOOTER =	srcs/presh/presh.c \
 				srcs/presh/presh_utils.c \
-				srcs/clear/my_list_data_clear.c
+				srcs/clear/my_list_data_clear.c \
+				srcs/expand_utils/envgetvalue.c
 
 SRCS_HEADER =	srcs/evaluator/evaluator.c \
 				srcs/executor/eval_tree.c \
@@ -58,6 +59,7 @@ INCS =  incs/header.h \
 		incs/builtins/exit.h \
 		incs/footer/presh.h \
 		incs/footer/clear.h \
+		incs/footer/expand.h \
 		incs/header/evaluator.h \
 		incs/header/executor.h \
 		incs/header/lexer.h \
@@ -77,7 +79,7 @@ COMPILER = cc
 
 OBJS = $(addprefix $(ODIR), $(SRCS:.c=.o))
 
-FLAGS = -Wall -Wextra -g #-fsanitize=undefined
+FLAGS = -Wall -Wextra -Werror #-g -fsanitize=undefined
 
 LIBSTR = libs/libmystr/libmystr.a
 
