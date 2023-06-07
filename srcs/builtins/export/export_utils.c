@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   export.h                                           :+:      :+:    :+:   */
+/*   export_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/30 09:08:42 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/07 17:46:38 by yrhiba           ###   ########.fr       */
+/*   Created: 2023/06/07 17:44:05 by yrhiba            #+#    #+#             */
+/*   Updated: 2023/06/07 17:44:41 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EXPORT_H
-# define EXPORT_H
+#include "mnsh.h"
 
-void	export(int ac, char **av, int status);
-int		is_keyvalid(char *key);
-
-#endif
+int	is_keyvalid(char *key)
+{
+	(void)key;
+	return (0);
+}

@@ -6,7 +6,7 @@
 #    By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/27 05:38:22 by yrhiba            #+#    #+#              #
-#    Updated: 2023/06/07 17:42:26 by yrhiba           ###   ########.fr        #
+#    Updated: 2023/06/07 17:45:09 by yrhiba           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@ SRCS_BUILTINS = srcs/builtins/cd/cd.c \
 				srcs/builtins/echo/echo.c \
 				srcs/builtins/env/env.c \
 				srcs/builtins/export/export.c \
+				srcs/builtins/export/export_utils.c \
 				srcs/builtins/exit/exit.c
 
 SRCS_FOOTER =	srcs/presh/presh.c \
