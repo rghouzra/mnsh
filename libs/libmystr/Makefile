@@ -6,7 +6,7 @@
 #    By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/02 19:51:46 by yrhiba            #+#    #+#              #
-#    Updated: 2023/05/31 00:37:17 by yrhiba           ###   ########.fr        #
+#    Updated: 2023/06/04 14:37:26 by yrhiba           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,8 @@ SRCS =	my_string_append.c my_string_compare.c my_string_dup.c \
 		my_string_words_count.c my_string_split.c my_string_swap.c \
 		my_strings_count.c my_strings_free.c my_strings_sort.c \
 		my_string_find_last.c my_string_find_first.c \
-		my_string_split_by_first.c my_strings_free_count.c
+		my_string_split_by_first.c my_strings_free_count.c \
+		my_strings_dup_count.c
 
 INCS = libmystr.h
 

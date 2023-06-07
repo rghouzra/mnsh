@@ -53,6 +53,7 @@ char	**my_string_split_by_first(char *s, char *del);
 int		my_strings_sort(char **strs);
 int		my_strings_count(char **strs);
 void	my_strings_free(char ***strs);
+char	**my_strings_dup_count(char **strs, int count);
 void	my_strings_free_count(char ***strs, int count);
 
 #endif
