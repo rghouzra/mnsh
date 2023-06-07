@@ -6,7 +6,7 @@
 #    By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/27 05:38:22 by yrhiba            #+#    #+#              #
-#    Updated: 2023/06/07 17:22:24 by yrhiba           ###   ########.fr        #
+#    Updated: 2023/06/07 17:42:26 by yrhiba           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,11 @@ SRCS_BUILTINS = srcs/builtins/cd/cd.c \
 SRCS_FOOTER =	srcs/presh/presh.c \
 				srcs/presh/presh_utils.c \
 				srcs/clear/my_list_data_clear.c \
-				srcs/expand_utils/envgetvalue.c
+				srcs/expand_utils/envgetvalue.c \
+				srcs/expand_utils/env_var_exist.c \
+				srcs/expand_utils/env_var_update.c \
+				srcs/expand_utils/export_var_exist.c \
+				srcs/expand_utils/export_var_update.c
 
 SRCS_HEADER =	srcs/evaluator/evaluator.c \
 				srcs/executor/eval_tree.c \

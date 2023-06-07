@@ -1,22 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expand.h                                           :+:      :+:    :+:   */
+/*   env_var_exist.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/07 17:19:42 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/07 17:40:52 by yrhiba           ###   ########.fr       */
+/*   Created: 2023/06/07 17:31:25 by yrhiba            #+#    #+#             */
+/*   Updated: 2023/06/07 17:33:33 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EXPAND_H
-# define EXPAND_H
+#include "mnsh.h"
 
-char	*envgetvalue(char *key);
-int		env_var_exist(char *key);
-int		export_var_exist(char *key);
-int		env_var_update(char *key, char *new_value);
-int		export_var_update(char *key, char *new_value);
+int	env_var_exist(char *key)
+{
+	t_my_list *it;
 
-#endif
+	it = g_mnsh->env_list;
+	while (it)
+	{
+		if (my_string_compare(key, ((char **)it->data)[0]) == LS_EQUAL)
+			return (1);
+		it = it->next;
+	}
+	return (0);
+}
