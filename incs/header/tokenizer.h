@@ -6,14 +6,14 @@
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 18:26:20 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/03 16:46:10 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/08 16:14:33 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TOKENIZER_H
 # define TOKENIZER_H
 # include "header.h"
-# define IS_A_QUOTE(c) ((c) == DQ || (c) == SQ)
+# define IS_A_QUOTE(c) ((c) == DQ)
 typedef struct s_struct
 {
 	int		i;
