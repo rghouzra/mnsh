@@ -1,35 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   getcmdfullpath.c                                   :+:      :+:    :+:   */
+/*   env_var_update.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/26 15:54:31 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/07 19:28:56 by yrhiba           ###   ########.fr       */
+/*   Created: 2023/06/07 17:34:57 by yrhiba            #+#    #+#             */
+/*   Updated: 2023/06/07 17:42:40 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mnsh.h"
 
-char	*getcmdfullpath(char *cmd)
+int	env_var_update(char *key, char *new_value)
 {
-	char	*path;
-	int		i;
+	t_my_list *it;
 
-	if (!(g_mnsh->paths_list))
-		return (NULL);
-	i = -1;
-	path = (char *)0;
-	while (g_mnsh->paths_list[++i])
+	it = g_mnsh->env_list;
+	while (it)
 	{
-		path = my_string_join(g_mnsh->paths_list[i], cmd);
-		if (!path)
-			return (NULL);
-		if (access(path, X_OK) == 0)
-			return (path);
-		free(path);
-		path = (char *)0;
+		if (my_string_compare(((char **)it->data)[0], key) == LS_EQUAL)
+		{
+			if (my_string_update(&(((char **)it->data)[1]), new_value) == -1)
+				return (-1);
+			return (0);
+		}
+		it = it->next;
 	}
-	return (NULL);
+	return (0);
 }

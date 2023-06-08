@@ -1,35 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   getcmdfullpath.c                                   :+:      :+:    :+:   */
+/*   envgetvalue.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/26 15:54:31 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/07 19:28:56 by yrhiba           ###   ########.fr       */
+/*   Created: 2023/06/07 17:17:08 by yrhiba            #+#    #+#             */
+/*   Updated: 2023/06/07 17:19:27 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mnsh.h"
 
-char	*getcmdfullpath(char *cmd)
+char	*envgetvalue(char *key)
 {
-	char	*path;
-	int		i;
+	t_my_list	*it;
 
-	if (!(g_mnsh->paths_list))
-		return (NULL);
-	i = -1;
-	path = (char *)0;
-	while (g_mnsh->paths_list[++i])
+	it = g_mnsh->env_list;
+	while (it)
 	{
-		path = my_string_join(g_mnsh->paths_list[i], cmd);
-		if (!path)
-			return (NULL);
-		if (access(path, X_OK) == 0)
-			return (path);
-		free(path);
-		path = (char *)0;
+		if (my_string_compare(((char **)it->data)[0], key) == LS_EQUAL)
+			return (((char **)it->data)[1]);
+		it = it->next;
 	}
 	return (NULL);
 }

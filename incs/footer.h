@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   footer.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 21:46:25 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/01 08:33:39 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/07 17:20:32 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include "builtins/exit.h"
 # include "footer/presh.h"
 # include "footer/clear.h"
+# include "footer/expand.h"
 
 # include "libmystr.h"
 # include "my_list.h"

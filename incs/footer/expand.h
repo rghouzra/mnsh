@@ -1,35 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   getcmdfullpath.c                                   :+:      :+:    :+:   */
+/*   expand.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/26 15:54:31 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/07 19:28:56 by yrhiba           ###   ########.fr       */
+/*   Created: 2023/06/07 17:19:42 by yrhiba            #+#    #+#             */
+/*   Updated: 2023/06/08 15:32:57 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mnsh.h"
+#ifndef EXPAND_H
+# define EXPAND_H
 
-char	*getcmdfullpath(char *cmd)
-{
-	char	*path;
-	int		i;
+char	*envgetvalue(char *key);
+int		env_var_exist(char *key);
+int		export_var_exist(char *key);
+int		env_var_update(char *key, char *new_value);
+int		export_var_update(char *key, char *new_value);
 
-	if (!(g_mnsh->paths_list))
-		return (NULL);
-	i = -1;
-	path = (char *)0;
-	while (g_mnsh->paths_list[++i])
-	{
-		path = my_string_join(g_mnsh->paths_list[i], cmd);
-		if (!path)
-			return (NULL);
-		if (access(path, X_OK) == 0)
-			return (path);
-		free(path);
-		path = (char *)0;
-	}
-	return (NULL);
-}
+void	expand_term(char **term);
+
+#endif

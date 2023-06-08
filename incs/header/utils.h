@@ -6,7 +6,7 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 18:06:57 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/05/31 16:44:14 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/08 16:03:34 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,6 @@ void				signal_utils(void);
 void				export_sort(void);
 int					ifbuiltinbreak(char **cmnds, int status);
 char				**contrui_env(void);
+int					exit_status(int status, int mode);
 
 #endif

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+         #
+#    By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/27 05:38:22 by yrhiba            #+#    #+#              #
-#    Updated: 2023/06/07 16:02:35 by rghouzra         ###   ########.fr        #
+#    Updated: 2023/06/08 16:03:52 by yrhiba           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,11 +16,18 @@ SRCS_BUILTINS = srcs/builtins/cd/cd.c \
 				srcs/builtins/echo/echo.c \
 				srcs/builtins/env/env.c \
 				srcs/builtins/export/export.c \
+				srcs/builtins/export/export_utils.c \
 				srcs/builtins/exit/exit.c
 
 SRCS_FOOTER =	srcs/presh/presh.c \
 				srcs/presh/presh_utils.c \
-				srcs/clear/my_list_data_clear.c
+				srcs/clear/my_list_data_clear.c \
+				srcs/expand_utils/envgetvalue.c \
+				srcs/expand_utils/env_var_exist.c \
+				srcs/expand_utils/env_var_update.c \
+				srcs/expand_utils/export_var_exist.c \
+				srcs/expand_utils/export_var_update.c \
+				srcs/expand_utils/expand_term.c
 
 SRCS_HEADER =	srcs/evaluator/evaluator.c \
 				srcs/executor/eval_tree.c \
@@ -44,7 +51,8 @@ SRCS_HEADER =	srcs/evaluator/evaluator.c \
 				srcs/utils/getcmdfullpath.c \
 				srcs/utils/ifbuiltinbreak.c \
 				srcs/utils/export_sort.c \
-				srcs/utils/contrui_env.c
+				srcs/utils/contrui_env.c \
+				srcs/utils/exit_status.c
 
 SRCS =	mnsh.c $(SRCS_BUILTINS) $(SRCS_HEADER) $(SRCS_FOOTER)
 
@@ -58,6 +66,7 @@ INCS =  incs/header.h \
 		incs/builtins/exit.h \
 		incs/footer/presh.h \
 		incs/footer/clear.h \
+		incs/footer/expand.h \
 		incs/header/evaluator.h \
 		incs/header/executor.h \
 		incs/header/lexer.h \
@@ -77,7 +86,7 @@ COMPILER = cc
 
 OBJS = $(addprefix $(ODIR), $(SRCS:.c=.o))
 
-FLAGS = -Wall -Wextra -g #-fsanitize=undefined
+FLAGS = -Wall -Wextra -Werror #-g -fsanitize=undefined
 
 LIBSTR = libs/libmystr/libmystr.a
 
