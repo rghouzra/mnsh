@@ -1,24 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expand.h                                           :+:      :+:    :+:   */
+/*   exit_status.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/07 17:19:42 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/08 15:32:57 by yrhiba           ###   ########.fr       */
+/*   Created: 2023/06/08 15:55:55 by yrhiba            #+#    #+#             */
+/*   Updated: 2023/06/08 16:03:55 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EXPAND_H
-# define EXPAND_H
+#include "mnsh.h"
 
-char	*envgetvalue(char *key);
-int		env_var_exist(char *key);
-int		export_var_exist(char *key);
-int		env_var_update(char *key, char *new_value);
-int		export_var_update(char *key, char *new_value);
-
-void	expand_term(char **term);
-
-#endif
+int	exit_status(int status, int mode)
+{
+	if (mode == YES_EXIT)
+		exit(status);
+	g_mnsh->exit_status = status;
+	return (status);
+}

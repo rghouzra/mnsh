@@ -6,7 +6,7 @@
 #    By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/27 05:38:22 by yrhiba            #+#    #+#              #
-#    Updated: 2023/06/07 17:45:09 by yrhiba           ###   ########.fr        #
+#    Updated: 2023/06/08 16:03:52 by yrhiba           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,8 @@ SRCS_FOOTER =	srcs/presh/presh.c \
 				srcs/expand_utils/env_var_exist.c \
 				srcs/expand_utils/env_var_update.c \
 				srcs/expand_utils/export_var_exist.c \
-				srcs/expand_utils/export_var_update.c
+				srcs/expand_utils/export_var_update.c \
+				srcs/expand_utils/expand_term.c
 
 SRCS_HEADER =	srcs/evaluator/evaluator.c \
 				srcs/executor/eval_tree.c \
@@ -50,7 +51,8 @@ SRCS_HEADER =	srcs/evaluator/evaluator.c \
 				srcs/utils/getcmdfullpath.c \
 				srcs/utils/ifbuiltinbreak.c \
 				srcs/utils/export_sort.c \
-				srcs/utils/contrui_env.c
+				srcs/utils/contrui_env.c \
+				srcs/utils/exit_status.c
 
 SRCS =	mnsh.c $(SRCS_BUILTINS) $(SRCS_HEADER) $(SRCS_FOOTER)
 
