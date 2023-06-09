@@ -6,7 +6,7 @@
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 06:57:44 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/09 16:03:29 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/09 17:26:56 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,19 @@ void	print_tree_dot(t_ast *root, char *s)
 
 void	print_tk(t_list *token)
 {
+	t_list	*tmp;
 	while (token)
 	{
 		printf("[%s]:\t%d\n", token->content, token->type);
+		tmp = token->next_word;
+		if(tmp)
+		{
+			while(tmp)
+			{
+				printf("next_word: %s\n",tmp->content);
+				tmp = tmp->next_word;	
+			}
+		}
 		token = token->next;
 	}
 	putchar('\n');
@@ -64,7 +74,6 @@ void	read_input(void)
 			exit(1);
 		}
 		token = tokenizer(s);
-		print_tk(token);
 		evaluate_expression(token);
 		if (lexer(token))
 		{

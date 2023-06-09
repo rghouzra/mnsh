@@ -6,7 +6,7 @@
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 17:57:25 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/09 16:02:19 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/09 17:02:41 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,14 @@ void	ft_parse_str(char *line, int j, t_list **token, int i)
 	while (line[i])
 	{
 		j = i;
-		if (line[i] && !is_an_op(line[i]))
+		if (line[i] && !is_an_op(line[i]) && line[i] != DQ && line[i] != SQ)
 		{
 			if (check_prev(*token))
 				ft_lstwordadd_back(token, ft_token_word(line, &i));
 			else
 				ft_lstadd_back(token, ft_token_word(line, &i));
 		}
-		else if (line[i] == DQ)
+		else if (line[i] == DQ || line[i] == SQ)
 		{
 			if (check_prev(*token))
 				ft_lstwordadd_back(token, ft_token_quote(line, &i, line[i]));
@@ -88,7 +88,7 @@ t_list	*tokenizer(const char *line)
 	if (!strs)
 		return (NULL);
 	token = ft_parser(strs);
-	reconstruct_word(token);
+	// reconstruct_word(token);
 	ft_free(strs);
 	return (token);
 }
