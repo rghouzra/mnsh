@@ -6,7 +6,7 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 09:08:42 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/07 17:48:53 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/09 15:03:50 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,10 @@
 
 # define KEY_VALID 0
 # define KEY_NOTVALID 1
+# define VAR_EXIST 0
+# define VAR_NOTEXIST 1
 
-void	export(int ac, char **av, int status);
+void	export(int ac, char **av, int mode);
 int		is_keyvalid(char *key);
 
 #endif

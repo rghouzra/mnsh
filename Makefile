@@ -6,7 +6,7 @@
 #    By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/27 05:38:22 by yrhiba            #+#    #+#              #
-#    Updated: 2023/06/08 16:03:52 by yrhiba           ###   ########.fr        #
+#    Updated: 2023/06/09 14:56:52 by yrhiba           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,15 +19,30 @@ SRCS_BUILTINS = srcs/builtins/cd/cd.c \
 				srcs/builtins/export/export_utils.c \
 				srcs/builtins/exit/exit.c
 
-SRCS_FOOTER =	srcs/presh/presh.c \
-				srcs/presh/presh_utils.c \
-				srcs/clear/my_list_data_clear.c \
-				srcs/expand_utils/envgetvalue.c \
+SRCS_PRESH =	srcs/presh/presh.c \
+				srcs/presh/presh_utils.c
+
+SERCS_CLEAR =	srcs/clear/my_list_data_clear.c
+
+SRCS_FOOTER =	srcs/expand_utils/envgetvalue.c \
 				srcs/expand_utils/env_var_exist.c \
 				srcs/expand_utils/env_var_update.c \
 				srcs/expand_utils/export_var_exist.c \
 				srcs/expand_utils/export_var_update.c \
 				srcs/expand_utils/expand_term.c
+
+SRCS_UTILS =	srcs/utils/free_tokens.c
+				srcs/utils/queue_utils.c \
+				srcs/utils/stack_utils.c \
+				srcs/utils/garbage_cleaner.c\
+				srcs/utils/utils_minishell.c\
+				srcs/utils/signal_utils.c\
+				srcs/utils/readinput.c \
+				srcs/utils/getcmdfullpath.c \
+				srcs/utils/ifbuiltinbreak.c \
+				srcs/utils/export_sort.c \
+				srcs/utils/contrui_env.c \
+				srcs/utils/exit_status.c
 
 SRCS_HEADER =	srcs/evaluator/evaluator.c \
 				srcs/executor/eval_tree.c \
@@ -41,29 +56,20 @@ SRCS_HEADER =	srcs/evaluator/evaluator.c \
 				srcs/tokenizer/tokenizer_utils2.c \
 				srcs/tokenizer/tokenizer.c \
 				srcs/tokenizer/tokenizer2.c \
-				srcs/utils/free_tokens.c \
-				srcs/utils/queue_utils.c \
-				srcs/utils/stack_utils.c \
-				srcs/utils/garbage_cleaner.c\
-				srcs/utils/utils_minishell.c\
-				srcs/utils/signal_utils.c\
-				srcs/utils/readinput.c \
-				srcs/utils/getcmdfullpath.c \
-				srcs/utils/ifbuiltinbreak.c \
-				srcs/utils/export_sort.c \
-				srcs/utils/contrui_env.c \
-				srcs/utils/exit_status.c
+				$(SRCS_UTILS)
 
-SRCS =	mnsh.c $(SRCS_BUILTINS) $(SRCS_HEADER) $(SRCS_FOOTER)
+SRCS =	mnsh.c $(SRCS_BUILTINS) $(SRCS_PRESH) $(SERCS_CLEAR) $(SRCS_HEADER) $(SRCS_FOOTER)
 
-INCS =  incs/header.h \
+INCS_BUILTINS =	incs/builtins/cd.h \
+				incs/builtins/echo.h \
+				incs/builtins/env.h \
+				incs/builtins/export.h \
+				incs/builtins/exit.h
+
+INCS =	$(INCS_BUILTINS)
+		incs/header.h \
 		incs/footer.h \
 		incs/mnsh.h \
-		incs/builtins/cd.h \
-		incs/builtins/echo.h \
-		incs/builtins/env.h \
-		incs/builtins/export.h \
-		incs/builtins/exit.h \
 		incs/footer/presh.h \
 		incs/footer/clear.h \
 		incs/footer/expand.h \

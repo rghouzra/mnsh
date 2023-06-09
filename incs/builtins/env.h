@@ -6,13 +6,13 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 18:24:19 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/01 01:07:21 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/09 14:49:26 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ENV_H
 # define ENV_H
 
-void	env(int ac, char **av, int status);
+void	env(int ac, char **av, int mode);
 
 #endif

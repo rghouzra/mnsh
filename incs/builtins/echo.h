@@ -6,7 +6,7 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 22:45:36 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/05/31 15:07:46 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/09 14:49:21 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,6 @@ typedef struct s_echo
 
 }		t_echo;
 
-void		echo(int ac, char **av, int status);
+void		echo(int ac, char **av, int mode);
 
 #endif

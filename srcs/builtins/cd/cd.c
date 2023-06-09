@@ -6,17 +6,16 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 11:12:16 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/05/31 16:35:29 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/09 15:14:20 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mnsh.h"
 
-int	cd(char *path, int status)
+int	cd(char *path, int mode)
 {
 	(void)path;
-	(void)status;
-	if (status == YES_EXIT)
+	if (mode == YES_EXIT)
 		exit(EXIT_SUCCESS);
 	return (0);
 }

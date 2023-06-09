@@ -6,7 +6,7 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 22:46:31 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/05/31 16:31:35 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/09 14:47:46 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static int	addbn(t_echo *data)
 	return (0);
 }
 
-void	echo(int ac, char **av, int status)
+void	echo(int ac, char **av, int mode)
 {
 	t_echo	data;
 	int		i;
@@ -66,7 +66,7 @@ void	echo(int ac, char **av, int status)
 			if (addarg(&data, av[i]) == -1)
 			{
 				free(data.buff);
-				if (status == YES_EXIT)
+				if (mode == YES_EXIT)
 					exit(EXIT_FAILURE);
 				else
 				{
@@ -82,7 +82,7 @@ void	echo(int ac, char **av, int status)
 	free(data.buff);
 	if (i == EXIT_FAILURE)
 		perror("echo::");
-	if (status == YES_EXIT)
+	if (mode == YES_EXIT)
 		exit(i);
 	g_mnsh->exit_status = i;
 }
