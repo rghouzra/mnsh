@@ -6,7 +6,7 @@
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 17:57:25 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/08 16:14:06 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/09 16:02:19 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_parse_str(char *line, int j, t_list **token, int i)
 	while (line[i])
 	{
 		j = i;
-		if (line[i] && !is_an_op(line[i]) && !IS_A_QUOTE(line[i]))
+		if (line[i] && !is_an_op(line[i]))
 		{
 			if (check_prev(*token))
 				ft_lstwordadd_back(token, ft_token_word(line, &i));
@@ -58,7 +58,7 @@ char	*get_next_word(t_list *token, char *result)
 	next_words = token->next_word;
 	while (next_words)
 	{
-		sep = ft_strdup("\n");
+		sep = ft_strdup(" ");
 		result = ft_strjoin(result, ft_strjoin(sep, next_words->content, 2), 2);
 		next_words = next_words->next_word;
 	}
