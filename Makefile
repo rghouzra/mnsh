@@ -6,7 +6,7 @@
 #    By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/27 05:38:22 by yrhiba            #+#    #+#              #
-#    Updated: 2023/06/09 14:56:52 by yrhiba           ###   ########.fr        #
+#    Updated: 2023/06/09 15:24:19 by yrhiba           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ SRCS_FOOTER =	srcs/expand_utils/envgetvalue.c \
 				srcs/expand_utils/export_var_update.c \
 				srcs/expand_utils/expand_term.c
 
-SRCS_UTILS =	srcs/utils/free_tokens.c
+SRCS_UTILS =	srcs/utils/free_tokens.c \
 				srcs/utils/queue_utils.c \
 				srcs/utils/stack_utils.c \
 				srcs/utils/garbage_cleaner.c\
@@ -66,7 +66,7 @@ INCS_BUILTINS =	incs/builtins/cd.h \
 				incs/builtins/export.h \
 				incs/builtins/exit.h
 
-INCS =	$(INCS_BUILTINS)
+INCS =	$(INCS_BUILTINS) \
 		incs/header.h \
 		incs/footer.h \
 		incs/mnsh.h \
@@ -92,7 +92,7 @@ COMPILER = cc
 
 OBJS = $(addprefix $(ODIR), $(SRCS:.c=.o))
 
-FLAGS = -Wall -Wextra -Werror #-g -fsanitize=undefined
+FLAGS = -Wall -Wextra -Werror -g #-fsanitize=undefined
 
 LIBSTR = libs/libmystr/libmystr.a
 

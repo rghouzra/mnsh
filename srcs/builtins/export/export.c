@@ -6,7 +6,7 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 09:08:01 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/09 15:13:37 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/09 15:28:35 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static int	add_to_export(char **kv)
 	{
 		if (export_var_update(kv[0], kv[1]) == -1)
 			return (my_strings_free_count(&kv, 2), -1);
-		return (0);
+		return (my_strings_free_count(&kv, 2), 0);
 	}
 	if (my_list_push_back(&g_mnsh->export_list, my_list_new_elem(kv,
 				&my_list_data_clear)) == -1)
@@ -32,7 +32,7 @@ static int	add_to_env(char **kv)
 	{
 		if (env_var_update(kv[0], kv[1]) == -1)
 			return (my_strings_free_count(&kv, 2), -1);
-		return (0);
+		return (my_strings_free_count(&kv, 2), 0);
 	}
 	if (kv[1] && (my_list_push_back(&g_mnsh->env_list,
 				my_list_new_elem(my_strings_dup_count(kv, 2),
