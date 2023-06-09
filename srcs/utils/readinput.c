@@ -6,7 +6,7 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 06:57:44 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/08 16:26:31 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/09 14:34:30 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ void	read_input(void)
 			exit(1);
 		}
 		token = tokenizer(s);
-		// print_tk(token);
 		evaluate_expression(token);
 		if (lexer(token))
 		{
