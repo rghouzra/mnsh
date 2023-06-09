@@ -6,17 +6,11 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 15:41:31 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/08 16:06:36 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/09 14:34:20 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mnsh.h"
-
-// void test(char *arg)
-// {
-// 	// expan
-// }
-
 
 int	main(int ac, char **av, char **env)
 {
@@ -25,11 +19,6 @@ int	main(int ac, char **av, char **env)
 	g_mnsh = (t_minishell *)ft_malloc(sizeof(t_minishell));
 	if (presh(env) == -1)
 		exit(EXIT_FAILURE);
-	// ################# TEST AREA
-	// if (ac > 1)
-	// 	test(av[1]);
-	// exit(EXIT_SUCCESS);
-	// #################
 	signal_utils();
 	read_input();
 	my_list_clear(&(g_mnsh->env_list), &my_list_data_clear);

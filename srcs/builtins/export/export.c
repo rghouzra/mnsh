@@ -6,11 +6,40 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 09:08:01 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/07 17:54:33 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/09 15:28:35 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mnsh.h"
+
+static int	add_to_export(char **kv)
+{
+	if (export_var_exist(kv[0]) == VAR_EXIST)
+	{
+		if (export_var_update(kv[0], kv[1]) == -1)
+			return (my_strings_free_count(&kv, 2), -1);
+		return (my_strings_free_count(&kv, 2), 0);
+	}
+	if (my_list_push_back(&g_mnsh->export_list, my_list_new_elem(kv,
+				&my_list_data_clear)) == -1)
+		return (-1);
+	return (0);
+}
+
+static int	add_to_env(char **kv)
+{
+	if (env_var_exist(kv[0]) == VAR_EXIST)
+	{
+		if (env_var_update(kv[0], kv[1]) == -1)
+			return (my_strings_free_count(&kv, 2), -1);
+		return (my_strings_free_count(&kv, 2), 0);
+	}
+	if (kv[1] && (my_list_push_back(&g_mnsh->env_list,
+				my_list_new_elem(my_strings_dup_count(kv, 2),
+					&my_list_data_clear)) == -1))
+		return (-1);
+	return (0);
+}
 
 static void	print_export(void)
 {
@@ -36,12 +65,9 @@ static int	export_var(char *av)
 		return (-1);
 	if (is_keyvalid(kv[0]) != KEY_VALID)
 		return (my_strings_free_count(&kv, 2), -1);
-	if (my_list_push_back(&g_mnsh->export_list, my_list_new_elem(kv,
-				&my_list_data_clear)) == -1)
+	if (add_to_export(kv) == -1)
 		return (-1);
-	if (kv[1] && (my_list_push_back(&g_mnsh->env_list,
-				my_list_new_elem(my_strings_dup_count(kv, 2),
-					&my_list_data_clear)) == -1))
+	if (add_to_env(kv) == -1)
 		return (-1);
 	return (0);
 }
@@ -61,7 +87,5 @@ void	export(int ac, char **av, int status)
 			f = EXIT_FAILURE;
 			printf("export: %s: not a valid identifier\n", av[i]);
 		}
-	if (status == YES_EXIT)
-		exit(f);
-	g_mnsh->exit_status = f;
+	exit_status(EXIT_SUCCESS, status);
 }

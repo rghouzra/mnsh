@@ -6,13 +6,13 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 00:35:43 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/01 00:45:36 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/09 14:49:31 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EXIT_H
 # define EXIT_H
 
-void	mnsh_exit(int ac, char **av, int status);
+void	mnsh_exit(int ac, char **av, int mode);
 
 #endif

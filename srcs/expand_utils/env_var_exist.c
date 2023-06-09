@@ -6,7 +6,7 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 17:31:25 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/07 17:33:33 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/09 15:08:22 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ int	env_var_exist(char *key)
 	while (it)
 	{
 		if (my_string_compare(key, ((char **)it->data)[0]) == LS_EQUAL)
-			return (1);
+			return (VAR_EXIST);
 		it = it->next;
 	}
-	return (0);
+	return (VAR_NOTEXIST);
 }
