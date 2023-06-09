@@ -6,7 +6,7 @@
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 20:26:19 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/03 16:47:18 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/09 16:39:25 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,8 @@ t_list	*ft_token_quote(char *line, int *ind, char c)
 	i++;
 	while (line[i] && line[i] != c)
 		i++;
-	if (c == SQ)
-		token = ft_tokennew(ft_substr(line, *ind + 1, i - *ind - 1), WORD);
-	if (c == DQ)
-		token = ft_tokennew(ft_substr(line, *ind + 1, i - *ind - 1), WORD);
 	i++;
+	token = ft_tokennew(ft_substr(line, *ind , i - *ind), WORD);
 	*ind = i;
 	return (token);
 }
@@ -36,7 +33,7 @@ t_list	*ft_token_word(char *line, int *ind)
 	int		i;
 
 	i = *ind;
-	while (line[i] && !is_an_op(line[i]))
+	while (line[i] && !is_an_op(line[i]) && line[i] != DQ && line[i] != SQ)
 		i++;
 	token = ft_tokennew(ft_substr(line, *ind, i - *ind), WORD);
 	*ind = i;
