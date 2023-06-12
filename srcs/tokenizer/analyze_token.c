@@ -1,33 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mnsh.h                                             :+:      :+:    :+:   */
+/*   analyze_token.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/24 21:30:50 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/11 16:22:57 by rghouzra         ###   ########.fr       */
+/*   Created: 2023/06/12 11:27:30 by rghouzra          #+#    #+#             */
+/*   Updated: 2023/06/12 16:06:30 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MNSH_H
-# define MNSH_H
+# include "header.h"
 
-#include "header.h"
-#include "footer.h"
-
-# define YES_EXIT 0
-# define NO_EXIT 1
-
-typedef struct s_minishell
+void	analyze_token(t_list *token)
 {
-	int 		fd_in;
-	t_my_list	*env_list;
-	t_my_list	*export_list;
-	char		**paths_list;
-	int			exit_status;
-}				t_minishell;
-
-t_minishell		*g_mnsh;
-
-#endif
+	if(token == NULL || token->next == NULL)
+		return ;
+	while(token->next)
+	{
+		if (token->type == heredoc_i && token->next->type == WORD)
+			read_heredoc(token->next->content);
+		token = token->next;
+	}
+}

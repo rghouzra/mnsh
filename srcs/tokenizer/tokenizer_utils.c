@@ -6,7 +6,7 @@
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 19:02:11 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/03 16:46:58 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/11 20:41:11 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,10 @@ t_tokentype	get_op_token_type(char *line)
 		return (OR_CMD_CHAIN);
 	if (!ft_strncmp(line, "|", ft_strlen("|")))
 		return (PIPE);
-	if (!ft_strncmp(line, "<", ft_strlen("<")))
-		return (redir_i);
 	if (!ft_strncmp(line, "<<", ft_strlen("<<")))
 		return (heredoc_i);
+	if (!ft_strncmp(line, "<", ft_strlen("<")))
+		return (redir_i);
 	if (!ft_strncmp(line, ">>", ft_strlen(">>")))
 		return (append_o);
 	if (!ft_strncmp(line, ">", ft_strlen(">")))
