@@ -6,7 +6,7 @@
 #    By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/27 05:38:22 by yrhiba            #+#    #+#              #
-#    Updated: 2023/06/09 15:24:19 by yrhiba           ###   ########.fr        #
+#    Updated: 2023/06/12 18:32:46 by yrhiba           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,8 @@ SRCS_FOOTER =	srcs/expand_utils/envgetvalue.c \
 				srcs/expand_utils/env_var_update.c \
 				srcs/expand_utils/export_var_exist.c \
 				srcs/expand_utils/export_var_update.c \
-				srcs/expand_utils/expand_term.c
+				srcs/expand_utils/expand_term.c \
+				srcs/expand_utils/expand_term_utils.c
 
 SRCS_UTILS =	srcs/utils/free_tokens.c \
 				srcs/utils/queue_utils.c \

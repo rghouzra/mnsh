@@ -1,31 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   export_utils.c                                     :+:      :+:    :+:   */
+/*   expand_term_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/07 17:44:05 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/12 20:27:20 by yrhiba           ###   ########.fr       */
+/*   Created: 2023/06/12 18:28:17 by yrhiba            #+#    #+#             */
+/*   Updated: 2023/06/12 18:33:40 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mnsh.h"
 
-int	is_keyvalid(char *key)
+int	is_valid_char(char c, int pos)
 {
-	int	i;
-
-
-	if (!key || !(ft_isalpha(key[0]) || key[0] == '_'))
-		return (KEY_NOTVALID);
-	i = -1;
-	while (key[++i])
-		if (!(ft_isalnum(key[i]) || key[i] == '_'))
-			return (KEY_NOTVALID);
-	return (KEY_VALID);
+	if (pos == 0)
+		if (c != '_' && !ft_isalpha(c))
+			return (0);
+	else
+		if (c != '_' && !ft_isalnum(c))
+			return (0);
+	return (1);
 }
-
-/*
-Not Completed
-*/

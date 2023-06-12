@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   eval_tree.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 10:34:18 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/09 17:21:37 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/12 15:32:02 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,13 +126,7 @@ void	eval_tree(t_ast *tree, int is_child, t_io x)
 		pipeline(tree, x);
 	if (tree->type == WORD)
 	{
-		printf("head->%s\n", tree->value);
-		t_list *n = tree->next_word;
-		while(n)
-		{
-			printf("next->%s\n", n->content);
-			n = n->next_word;
-		}
+		expand_term(tree);
 		if (is_child)
 			execute(ft_split(tree->value, ' '));
 		else
