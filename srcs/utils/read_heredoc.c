@@ -1,33 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mnsh.h                                             :+:      :+:    :+:   */
+/*   read_heredoc.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/24 21:30:50 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/11 16:22:57 by rghouzra         ###   ########.fr       */
+/*   Created: 2023/06/11 15:01:02 by rghouzra          #+#    #+#             */
+/*   Updated: 2023/06/12 16:20:00 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MNSH_H
-# define MNSH_H
-
 #include "header.h"
-#include "footer.h"
 
-# define YES_EXIT 0
-# define NO_EXIT 1
-
-typedef struct s_minishell
+void read_heredoc(char *delemiter)
 {
-	int 		fd_in;
-	t_my_list	*env_list;
-	t_my_list	*export_list;
-	char		**paths_list;
-	int			exit_status;
-}				t_minishell;
+	char *line;
+	int fd;
 
-t_minishell		*g_mnsh;
-
-#endif
+	if(!delemiter)
+		return ;
+	fd = open("/tmp/heredoc", O_CREAT | O_RDWR | O_TRUNC, 0644);
+	if(fd == -1)
+		return ;
+	while(1)
+	{
+		line = readline("> ");
+		if(!line)
+			break ;
+		if(!ft_strcmp(line, delemiter))
+			break ;
+		write(fd, line, ft_strlen(line));
+		write(fd, "\n", 1);
+	}
+	close(fd);
+}

@@ -6,7 +6,7 @@
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 10:34:18 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/09 17:21:37 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/12 16:24:36 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,17 +122,20 @@ void	eval_tree(t_ast *tree, int is_child, t_io x)
 		handle_rediri(tree, x, is_child);
 	if (tree->type == append_o)
 		handle_append(tree, x, is_child);
+	if (tree->type == heredoc_i)
+		handle_heredoc(tree, x, is_child);
 	if (tree->type == PIPE)
 		pipeline(tree, x);
 	if (tree->type == WORD)
 	{
-		printf("head->%s\n", tree->value);
-		t_list *n = tree->next_word;
-		while(n)
-		{
-			printf("next->%s\n", n->content);
-			n = n->next_word;
-		}
+		// printf("head->%s\n", tree->value);
+		// t_list *n = tree->next_word;
+		// if(n)
+		// while(n)
+		// {
+		// 	printf("next->%s\n", n->content);
+		// 	n = n->next_word;
+		// }
 		if (is_child)
 			execute(ft_split(tree->value, ' '));
 		else

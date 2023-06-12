@@ -6,7 +6,7 @@
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 17:57:25 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/09 17:02:41 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/12 16:18:38 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ t_list	*tokenizer(const char *line)
 	if (!strs)
 		return (NULL);
 	token = ft_parser(strs);
+	analyze_token(token);
 	// reconstruct_word(token);
 	ft_free(strs);
 	return (token);

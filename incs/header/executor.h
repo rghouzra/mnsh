@@ -6,7 +6,7 @@
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 18:16:13 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/05/30 10:19:29 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/12 16:53:49 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef struct s_openpar
 	int		stream;
 }			t_openpar;
 
+void		handle_heredoc(t_ast *tree, t_io x, int is_child);
 char		*execute(char **cmnds);
 void		eval_tree(t_ast *tree, int is_child, t_io x);
 int			check_access(char *path, int which);
