@@ -6,7 +6,7 @@
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 18:06:57 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/12 15:45:44 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/13 15:19:14 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,5 @@ void				export_sort(void);
 int					ifbuiltinbreak(char **cmnds, int status);
 char				**contrui_env(void);
 int					exit_status(int status, int mode);
-
+void				ft_clean_nextword(t_list **token);
 #endif
