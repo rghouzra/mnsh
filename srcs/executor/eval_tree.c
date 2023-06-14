@@ -6,7 +6,7 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 10:34:18 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/14 14:02:59 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/14 15:36:14 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,6 @@ void	eval_logical_op(t_ast *tree, t_io x)
 
 void	eval_tree(t_ast *tree, int is_child, t_io x)
 {
-	char	**cmnds;
 
 	if (!tree)
 		return ;
@@ -129,22 +128,35 @@ void	eval_tree(t_ast *tree, int is_child, t_io x)
 	if (tree->type == WORD)
 	{
 		expand_term(tree);
-		cmnds = contrui_cmnds(tree);
 	
-		// TEST
-		printf("head->%s\n", tree->value);
-		t_list *n = tree->next_word;
-		while(n)
-		{
-			printf("%s\n", n->content);
-			n = n->next_word;
-		}
-		// TEST
+		// #################################
+		// TEST 
+		char	**cmnds; // Initialize Char **
 
-		// if (is_child)
-		// 	execute(ft_split(tree->value, ' '));
-		// else
-		// 	execute_with_fork(ft_split(tree->value, ' '), x);
+		cmnds = contrui_cmnds(tree); // No need Protection.
+
+		// iterat on it'
+		int count = my_strings_count(cmnds);
+		for (int i = 0; i < count; i++)
+		{
+			printf("%s", cmnds[i]);
+			if (i+1 < count)
+				printf(" ");
+		}
+		if (count > 0)
+			printf("\n");
+
+		// ################################
+		// TEST End
+
+
+		if (is_child)
+			execute(cmnds);
+		else
+			execute_with_fork(cmnds, x);
+
+		// Free it
+		my_strings_free(&cmnds);
 	}
 	else
 		eval_logical_op(tree, x);
