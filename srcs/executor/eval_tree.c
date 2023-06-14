@@ -6,7 +6,7 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 10:34:18 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/12 15:32:02 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/13 16:16:05 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,10 +127,21 @@ void	eval_tree(t_ast *tree, int is_child, t_io x)
 	if (tree->type == WORD)
 	{
 		expand_term(tree);
-		if (is_child)
-			execute(ft_split(tree->value, ' '));
-		else
-			execute_with_fork(ft_split(tree->value, ' '), x);
+	
+		// TEST
+		// printf("head->%s\n", tree->value);
+		// t_list *n = tree->next_word;
+		// while(n)
+		// {
+		// 	printf("%s\n", n->content);
+		// 	n = n->next_word;
+		// }
+		// TEST
+
+		// if (is_child)
+		// 	execute(ft_split(tree->value, ' '));
+		// else
+		// 	execute_with_fork(ft_split(tree->value, ' '), x);
 	}
 	else
 		eval_logical_op(tree, x);

@@ -6,7 +6,7 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 15:30:22 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/13 01:37:29 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/13 16:26:18 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,43 @@ static int	to_expand(char **s, char **new, int i)
 	int		j;
 
 	key = (char *)0;
-	j = 0;
-	while (is_valid_char((*s)[i], j))
+	j = i;
+	while (is_valid_char((*s)[i], (i - j)))
 	{
 		if (my_string_append_char(&key, (*s)[i]) == -1)
 			exit(EXIT_FAILURE);
 		i++;
-		j++;
 	}
-	if (j == 0)
-		my_string_append_char(s, '$');
-	return (i);
+	printf("char->%d | key->%s\n", (*s)[i], key);
+	if (i == j)
+	{
+		if (my_string_append_char(s, '$') == -1)
+			return (exit(EXIT_FAILURE), i);
+		return (i);
+	}
+	else if (append_value(new, key) == -1)
+		return (exit(EXIT_FAILURE), i);
+	return (free(key), i);
+}
+
+static	int	escape_word(char **s)
+{
+	char	*r;
+	int		i;
+	int		len;
+
+	if (**s != '\'' && **s != '"')
+		return (0);
+	len = (my_string_len(*s) - 2);
+	r = (char *)malloc(sizeof(char) * (len + 1));
+	if (!r)
+		exit(EXIT_FAILURE);
+	i = -1;
+	while (++i < len)
+		r[i] = (*s)[i + 1];
+	r[i] = '\0';
+	i = (**s == '\'');
+	return (free(*s), *s = r, i);
 }
 
 static void	expand_word(char **s)
@@ -36,6 +62,8 @@ static void	expand_word(char **s)
 	char	*new;
 	int		i;
 
+	if (escape_word(s))
+		return ;
 	new = (char *)0;
 	i = 0;
 	while ((*s)[i])
@@ -44,12 +72,16 @@ static void	expand_word(char **s)
 			i = to_expand(s, &new, i + 1);
 		else 
 		{
-
 			if (my_string_append_char(&new, (*s)[i]) == -1)
 				exit(EXIT_FAILURE);
 			i++;
 		}
+		printf("$->%c\n", (*s)[i]);
+		if (i > 100)
+			exit(EXIT_FAILURE);
 	}
+	free(*s);
+	*s = new;
 }
 
 void	expand_term(t_ast *term)
