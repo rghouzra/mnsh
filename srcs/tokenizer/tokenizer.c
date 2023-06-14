@@ -6,7 +6,7 @@
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 17:57:25 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/12 16:18:38 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/14 14:13:50 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,33 +50,6 @@ t_list	*ft_parser(char **line)
 	return (x.token);
 }
 
-char	*get_next_word(t_list *token, char *result)
-{
-	char	*sep;
-	t_list	*next_words;
-
-	next_words = token->next_word;
-	while (next_words)
-	{
-		sep = ft_strdup(" ");
-		result = ft_strjoin(result, ft_strjoin(sep, next_words->content, 2), 2);
-		next_words = next_words->next_word;
-	}
-	return (result);
-}
-
-void	reconstruct_word(t_list *token)
-{
-	if (!token)
-		return ;
-	while (token)
-	{
-		if (token->next_word)
-			token->content = get_next_word(token, token->content);
-		token = token->next;
-	}
-}
-
 t_list	*tokenizer(const char *line)
 {
 	t_list	*token;
@@ -89,7 +62,6 @@ t_list	*tokenizer(const char *line)
 		return (NULL);
 	token = ft_parser(strs);
 	analyze_token(token);
-	// reconstruct_word(token);
 	ft_free(strs);
 	return (token);
 }

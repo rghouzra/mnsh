@@ -6,7 +6,7 @@
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 20:31:48 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/12 20:02:45 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/14 15:18:00 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,35 +66,15 @@ static void	ast_constructor(t_ast **tree, t_list **prefix, int index)
 	if (is_an_operator((*prefix)->type, 4) && ((*prefix)->type != redir_i
 			|| (*prefix)->type != redir_o || (*prefix)->type != heredoc_i))
 	{
-		insert_in_tree(&sub_tree, newAstNode((*prefix)->type,
-					(*prefix)->content, (*prefix)->next_word), 0);
+		insert_in_tree(&sub_tree, ft_newastnode((*prefix)->type, \
+			(*prefix)->content, (*prefix)->next_word), 0);
 		ast_constructor(&sub_tree->right, prefix, RIGHT);
 		ast_constructor(&sub_tree->left, prefix, LEFT);
 	}
 	else
-		insert_in_tree(tree, newAstNode((*prefix)->type, (*prefix)->content,
-					(*prefix)->next_word), index);
+		insert_in_tree(tree, ft_newastnode((*prefix)->type, (*prefix)->content, \
+			(*prefix)->next_word), index);
 	insert_subtree_in_tree(tree, sub_tree);
-}
-
-void	print_ast(t_ast *tree, int side)
-{
-	if (tree == NULL)
-		return ;
-	print_ast(tree->left, LEFT);
-	print_ast(tree->right, RIGHT);
-	printf("in tree: %s\tside->%d\n", tree->value, side);
-}
-
-void	print_stack(t_list *stack)
-{
-	if (stack)
-		while (stack)
-		{
-			printf("%s ", stack->content);
-			stack = stack->next;
-		}
-	printf("\n");
 }
 
 static t_ast	*generate_ast(t_queue **q)
@@ -105,12 +85,10 @@ static t_ast	*generate_ast(t_queue **q)
 
 	tree = NULL;
 	stack = get_stack(q);
-	// print_stack(stack);
 	if (stack)
 	{
 		ptr = stack;
 		ast_constructor(&tree, &stack, 0);
-		//  print_ast(tree, 0);
 		ft_lstclear(&ptr, del);
 	}
 	return (tree);
@@ -118,18 +96,15 @@ static t_ast	*generate_ast(t_queue **q)
 
 t_ast	*shunting_algorithm(t_list *token)
 {
-	t_queue *q;
-	t_list *stack;
-	t_poped x;
-	t_ast *tree;
+	t_queue	*q;
+	t_list	*stack;
+	t_poped	x;
 
-	if (!token)
-		return (NULL);
 	q = NULL;
 	stack = NULL;
 	while (token)
 	{
-		if (token->type == WORD || token->type == STRING
+		if (token->type == WORD || token->type == STRING \
 			|| token->type == STR_SQ)
 			enqueue(&q, token->content, token->type, token->next_word);
 		else
@@ -144,6 +119,5 @@ t_ast	*shunting_algorithm(t_list *token)
 			enqueue(&q, x.content, x.type, x.next_word);
 		}
 	}
-	tree = generate_ast(&q);
-	return (tree);
+	return (generate_ast(&q));
 }

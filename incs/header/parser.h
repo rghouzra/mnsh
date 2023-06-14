@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 10:51:33 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/05/25 20:06:01 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/14 15:17:42 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_ast	*shunting_algorithm(t_list *token);
 int		op_priority(t_tokentype type);
 void	shunting_op_handler(t_list *token, t_queue **queue, t_list **stack);
 t_list	*get_stack(t_queue **queue);
-t_ast	*newAstNode(t_tokentype type, void *value, t_list *next_word);
+t_ast	*ft_newastnode(t_tokentype type, void *value, t_list *next_word);
 void	swap_stack_operator(t_list **stack);
 
 #endif
