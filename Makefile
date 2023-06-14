@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+         #
+#    By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/27 05:38:22 by yrhiba            #+#    #+#              #
-#    Updated: 2023/06/14 15:28:53 by yrhiba           ###   ########.fr        #
+#    Updated: 2023/06/14 16:07:20 by rghouzra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,8 @@ SRCS_UTILS =	srcs/utils/free_tokens.c \
 				srcs/utils/export_sort.c \
 				srcs/utils/contrui_env.c \
 				srcs/utils/exit_status.c \
-				srcs/utils/contrui_cmnds.c
+				srcs/utils/contrui_cmnds.c \
+				srcs/utils/read_heredoc.c
 
 SRCS_HEADER =	srcs/evaluator/evaluator.c \
 				srcs/executor/eval_tree.c \
@@ -58,6 +59,7 @@ SRCS_HEADER =	srcs/evaluator/evaluator.c \
 				srcs/tokenizer/tokenizer_utils2.c \
 				srcs/tokenizer/tokenizer.c \
 				srcs/tokenizer/tokenizer2.c \
+				srcs/tokenizer/analyze_token.c \
 				$(SRCS_UTILS)
 
 SRCS =	mnsh.c $(SRCS_BUILTINS) $(SRCS_PRESH) $(SERCS_CLEAR) $(SRCS_HEADER) $(SRCS_FOOTER)
