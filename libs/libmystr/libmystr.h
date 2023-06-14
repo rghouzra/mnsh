@@ -34,6 +34,7 @@
 int		my_string_compare(char *s1, char *s2);
 char	*my_string_join(char *s1, char *s2);
 int		my_string_append(char **s, char *to_append);
+int		my_string_append_char(char **s, char c);
 char	*my_string_dup(char *s);
 int		my_string_swap(char **s1, char **s2);
 int		my_string_update(char **s, char *to_update);
