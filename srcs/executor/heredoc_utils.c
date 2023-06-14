@@ -1,22 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expand_eval.c                                      :+:      :+:    :+:   */
+/*   heredoc_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/09 07:38:05 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/09 09:51:23 by rghouzra         ###   ########.fr       */
+/*   Created: 2023/06/12 16:27:27 by rghouzra          #+#    #+#             */
+/*   Updated: 2023/06/12 16:28:57 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mnsh.h"
+# include "header.h"
 
-void	expand_eval(t_list *token)
+void	handle_heredoc(t_ast *tree, t_io x, int is_child)
 {
-	if(token)
-	while (token)
-	{
-		break;
-	}
+	
 }

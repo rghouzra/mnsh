@@ -6,7 +6,7 @@
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 18:26:20 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/08 16:14:33 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/12 12:25:20 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,5 @@ t_list	*ft_token_op(char *line, int *index, char c);
 t_list	*ft_token_word(char *line, int *ind);
 t_list	*ft_token_quote(char *line, int *ind, char c);
 char		**ft_alphasplit(char const *s, char c, t_alphasplit x);
-
+void		analyze_token(t_list *token);
 #endif
