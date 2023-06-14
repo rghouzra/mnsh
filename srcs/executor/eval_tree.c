@@ -6,7 +6,7 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 10:34:18 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/13 16:16:05 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/14 14:02:59 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,8 @@ void	eval_logical_op(t_ast *tree, t_io x)
 
 void	eval_tree(t_ast *tree, int is_child, t_io x)
 {
+	char	**cmnds;
+
 	if (!tree)
 		return ;
 	if (tree->type == redir_o)
@@ -127,15 +129,16 @@ void	eval_tree(t_ast *tree, int is_child, t_io x)
 	if (tree->type == WORD)
 	{
 		expand_term(tree);
+		cmnds = contrui_cmnds(tree);
 	
 		// TEST
-		// printf("head->%s\n", tree->value);
-		// t_list *n = tree->next_word;
-		// while(n)
-		// {
-		// 	printf("%s\n", n->content);
-		// 	n = n->next_word;
-		// }
+		printf("head->%s\n", tree->value);
+		t_list *n = tree->next_word;
+		while(n)
+		{
+			printf("%s\n", n->content);
+			n = n->next_word;
+		}
 		// TEST
 
 		// if (is_child)

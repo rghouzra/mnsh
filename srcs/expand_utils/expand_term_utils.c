@@ -6,7 +6,7 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 18:28:17 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/13 16:12:54 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/14 12:28:51 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,7 @@ int	append_value(char **new, char *key)
 	char	*val;
 
 	if (!env_var_exist(key))
-	{
-		if (!(*new))
-		{
-			*new = my_string_dup("");
-			if (!(*new))
-				return (-1);
-		}
 		return (0);
-	}	
 	val = envgetvalue(key);
 	if (my_string_append(new, val) == -1)
 		return (-1);

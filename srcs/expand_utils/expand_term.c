@@ -6,7 +6,7 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 15:30:22 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/13 16:26:18 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/14 14:01:24 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,21 +19,20 @@ static int	to_expand(char **s, char **new, int i)
 
 	key = (char *)0;
 	j = i;
-	while (is_valid_char((*s)[i], (i - j)))
+	while (is_valid_char((*s)[i], ((i) - j)))
 	{
 		if (my_string_append_char(&key, (*s)[i]) == -1)
 			exit(EXIT_FAILURE);
 		i++;
 	}
-	printf("char->%d | key->%s\n", (*s)[i], key);
 	if (i == j)
 	{
-		if (my_string_append_char(s, '$') == -1)
-			return (exit(EXIT_FAILURE), i);
+		if (my_string_append_char(new, '$') == -1)
+			exit(EXIT_FAILURE);
 		return (i);
 	}
 	else if (append_value(new, key) == -1)
-		return (exit(EXIT_FAILURE), i);
+		exit(EXIT_FAILURE);
 	return (free(key), i);
 }
 
@@ -76,9 +75,6 @@ static void	expand_word(char **s)
 				exit(EXIT_FAILURE);
 			i++;
 		}
-		printf("$->%c\n", (*s)[i]);
-		if (i > 100)
-			exit(EXIT_FAILURE);
 	}
 	free(*s);
 	*s = new;
