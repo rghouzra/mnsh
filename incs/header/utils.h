@@ -6,7 +6,7 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 18:06:57 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/14 14:24:06 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/14 14:21:40 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ typedef struct s_poped
 	t_tokentype		type;
 	void			*content;
 	t_list			*next_word;
-
 }					t_poped;
 
 bool				enqueue(t_queue **q, char *value, enum TokenType type,

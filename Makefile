@@ -106,6 +106,7 @@ USER = $(shell whoami)
 
 ifeq ($(USER), rghouzra)
 	rlpath = /Volumes/REDA/.brew/opt/readline
+	FLAGS = -Wall -Wextra #-fsanitize=address -g	
 else
 	rlpath = $(shell brew --prefix readline)
 endif

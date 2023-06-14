@@ -6,13 +6,13 @@
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 20:32:24 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/05/25 20:32:25 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/14 15:18:09 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-t_ast	*newAstNode(t_tokentype type, void *value, t_list *next_word)
+t_ast	*ft_newastnode(t_tokentype type, void *value, t_list *next_word)
 {
 	t_ast	*node;
 
@@ -25,30 +25,43 @@ t_ast	*newAstNode(t_tokentype type, void *value, t_list *next_word)
 	return (node);
 }
 
+int	shunting_op_handler2(t_list *token, t_queue **queue, t_list **stack, \
+	t_poped x)
+{
+	if ((!is_an_operator((*stack)->type, 4) \
+		&& is_an_operator(token->type, 4)) || token->type == opar)
+	{
+		push(stack, token->content, token->type, token->next_word);
+		return (1);
+	}
+	else if (is_an_operator(token->type, 4) \
+				&& is_an_operator((*stack)->type, 4))
+	{
+		while (*stack
+			&& get_token_priority(token) >= get_token_priority(*stack))
+		{
+			x = pop(stack);
+			enqueue(queue, x.content, x.type, x.next_word);
+		}
+		push(stack, token->content, token->type, token->next_word);
+		return (1);
+	}
+	return (0);
+}
+
 void	shunting_op_handler(t_list *token, t_queue **queue, t_list **stack)
 {
 	t_poped	x;
 
+	x.content = NULL;
 	if (token)
 	{
 		if (!*stack && (is_an_operator(token->type, 4) || token->type == opar))
 			push(stack, token->content, token->type, token->next_word);
 		else if (*stack)
 		{
-			if ((!is_an_operator((*stack)->type, 4)
-					&& is_an_operator(token->type, 4)) || token->type == opar)
-				push(stack, token->content, token->type, token->next_word);
-			else if (is_an_operator(token->type, 4)
-					&& is_an_operator((*stack)->type, 4))
-			{
-				while (*stack
-					&& get_token_priority(token) >= get_token_priority(*stack))
-				{
-					x = pop(stack);
-					enqueue(queue, x.content, x.type, x.next_word);
-				}
-				push(stack, token->content, token->type, token->next_word);
-			}
+			if (shunting_op_handler2(token, queue, stack, x))
+				;
 			else if (token->type == cpar)
 			{
 				while (*stack && (*stack)->type != opar)
