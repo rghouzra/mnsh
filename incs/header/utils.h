@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 18:06:57 by yrhiba            #+#    #+#             */
 /*   Updated: 2023/06/14 14:21:40 by rghouzra         ###   ########.fr       */
@@ -36,7 +36,7 @@ typedef struct s_poped
 
 bool				enqueue(t_queue **q, char *value, enum TokenType type,
 						t_list *next_word);
-void				read_heredoc(char *delemiter);
+
 int					get_token_priority(t_list *q);
 bool				dequeue(t_queue **q);
 void				init_queue(t_queue *q);
@@ -53,5 +53,7 @@ void				export_sort(void);
 int					ifbuiltinbreak(char **cmnds, int status);
 char				**contrui_env(void);
 int					exit_status(int status, int mode);
-void				ft_clean_nextword(t_list **token);
+
+char				**contrui_cmnds(t_ast *tree);
+
 #endif

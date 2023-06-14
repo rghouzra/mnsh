@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   readinput.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 06:57:44 by rghouzra          #+#    #+#             */
 /*   Updated: 2023/06/14 15:16:15 by rghouzra         ###   ########.fr       */
@@ -38,7 +38,6 @@ void	print_tree_dot(t_ast *root, char *s)
 	print_dot(root, -666, &count, p);
 	fprintf(p, "}\n");
 	fflush(p);
-	fclose(p);
 }
 
 void	print_tk(t_list *token)
@@ -60,6 +59,7 @@ void	print_tk(t_list *token)
 	}
 	putchar('\n');
 }
+
 void	read_input(void)
 {
 	char	*s;

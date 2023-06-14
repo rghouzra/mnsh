@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/05/27 05:38:22 by yrhiba            #+#    #+#              #
+#    Updated: 2023/06/14 15:28:53 by yrhiba           ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = minishell
 
 SRCS_BUILTINS = srcs/builtins/cd/cd.c \
@@ -17,7 +29,8 @@ SRCS_FOOTER =	srcs/expand_utils/envgetvalue.c \
 				srcs/expand_utils/env_var_update.c \
 				srcs/expand_utils/export_var_exist.c \
 				srcs/expand_utils/export_var_update.c \
-				srcs/expand_utils/expand_term.c
+				srcs/expand_utils/expand_term.c \
+				srcs/expand_utils/expand_term_utils.c
 
 SRCS_UTILS =	srcs/utils/free_tokens.c \
 				srcs/utils/queue_utils.c \
@@ -30,8 +43,8 @@ SRCS_UTILS =	srcs/utils/free_tokens.c \
 				srcs/utils/ifbuiltinbreak.c \
 				srcs/utils/export_sort.c \
 				srcs/utils/contrui_env.c \
-				srcs/utils/exit_status.c\
-				srcs/utils/read_heredoc.c
+				srcs/utils/exit_status.c \
+				srcs/utils/contrui_cmnds.c
 
 SRCS_HEADER =	srcs/evaluator/evaluator.c \
 				srcs/executor/eval_tree.c \
@@ -45,7 +58,6 @@ SRCS_HEADER =	srcs/evaluator/evaluator.c \
 				srcs/tokenizer/tokenizer_utils2.c \
 				srcs/tokenizer/tokenizer.c \
 				srcs/tokenizer/tokenizer2.c \
-				srcs/tokenizer/analyze_token.c \
 				$(SRCS_UTILS)
 
 SRCS =	mnsh.c $(SRCS_BUILTINS) $(SRCS_PRESH) $(SERCS_CLEAR) $(SRCS_HEADER) $(SRCS_FOOTER)
@@ -82,7 +94,7 @@ COMPILER = cc
 
 OBJS = $(addprefix $(ODIR), $(SRCS:.c=.o))
 
-FLAGS = -Wall -Wextra -Werror -g #-fsanitize=undefined
+FLAGS = -Wall -Wextra  #-g -fsanitize=address
 
 LIBSTR = libs/libmystr/libmystr.a
 

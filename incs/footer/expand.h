@@ -6,7 +6,7 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 17:19:42 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/08 15:32:57 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/13 13:43:36 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@ int		export_var_exist(char *key);
 int		env_var_update(char *key, char *new_value);
 int		export_var_update(char *key, char *new_value);
 
-void	expand_term(char **term);
+void	expand_term(t_ast *term);
+
+int		is_valid_char(char c, int pos);
+int		append_value(char **new, char *key);
 
 #endif

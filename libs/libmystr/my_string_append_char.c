@@ -1,32 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   my_string_append.c                                 :+:      :+:    :+:   */
+/*   my_string_append_char.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/01 23:21:32 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/13 15:49:58 by yrhiba           ###   ########.fr       */
+/*   Created: 2023/06/13 00:15:11 by yrhiba            #+#    #+#             */
+/*   Updated: 2023/06/13 00:27:16 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libmystr.h"
 
-int	my_string_append(char **s, char *to_append)
+static void	my_string_copy(char *from, char *to)
+{
+	int	i;
+
+	i = -1;
+	while (from[++i])
+		to[i] = from[i];
+	to[i] = '\0';
+}
+
+int	my_string_append_char(char **s, char c)
 {
 	char	*r;
+	int		size;
 
-	if (!to_append)
-		return (-1);
 	if (!(*s))
 	{
-		r = my_string_dup(to_append);
+		r = (char *)malloc(sizeof(char) * 2);
 		if (!r)
 			return (-1);
-		return (*s = r, 0);
+		return (*r = c, *(r + 1) = '\0', *s = r, 0);
 	}
-	r = my_string_join(*s, to_append);
+	size = my_string_size(*s);
+	r = (char *)malloc(sizeof(char) * (size + 1));
 	if (!r)
 		return (-1);
+	my_string_copy(*s, r);
+	r[size - 1] = c;
+	r[size] = '\0';
 	return (free(*s), *s = r, 0);
 }
