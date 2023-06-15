@@ -6,7 +6,7 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 15:30:22 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/15 14:52:48 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/15 18:05:27 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,15 @@ static int	to_expand(char **s, char **new, int i)
 	}
 	if (i == j)
 	{
+		if ((*s)[i] == '?')
+		{
+			key = ft_itoa(g_mnsh->exit_status);
+			if (!key)
+				exit(EXIT_FAILURE);
+			if (my_string_append(new, key) == -1)
+				exit(EXIT_FAILURE);
+			return (++i);
+		}
 		if (my_string_append_char(new, '$') == -1)
 			exit(EXIT_FAILURE);
 		return (i);
