@@ -6,7 +6,7 @@
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 17:57:25 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/14 14:13:50 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/15 05:32:23 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	ft_parse_str(char *line, int j, t_list **token, int i)
 {
 	while (line[i])
 	{
-		j = i;
 		if (line[i] && !is_an_op(line[i]) && line[i] != DQ && line[i] != SQ)
 		{
 			if (check_prev(*token))

@@ -1,6 +1,6 @@
 # Prerequisites
 *.d
-
+*.todo.txt
 # Object files
 *.o
 *.ko
