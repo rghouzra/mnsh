@@ -6,7 +6,7 @@
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 22:54:04 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/15 08:55:45 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/15 14:26:03 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ typedef enum TokenType
 typedef struct s_list
 {
 	t_tokentype		type;
-	t_my_list		*words;
 	void			*content;
 	struct s_list	*next_word;
 	int				sep;
