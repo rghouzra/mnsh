@@ -6,7 +6,7 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 16:51:12 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/15 13:59:52 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/15 17:30:27 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,10 @@ int	ifbuiltinbreak(char **cmnds, int mode)
 	// export
 	else if (my_string_compare("export", *cmnds) == LS_EQUAL)
 		return (export(my_strings_count(cmnds), cmnds, mode),
+			my_strings_free(&cmnds), EXIT_SUCCESS);
+	// unset
+	else if (my_string_compare("unset", *cmnds) == LS_EQUAL)
+		return (unset(my_strings_count(cmnds), cmnds, mode),
 			my_strings_free(&cmnds), EXIT_SUCCESS);
 
 	return (EXIT_FAILURE);

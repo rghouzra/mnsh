@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+         #
+#    By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/27 05:38:22 by yrhiba            #+#    #+#              #
-#    Updated: 2023/06/15 14:25:09 by rghouzra         ###   ########.fr        #
+#    Updated: 2023/06/15 17:21:20 by yrhiba           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,8 @@ SRCS_BUILTINS = srcs/builtins/cd/cd.c \
 				srcs/builtins/env/env.c \
 				srcs/builtins/export/export.c \
 				srcs/builtins/export/export_utils.c \
-				srcs/builtins/exit/exit.c
+				srcs/builtins/exit/exit.c \
+				srcs/builtins/unset/unset.c
 
 SRCS_PRESH =	srcs/presh/presh.c \
 				srcs/presh/presh_utils.c
@@ -45,7 +46,8 @@ SRCS_UTILS =	srcs/utils/free_tokens.c \
 				srcs/utils/contrui_env.c \
 				srcs/utils/exit_status.c \
 				srcs/utils/contrui_cmnds.c \
-				srcs/utils/read_heredoc.c
+				srcs/utils/read_heredoc.c \
+				srcs/utils/get_list_pos.c
 
 SRCS_HEADER =	srcs/evaluator/evaluator.c \
 				srcs/executor/eval_tree.c \
@@ -69,7 +71,8 @@ INCS_BUILTINS =	incs/builtins/cd.h \
 				incs/builtins/echo.h \
 				incs/builtins/env.h \
 				incs/builtins/export.h \
-				incs/builtins/exit.h
+				incs/builtins/exit.h \
+				incs/builtins/unset.h
 
 INCS =	$(INCS_BUILTINS) \
 		incs/header.h \
