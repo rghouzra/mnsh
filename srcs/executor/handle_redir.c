@@ -6,7 +6,7 @@
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:17:53 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/11 16:27:50 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/15 05:45:32 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	handle_rediro(t_ast *tree, t_io x, int is_child)
 	else
 		get_virual_operands(tree->right->value,
 				(t_openpar){O_CREAT | O_WRONLY | O_TRUNC, 0777, x.output},
-				is_child);
+				is_child, tree);
 	close(fd);
 }
 
@@ -68,7 +68,7 @@ void	handle_rediri(t_ast *tree, t_io x, int is_child)
 	}
 	else
 		get_virual_operands(tree->right->value, (t_openpar){O_RDONLY, 0,
-				x.input}, is_child);
+				x.input}, is_child, tree);
 	close(fd);
 }
 
@@ -98,7 +98,7 @@ void	handle_append(t_ast *tree, t_io x, int is_child)
 	else
 		get_virual_operands(tree->right->value,
 				(t_openpar){O_CREAT | O_WRONLY | O_TRUNC, 0777, x.output},
-				is_child);
+				is_child, tree);
 	close(fd);
 }
 
