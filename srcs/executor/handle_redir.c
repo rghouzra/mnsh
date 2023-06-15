@@ -6,7 +6,7 @@
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:17:53 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/15 18:58:25 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/15 19:57:26 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,4 +125,5 @@ void handle_heredoc(t_ast *tree, t_io x, int is_child)
 		get_virual_operands(tree->right->value, (t_openpar){O_RDONLY, 0,
 				x.input}, is_child, tree);
 	close(fd);
+	unlink(*contrui_cmnds(tree->right));
 }
