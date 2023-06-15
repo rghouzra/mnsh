@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 17:57:25 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/15 11:58:17 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/15 12:05:59 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ t_list	*ft_parser(char **line)
 	x.i = -1;
 	while (line[++x.i])
 	{
-		printf("%s\n", line[x.i]);
 		ft_parse_str(line[x.i], 0, &x.token, 0);
 	}
 	return (x.token);
