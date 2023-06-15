@@ -38,9 +38,7 @@ t_list	*ft_parser(char **line)
 	x.token = NULL;
 	x.i = -1;
 	while (line[++x.i])
-	{
 		ft_parse_str(line[x.i], 0, &x.token, 0);
-	}
 	return (x.token);
 }
 
