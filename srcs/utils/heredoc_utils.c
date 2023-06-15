@@ -1,27 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   header.h                                           :+:      :+:    :+:   */
+/*   heredoc_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/27 06:57:44 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/15 17:55:12 by rghouzra         ###   ########.fr       */
+/*   Created: 2023/06/15 17:50:34 by rghouzra          #+#    #+#             */
+/*   Updated: 2023/06/15 19:48:34 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HEADER_H
-# define HEADER_H
+#include "header.h"
 
-# include "libft.h"
+char	*generate_filename(void)
+{
+	char	*file_name_base;
+	char	*number;
+	int 	i;
 
-# include <unistd.h>
-# include "header/utils.h"
-# include "header/executor.h"
-# include "header/lexer.h"
-# include "mnsh.h"
-# include "header/minishell.h"
-# include "header/parser.h"
-# include "header/evaluator.h"
-# include "header/tokenizer.h"
-#endif
+	i = 0;
+	file_name_base = ft_strdup("/tmp/.heredoc");
+	while(access(file_name_base, F_OK) == 0)
+	{
+		free(file_name_base);
+		file_name_base = ft_strdup("/tmp/.heredoc");
+		number = ft_itoa(i);
+		file_name_base = ft_strjoin(file_name_base, number, 2);
+		i++;
+	}
+	return (file_name_base);
+}

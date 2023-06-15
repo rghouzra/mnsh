@@ -6,7 +6,7 @@
 #    By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/27 05:38:22 by yrhiba            #+#    #+#              #
-#    Updated: 2023/06/15 14:25:09 by rghouzra         ###   ########.fr        #
+#    Updated: 2023/06/15 18:10:49 by rghouzra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,8 @@ SRCS_UTILS =	srcs/utils/free_tokens.c \
 				srcs/utils/contrui_env.c \
 				srcs/utils/exit_status.c \
 				srcs/utils/contrui_cmnds.c \
-				srcs/utils/read_heredoc.c
+				srcs/utils/read_heredoc.c \
+				srcs/utils/heredoc_utils.c \
 
 SRCS_HEADER =	srcs/evaluator/evaluator.c \
 				srcs/executor/eval_tree.c \
@@ -97,7 +98,7 @@ COMPILER = cc
 
 OBJS = $(addprefix $(ODIR), $(SRCS:.c=.o))
 
-FLAGS = -Wall -Wextra  #-g -fsanitize=address
+FLAGS = -Wall -Wextra  -g -fsanitize=address
 
 LIBSTR = libs/libmystr/libmystr.a
 
@@ -109,7 +110,7 @@ USER = $(shell whoami)
 
 ifeq ($(USER), rghouzra)
 	rlpath = /Volumes/REDA/.brew/opt/readline
-	FLAGS = -Wall -Wextra #-fsanitize=address -g	
+	FLAGS = -Wall -Wextra # -fsanitize=address -g	
 else
 	rlpath = $(shell brew --prefix readline)
 endif

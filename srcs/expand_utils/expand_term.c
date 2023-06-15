@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_term.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 15:30:22 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/15 14:52:48 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/15 17:23:53 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,14 +103,14 @@ void	expand_term(t_ast *term)
 	char	**line;
 	t_list	*n;
 
-	line = ft_alphasplit2(term->value, 0);
+	line = ft_alphasplit2(term->value, 0, (t_alphasplit){0, 0, 0, 0,0, 0, 0, 0, 0});
 	if (!line)
 		exit(EXIT_FAILURE);
 	expand_line((char **)(&term->value), line);
 	n = term->next_word;
 	while(n)
 	{
-		line = ft_alphasplit2(n->content, 0);
+		line = ft_alphasplit2(n->content, 0, (t_alphasplit){0, 0, 0, 0,0, 0, 0, 0, 0});
 		if (!line)
 			exit(EXIT_FAILURE);
 		expand_line((char **)(&n->content), line);

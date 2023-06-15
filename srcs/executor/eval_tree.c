@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   eval_tree.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 10:34:18 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/15 13:56:33 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/15 18:59:15 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,8 @@ void	eval_tree(t_ast *tree, int is_child, t_io x)
 		handle_rediri(tree, x, is_child);
 	if (tree->type == append_o)
 		handle_append(tree, x, is_child);
+	if(tree->type == heredoc_i)
+		handle_heredoc(tree, x, is_child);
 	if (tree->type == PIPE)
 		pipeline(tree, x);
 	if (tree->type == WORD)
