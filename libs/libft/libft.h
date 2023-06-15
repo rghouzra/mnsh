@@ -6,7 +6,7 @@
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 22:54:04 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/05/30 11:17:33 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/15 08:55:45 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <string.h>
 # include <sys/errno.h>
 # include <unistd.h>
+# include "../libmylist/my_list.h"
 
 # define SQ 39
 # define AND 38
@@ -57,11 +58,11 @@ typedef enum TokenType
 typedef struct s_list
 {
 	t_tokentype		type;
+	t_my_list		*words;
 	void			*content;
 	struct s_list	*next_word;
 	int				sep;
 	struct s_list	*next;
-
 }					t_list;
 
 typedef struct s_ast

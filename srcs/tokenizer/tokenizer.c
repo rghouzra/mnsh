@@ -6,7 +6,7 @@
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 17:57:25 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/15 05:32:23 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/15 11:58:17 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,12 @@ void	ft_parse_str(char *line, int j, t_list **token, int i)
 {
 	while (line[i])
 	{
-		if (line[i] && !is_an_op(line[i]) && line[i] != DQ && line[i] != SQ)
+		if (line[i] && !is_an_op(line[i]))
 		{
 			if (check_prev(*token))
 				ft_lstwordadd_back(token, ft_token_word(line, &i));
 			else
 				ft_lstadd_back(token, ft_token_word(line, &i));
-		}
-		else if (line[i] == DQ || line[i] == SQ)
-		{
-			if (check_prev(*token))
-				ft_lstwordadd_back(token, ft_token_quote(line, &i, line[i]));
-			else
-				ft_lstadd_back(token, ft_token_quote(line, &i, line[i]));
 		}
 		else if (line[i] && is_an_op(line[i]))
 			ft_lstadd_back(token, handl_syntax_operrator(token, line, &i,
@@ -45,7 +38,10 @@ t_list	*ft_parser(char **line)
 	x.token = NULL;
 	x.i = -1;
 	while (line[++x.i])
+	{
+		printf("%s\n", line[x.i]);
 		ft_parse_str(line[x.i], 0, &x.token, 0);
+	}
 	return (x.token);
 }
 
