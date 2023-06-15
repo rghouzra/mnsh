@@ -6,7 +6,7 @@
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 17:57:25 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/15 11:58:17 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/15 14:27:00 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,7 @@ t_list	*ft_parser(char **line)
 	x.token = NULL;
 	x.i = -1;
 	while (line[++x.i])
-	{
-		printf("%s\n", line[x.i]);
 		ft_parse_str(line[x.i], 0, &x.token, 0);
-	}
 	return (x.token);
 }
 
