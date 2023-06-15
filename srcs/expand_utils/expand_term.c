@@ -6,7 +6,7 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 15:30:22 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/14 14:01:24 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/15 14:52:48 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,13 +80,40 @@ static void	expand_word(char **s)
 	*s = new;
 }
 
+static void	expand_line(char **org, char **s)
+{
+	char	*new;
+	int		i;
+
+	new = (char *)0;
+	i = -1;
+	while (s[++i])
+	{
+		expand_word(&s[i]);
+		if (s[i] && (my_string_append(&new, s[i]) == -1))
+			exit(EXIT_FAILURE);
+	}
+	my_strings_free(&s);
+	free(*org);
+	*org = new;
+}
+
 void	expand_term(t_ast *term)
 {
-	expand_word((char **)(&(term->value)));
-	t_list *n = term->next_word;
+	char	**line;
+	t_list	*n;
+
+	line = ft_alphasplit2(term->value, 0);
+	if (!line)
+		exit(EXIT_FAILURE);
+	expand_line((char **)(&term->value), line);
+	n = term->next_word;
 	while(n)
 	{
-		expand_word((char **)(&(n->content)));
+		line = ft_alphasplit2(n->content, 0);
+		if (!line)
+			exit(EXIT_FAILURE);
+		expand_line((char **)(&n->content), line);
 		n = n->next_word;
 	}
 }
