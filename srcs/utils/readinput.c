@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   readinput.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 06:57:44 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/14 15:16:15 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/15 11:58:36 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	print_tk(t_list *token)
 	t_list	*tmp;
 	while (token)
 	{
-		printf("[%s]:\t%d\n", token->content, token->type);
+		printf("[%s]->:\t%d\n", token->content, token->type);
 		tmp = token->next_word;
 		if(tmp)
 		{
@@ -75,6 +75,7 @@ void	read_input(void)
 			exit(1);
 		}
 		token = tokenizer(s);
+		// print_tk(token);
 		evaluate_expression(token);
 		if (lexer(token))
 		{

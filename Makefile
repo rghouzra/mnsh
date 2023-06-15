@@ -6,7 +6,7 @@
 #    By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/27 05:38:22 by yrhiba            #+#    #+#              #
-#    Updated: 2023/06/14 16:07:20 by rghouzra         ###   ########.fr        #
+#    Updated: 2023/06/15 11:52:39 by rghouzra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,8 +57,10 @@ SRCS_HEADER =	srcs/evaluator/evaluator.c \
 				srcs/parser/parser.c \
 				srcs/tokenizer/tokenizer_utils.c \
 				srcs/tokenizer/tokenizer_utils2.c \
+				srcs/tokenizer/tokenizer_utils3.c \
 				srcs/tokenizer/tokenizer.c \
 				srcs/tokenizer/tokenizer2.c \
+				srcs/tokenizer/tokenizer3.c \
 				srcs/tokenizer/analyze_token.c \
 				$(SRCS_UTILS)
 
