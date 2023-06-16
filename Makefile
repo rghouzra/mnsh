@@ -6,7 +6,7 @@
 #    By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/27 05:38:22 by yrhiba            #+#    #+#              #
-#    Updated: 2023/06/15 18:10:49 by rghouzra         ###   ########.fr        #
+#    Updated: 2023/06/16 06:21:37 by rghouzra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,8 +48,7 @@ SRCS_UTILS =	srcs/utils/free_tokens.c \
 				srcs/utils/read_heredoc.c \
 				srcs/utils/heredoc_utils.c \
 
-SRCS_HEADER =	srcs/evaluator/evaluator.c \
-				srcs/executor/eval_tree.c \
+SRCS_HEADER =	srcs/executor/eval_tree.c \
 				srcs/executor/executor_utils.c \
 				srcs/executor/handle_redir.c \
 				srcs/lexer/lexer_utils.c \
@@ -61,6 +60,7 @@ SRCS_HEADER =	srcs/evaluator/evaluator.c \
 				srcs/tokenizer/tokenizer.c \
 				srcs/tokenizer/tokenizer2.c \
 				srcs/tokenizer/tokenizer3.c \
+				srcs/tokenizer/tokenizer3_utils.c \
 				srcs/tokenizer/analyze_token.c \
 				$(SRCS_UTILS)
 
@@ -79,7 +79,6 @@ INCS =	$(INCS_BUILTINS) \
 		incs/footer/presh.h \
 		incs/footer/clear.h \
 		incs/footer/expand.h \
-		incs/header/evaluator.h \
 		incs/header/executor.h \
 		incs/header/lexer.h \
 		incs/header/minishell.h \
@@ -110,7 +109,7 @@ USER = $(shell whoami)
 
 ifeq ($(USER), rghouzra)
 	rlpath = /Volumes/REDA/.brew/opt/readline
-	FLAGS = -Wall -Wextra # -fsanitize=address -g	
+	FLAGS = -Wall -Wextra -Werror
 else
 	rlpath = $(shell brew --prefix readline)
 endif

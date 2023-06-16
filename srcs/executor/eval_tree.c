@@ -6,7 +6,7 @@
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 10:34:18 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/15 18:59:15 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/16 06:11:30 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	get_virual_operands(char *operands, t_openpar x, int is_running, t_ast *tre
 	int		fd;
 	char	*tmp;
 
-	
+	(void)operands;
 	leafs = contrui_cmnds(tree->right);
 	if (!leafs)
 		return ;

@@ -6,7 +6,7 @@
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 11:27:30 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/15 18:45:11 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/16 06:23:49 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	analyze_token(t_list *token)
 {
 	char	*ptr;
+
 	if (token == NULL || token->next == NULL)
 		return ;
 	while (token->next)
