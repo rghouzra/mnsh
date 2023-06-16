@@ -6,7 +6,7 @@
 #    By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/27 05:38:22 by yrhiba            #+#    #+#              #
-#    Updated: 2023/06/16 10:46:23 by yrhiba           ###   ########.fr        #
+#    Updated: 2023/06/16 12:46:48 by yrhiba           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,8 @@ SRCS_BUILTINS = srcs/builtins/cd/cd.c \
 				srcs/builtins/export/export.c \
 				srcs/builtins/export/export_utils.c \
 				srcs/builtins/exit/exit.c \
-				srcs/builtins/unset/unset.c
+				srcs/builtins/unset/unset.c \
+				srcs/builtins/pwd/pwd.c
 
 SRCS_PRESH =	srcs/presh/presh.c \
 				srcs/presh/presh_utils.c
@@ -73,7 +74,8 @@ INCS_BUILTINS =	incs/builtins/cd.h \
 				incs/builtins/env.h \
 				incs/builtins/export.h \
 				incs/builtins/exit.h \
-				incs/builtins/unset.h
+				incs/builtins/unset.h \
+				incs/builtins/pwd.h
 
 INCS =	$(INCS_BUILTINS) \
 		incs/header.h \

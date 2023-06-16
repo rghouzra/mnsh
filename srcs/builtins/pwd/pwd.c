@@ -1,42 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cd.c                                               :+:      :+:    :+:   */
+/*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/03 11:12:16 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/16 11:39:34 by yrhiba           ###   ########.fr       */
+/*   Created: 2023/06/16 11:40:09 by yrhiba            #+#    #+#             */
+/*   Updated: 2023/06/16 12:49:39 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mnsh.h"
 
-static int	change_dir(char *dir)
+int pwd(int ac, char **av, int mode)
 {
-	printf("going to dir '%s'\n", dir);
-	return (0);
-}
+	char	*dir;
 
-int	cd(int ac, char **av, int mode)
-{
-	if (ac > 1)
-		if (change_dir(av[1]) == -1)
-			return (exit_status(EXIT_FAILURE, mode));
+	dir = (char *)malloc(sizeof(char) * MNSH_PATH_MAX);
+	if (!dir)
+	{
+		perror("pwd::malloc failed::");
+		exit_status(EXIT_FAILURE, mode);
+	}
+	if (!getcwd(dir, MNSH_PATH_MAX * sizeof(char)))
+	{
+		perror("pwd::getcwd failed::");
+		free(dir);
+		exit_status(EXIT_FAILURE, mode);
+	}
+	printf("%s\n", dir);
+	free(dir);
 	return (exit_status(EXIT_SUCCESS, mode));
 }
-
-/*
-	Functions :
-				getcwd
-				chdir
-
-
-	Tasks	 :
-				contruir path.
-				chdir.
-				update pwd.
-				update env-export.
-
-
-*/
