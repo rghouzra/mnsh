@@ -6,7 +6,7 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 11:12:16 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/16 17:20:26 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/16 17:28:05 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,18 +42,3 @@ int	cd(int ac, char **av, int mode)
 			return (exit_status(EXIT_FAILURE, mode));
 	return (exit_status(EXIT_SUCCESS, mode));
 }
-
-/*
-
-	Functions :
-				getcwd
-				chdir
-
-	Tasks	 :
-				contruir path.
-				chdir.
-				update pwd.
-				update env-export.
-
-
-*/
