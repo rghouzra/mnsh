@@ -6,7 +6,7 @@
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 10:34:18 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/16 06:42:59 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/16 14:20:11 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ void	execute_with_fork(char **cmnds, t_io x)
 	{
 		if (x.be_dupped == -1)
 			show_error(strerror(errno), 1);
-		if (!*(cmnds + x.increment))
-		{
-			waitpid(pid, &(g_mnsh->exit_status), 0);
-			return ;
-		}
+		// if (!*(cmnds + x.increment))
+		// {
+		// 	waitpid(pid, &(g_mnsh->exit_status), 0);
+		// 	return ;
+		// }
 		if (x.stream != -2)
 			dup2(x.be_dupped, x.stream);
 		execute(cmnds + x.increment);
