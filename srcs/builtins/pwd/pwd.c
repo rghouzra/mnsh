@@ -6,7 +6,7 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 11:40:09 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/16 12:49:39 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/16 12:54:57 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ int pwd(int ac, char **av, int mode)
 {
 	char	*dir;
 
+	(void)ac;
+	(void)av;
 	dir = (char *)malloc(sizeof(char) * MNSH_PATH_MAX);
 	if (!dir)
 	{
