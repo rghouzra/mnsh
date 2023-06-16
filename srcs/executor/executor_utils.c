@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   executor_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 08:43:03 by rghouzra          #+#    #+#             */
 /*   Updated: 2023/06/16 18:04:27 by rghouzra         ###   ########.fr       */
@@ -25,7 +25,8 @@ char	*execute(char **cmnds)
 	execve(cmd, cmnds, ev);
 	ft_putstr_fd(cmnds[0], 2);
 	ft_putstr_fd(": Command not found\n", 2);
-	return (free(cmd), exit(127), NULL);
+	return (my_strings_free(&cmnds), my_strings_free(&ev), free(cmd), exit(127),
+		NULL);
 }
 
 int	check_access(char *path, int which)
@@ -48,8 +49,8 @@ int	check_access(char *path, int which)
 	return (-1);
 }
 
-void	get_virual_operands(char *operands, t_openpar x, \
-	int is_running, t_ast *tree)
+void	get_virual_operands(char *operands, t_openpar x, int is_running,
+		t_ast *tree)
 {
 	char	**leafs;
 	int		fd;

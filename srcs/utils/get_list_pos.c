@@ -1,35 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mnsh.h                                             :+:      :+:    :+:   */
+/*   get_list_pos.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/24 21:30:50 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/16 16:32:43 by rghouzra         ###   ########.fr       */
+/*   Created: 2023/06/15 17:18:58 by yrhiba            #+#    #+#             */
+/*   Updated: 2023/06/15 17:21:47 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MNSH_H
-# define MNSH_H
+#include "mnsh.h"
 
-#include "header.h"
-#include "footer.h"
-
-# define YES_EXIT 0
-# define NO_EXIT 1
-
-# define MNSH_PATH_MAX 4096
-
-typedef struct s_minishell
+int	get_arg_pos(t_my_list *it, char *arg)
 {
-	int 		fd_in;
-	t_my_list	*env_list;
-	t_my_list	*export_list;
-	char		**paths_list;
-	int			exit_status;
-}				t_minishell;
+	int	i;
 
-t_minishell		*g_mnsh;
-
-#endif
+	i = 0;
+	while (it)
+	{
+		if (my_string_compare(*((char **)it->data), arg) == LS_EQUAL)
+			return (i);
+		it = it->next;
+		i++;
+	}
+	return (-1);
+}
