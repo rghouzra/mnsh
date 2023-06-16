@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   getcmdfullpath.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 15:54:31 by yrhiba            #+#    #+#             */
 /*   Updated: 2023/06/16 15:59:49 by yrhiba           ###   ########.fr       */

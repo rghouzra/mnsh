@@ -17,11 +17,14 @@ char	*execute(char **cmnds)
 	char	*cmd;
 	char	**ev;
 
+	if(!*cmnds)
+		exit(0);
 	ifbuiltinbreak(cmnds, YES_EXIT);
 	cmd = getcmdfullpath(*cmnds);
 	ev = contrui_env();
 	execve(cmd, cmnds, ev);
-	show_error(strerror(errno), 127);
+	ft_putstr_fd(cmnds[0], 2);
+	ft_putstr_fd(": Command not found\n", 2);
 	return (my_strings_free(&cmnds), my_strings_free(&ev), free(cmd), exit(127),
 		NULL);
 }
