@@ -6,7 +6,7 @@
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 18:16:13 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/15 05:45:19 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/16 07:34:34 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,5 @@ void		handle_rediro(t_ast *tree, t_io x, int is_child);
 void		handle_rediri(t_ast *tree, t_io x, int is_child);
 void		get_virual_operands(char *operands, t_openpar x, int is_running, t_ast *tree);
 void		handle_append(t_ast *tree, t_io x, int is_child);
-
+void		execute_with_fork(char **cmnds, t_io x);
 #endif

@@ -6,7 +6,7 @@
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 10:34:18 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/16 06:11:30 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/16 06:42:59 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	execute_with_fork(char **cmnds, t_io x)
 {
 	pid_t	pid;
 
-	if(ifbuiltinbreak(cmnds, NO_EXIT) == EXIT_SUCCESS)
+	if (ifbuiltinbreak(cmnds, NO_EXIT) == EXIT_SUCCESS)
 		return ;
 	pid = ft_fork();
 	if (!pid)
@@ -73,30 +73,6 @@ void	pipeline(t_ast *tree, t_io x)
 	waitpid(pid2, &(g_mnsh->exit_status), 0);
 }
 
-void	get_virual_operands(char *operands, t_openpar x, int is_running, t_ast *tree)
-{
-	char	**leafs;
-	int		fd;
-	char	*tmp;
-
-	(void)operands;
-	leafs = contrui_cmnds(tree->right);
-	if (!leafs)
-		return ;
-	tmp = leafs[0];
-	fd = open(tmp, x.flags, x.permissions);
-	if (is_running)
-	{
-		if (fd == -1)
-			show_error(strerror(errno), 126);
-		dup2(fd, x.stream);
-		execute(leafs + 1);
-	}
-	else
-		execute_with_fork(leafs, (t_io){-2, -2, fd, x.stream, 1});
-	close(fd);
-}
-
 void	eval_logical_op(t_ast *tree, t_io x)
 {
 	if (tree->type == AND_CMD_CHAIN)
@@ -126,7 +102,7 @@ void	eval_tree(t_ast *tree, int is_child, t_io x)
 		handle_rediri(tree, x, is_child);
 	if (tree->type == append_o)
 		handle_append(tree, x, is_child);
-	if(tree->type == heredoc_i)
+	if (tree->type == heredoc_i)
 		handle_heredoc(tree, x, is_child);
 	if (tree->type == PIPE)
 		pipeline(tree, x);
