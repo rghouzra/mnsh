@@ -6,7 +6,7 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 08:43:03 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/16 14:09:26 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/16 15:59:39 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ char	*execute(char **cmnds)
 	ev = contrui_env();
 	execve(cmd, cmnds, ev);
 	show_error(strerror(errno), 127);
-	my_strings_free(&cmnds);
-	return (my_strings_free(&ev), free(cmd), exit(127), NULL);
+	return (my_strings_free(&cmnds), my_strings_free(&ev), free(cmd), exit(127),
+		NULL);
 }
 
 int	check_access(char *path, int which)
@@ -46,8 +46,8 @@ int	check_access(char *path, int which)
 	return (-1);
 }
 
-void	get_virual_operands(char *operands, t_openpar x, \
-	int is_running, t_ast *tree)
+void	get_virual_operands(char *operands, t_openpar x, int is_running,
+		t_ast *tree)
 {
 	char	**leafs;
 	int		fd;
