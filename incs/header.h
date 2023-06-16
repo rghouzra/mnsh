@@ -6,7 +6,7 @@
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 06:57:44 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/15 17:55:12 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/16 06:08:10 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,5 @@
 # include "mnsh.h"
 # include "header/minishell.h"
 # include "header/parser.h"
-# include "header/evaluator.h"
 # include "header/tokenizer.h"
 #endif

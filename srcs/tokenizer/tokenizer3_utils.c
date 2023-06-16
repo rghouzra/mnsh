@@ -1,48 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   evaluator.c                                        :+:      :+:    :+:   */
+/*   tokenizer3_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/17 07:06:05 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/09 16:01:40 by rghouzra         ###   ########.fr       */
+/*   Created: 2023/06/16 06:19:37 by rghouzra          #+#    #+#             */
+/*   Updated: 2023/06/16 06:23:37 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
-
-void	delete_quotes(char *str, char quote)
+int	helper_visualizer(const char *s, char c)
 {
-	int	i;
-	int	j;
+	int	checker;
 
-	i = -1;
-	j = 0;
-	while (str[++i])
+	checker = 0;
+	if (*s && *s == c)
 	{
-		if (*(str + i) != quote)
-		{
-			str[j] = str[i];
-			j++;
-		}
+		checker = 1;
+		s++;
 	}
-	*(str + j) = '\0';
-}
-
-void	expand_var(char *s)
-{
-	if (!s)
-		return ;
-}
-
-void	evaluate_expression(t_list *token)
-{
-	if (token == 0x0)
-		return ;
-	while (token)
+	while (*s && *s != c)
 	{
-		expand_var(token->content);
-		token = token->next;
+		return (0);
+		s++;
 	}
+	if (*s && *s == c)
+	{
+		checker = 1;
+		s++;
+	}
+	return (checker);
 }

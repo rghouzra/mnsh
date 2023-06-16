@@ -6,7 +6,7 @@
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 11:51:09 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/15 17:30:43 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/16 06:23:11 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int			helper_visualizer(const char *s, char c);
 
 static char	*ft_words(const char *s, char sep, t_alphasplit x)
 {
+	(void)sep;
 	if (*(s + x.length) == DQ || *(s + x.length) == SQ)
 	{
 		x.c = *(s + x.length);
@@ -44,29 +45,6 @@ static char	*ft_words(const char *s, char sep, t_alphasplit x)
 	}
 	x.word = (char *)ft_malloc((x.length + 1) * sizeof(char));
 	return (ft_strlcpy(x.word, s, x.length + 1), x.word);
-}
-
-int	helper_visualizer(const char *s, char c)
-{
-	int	checker;
-
-	checker = 0;
-	if (*s && *s == c)
-	{
-		checker = 1;
-		s++;
-	}
-	while (*s && *s != c)
-	{
-		return (0);
-		s++;
-	}
-	if (*s && *s == c)
-	{
-		checker = 1;
-		s++;
-	}
-	return (checker);
 }
 
 static int	ft_second_handle_quote(const char *s, char c)
@@ -95,7 +73,7 @@ static char	*to_strings(char **strings, char const *s, char c)
 			s++;
 		if (*s)
 			strings[i++] = ft_words(s, c, \
-			(t_alphasplit){0, 0, 0, 0,0, 0, 0, 0, 0});
+			(t_alphasplit){0, 0, 0, 0, 0, 0, 0, 0, 0});
 		if (*s == DQ || *s == SQ)
 		{
 			cs = *s;
