@@ -6,7 +6,7 @@
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 08:43:03 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/16 14:22:36 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/16 18:04:27 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	*execute(char **cmnds)
 	char	*cmd;
 	char	**ev;
 
-	if(!*cmnds)
+	if (!*cmnds)
 		exit(0);
 	ifbuiltinbreak(cmnds, YES_EXIT);
 	cmd = getcmdfullpath(*cmnds);

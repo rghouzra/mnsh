@@ -6,7 +6,7 @@
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 06:57:44 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/16 06:06:25 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/16 18:25:13 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ void	read_input(void)
 
 	while (1)
 	{
+		signal_utils();
 		s = readline("sh-1.0$ ");
 		if (!s)
 		{
