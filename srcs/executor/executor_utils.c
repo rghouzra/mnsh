@@ -6,7 +6,7 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 08:43:03 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/16 15:59:39 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/16 18:04:27 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	*execute(char **cmnds)
 	char	*cmd;
 	char	**ev;
 
-	if(!*cmnds)
+	if (!*cmnds)
 		exit(0);
 	ifbuiltinbreak(cmnds, YES_EXIT);
 	cmd = getcmdfullpath(*cmnds);

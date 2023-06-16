@@ -6,7 +6,7 @@
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 18:08:54 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/13 08:05:18 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/16 18:26:22 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ static void	sigquit_handler(int sig)
 
 void	signal_utils(void)
 {
+	rl_catch_signals = 0;
 	signal(SIGINT, sigint_handler);
 	signal(SIGQUIT, sigquit_handler);
 }
