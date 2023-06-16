@@ -6,7 +6,7 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 09:08:01 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/15 15:03:01 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/15 18:37:55 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,5 +72,5 @@ void	export(int ac, char **av, int mode)
 			f = EXIT_FAILURE;
 			printf("export: %s: not a valid identifier\n", av[i]);
 		}
-	exit_status(EXIT_SUCCESS, mode);
+	exit_status(f, mode);
 }

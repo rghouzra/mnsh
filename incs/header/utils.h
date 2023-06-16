@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 18:06:57 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/15 18:43:09 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/16 10:48:24 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,12 @@ char				**contrui_env(void);
 int					exit_status(int status, int mode);
 
 char				**contrui_cmnds(t_ast *tree);
+
 void				ft_clean_nextword(t_list **token);
+
+int					get_arg_pos(t_my_list *it, char *arg);
+
 char				*generate_filename(void);
 char				*read_heredoc(char *delemiter);
+
 #endif

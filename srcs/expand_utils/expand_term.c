@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_term.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 15:30:22 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/15 17:23:53 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/16 10:47:23 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,15 @@ static int	to_expand(char **s, char **new, int i)
 	}
 	if (i == j)
 	{
+		if ((*s)[i] == '?')
+		{
+			key = ft_itoa(g_mnsh->exit_status);
+			if (!key)
+				exit(EXIT_FAILURE);
+			if (my_string_append(new, key) == -1)
+				exit(EXIT_FAILURE);
+			return (++i);
+		}
 		if (my_string_append_char(new, '$') == -1)
 			exit(EXIT_FAILURE);
 		return (i);

@@ -6,7 +6,7 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 21:46:25 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/07 17:20:32 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/16 12:48:54 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # include "builtins/env.h"
 # include "builtins/export.h"
 # include "builtins/exit.h"
+# include "builtins/unset.h"
+# include "builtins/pwd.h"
 # include "footer/presh.h"
 # include "footer/clear.h"
 # include "footer/expand.h"

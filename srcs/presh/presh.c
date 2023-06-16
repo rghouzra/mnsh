@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   presh.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 09:15:54 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/11 16:23:20 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/15 17:37:07 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,5 @@ int	presh(char **env)
 			return (-1);
 	if (contruipaths() == -1)
 		return (-1);
-	return (0);
+	return (export_sort(), 0);
 }
