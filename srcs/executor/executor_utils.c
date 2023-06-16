@@ -6,7 +6,7 @@
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 08:43:03 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/16 06:43:32 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/16 14:22:36 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,15 @@ char	*execute(char **cmnds)
 	char	*cmd;
 	char	**ev;
 
+	if(!*cmnds)
+		exit(0);
 	ifbuiltinbreak(cmnds, YES_EXIT);
 	cmd = getcmdfullpath(*cmnds);
 	ev = contrui_env();
 	execve(cmd, cmnds, ev);
-	show_error(strerror(errno), 127);
-	my_strings_free(&cmnds);
-	return (my_strings_free(&ev), free(cmd), exit(127), NULL);
+	ft_putstr_fd(cmnds[0], 2);
+	ft_putstr_fd(": Command not found\n", 2);
+	return (free(cmd), exit(127), NULL);
 }
 
 int	check_access(char *path, int which)
