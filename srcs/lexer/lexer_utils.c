@@ -6,7 +6,7 @@
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 20:16:23 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/07 13:56:14 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/16 06:34:04 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,31 +14,22 @@
 
 int	is_an_operator(t_tokentype type, int which)
 {
-	if (which == 1)
-	{
-		if (type == redir_o || type == PIPE || type == redir_i
+	if (which == 1 && (type == redir_o || type == PIPE || type == redir_i
 			|| type == AND_CMD_CHAIN || type == OR_CMD_CHAIN || type == append_o
-			|| type == heredoc_i)
-			return (1);
-	}
-	else if (which == 2)
-	{
-		if (type == PIPE || type == OR_CMD_CHAIN || type == AND_CMD_CHAIN)
-			return (2);
-	}
-	else if (which == 3)
-	{
-		if (type == PIPE || type == OR_CMD_CHAIN || type == AND_CMD_CHAIN
-			|| type == redir_i || type == redir_o)
-			return (3);
-	}
-	else if (which == 4)
-	{
-		if (type == PIPE || type == OR_CMD_CHAIN || type == AND_CMD_CHAIN
-			|| type == redir_i || type == redir_o || type == heredoc_i
-			|| type == append_o)
-			return (4);
-	}
+			|| type == heredoc_i))
+		return (1);
+	if (which == 2 && (type == PIPE || type == OR_CMD_CHAIN \
+		|| type == AND_CMD_CHAIN))
+		return (2);
+	if (which == 3 && (type == PIPE || type == OR_CMD_CHAIN \
+		|| type == AND_CMD_CHAIN \
+		|| type == redir_i || type == redir_o))
+		return (3);
+	if (which == 4 && (type == PIPE || type == OR_CMD_CHAIN \
+		|| type == AND_CMD_CHAIN
+			|| type == redir_i || type == redir_o || type == heredoc_i \
+			|| type == append_o))
+		return (4);
 	return (0);
 }
 
@@ -56,9 +47,9 @@ int	is_there_unexpected_token(t_list *token)
 			if (token->type == redir_i && is_an_operator(token->next->type, 2))
 				return (1);
 			else if ((token->type == opar && token->next->type == cpar)
-					|| (token->type == cpar && token->next->type == opar))
+				|| (token->type == cpar && token->next->type == opar))
 				return (1);
-			else if((token->type == cpar && token->next->type == WORD) \
+			else if ((token->type == cpar && token->next->type == WORD) \
 			|| (token->type == WORD && token->next->type == opar))
 				return (1);
 		}
@@ -70,12 +61,14 @@ int	is_there_unexpected_token(t_list *token)
 int	is_there_invalid_op(t_list *token)
 {
 	if (token)
+	{
 		while (token)
 		{
 			if (token->type == SHARP || token->type == AND)
 				return (0);
 			token = token->next;
 		}
+	}
 	return (1);
 }
 
@@ -95,6 +88,7 @@ int	paranthesis_lexer(t_list *token)
 	}
 	ptr = s;
 	if (s)
+	{
 		while (*s)
 		{
 			par += +(*s == '(') - (*s == ')');
@@ -102,5 +96,6 @@ int	paranthesis_lexer(t_list *token)
 				break ;
 			s++;
 		}
+	}
 	return (free(ptr), par == 0);
 }

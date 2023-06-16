@@ -6,7 +6,7 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 18:06:57 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/15 17:21:41 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/16 10:48:24 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,10 @@ int					exit_status(int status, int mode);
 char				**contrui_cmnds(t_ast *tree);
 
 void				ft_clean_nextword(t_list **token);
-void				read_heredoc(char *delemiter);
 
 int					get_arg_pos(t_my_list *it, char *arg);
+
+char				*generate_filename(void);
+char				*read_heredoc(char *delemiter);
 
 #endif

@@ -1,20 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   evaluator.h                                        :+:      :+:    :+:   */
+/*   tokenizer3_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/17 07:22:38 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/05/25 18:26:14 by yrhiba           ###   ########.fr       */
+/*   Created: 2023/06/16 06:19:37 by rghouzra          #+#    #+#             */
+/*   Updated: 2023/06/16 06:23:37 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EVALUATOR_H
-# define EVALUATOR_H
+int	helper_visualizer(const char *s, char c)
+{
+	int	checker;
 
-# include "header.h"
-
-void	evaluate_expression(t_list *token);
-
-#endif
+	checker = 0;
+	if (*s && *s == c)
+	{
+		checker = 1;
+		s++;
+	}
+	while (*s && *s != c)
+	{
+		return (0);
+		s++;
+	}
+	if (*s && *s == c)
+	{
+		checker = 1;
+		s++;
+	}
+	return (checker);
+}

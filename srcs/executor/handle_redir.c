@@ -6,7 +6,7 @@
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:17:53 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/15 05:45:32 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/16 07:33:30 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ void	handle_rediro(t_ast *tree, t_io x, int is_child)
 	}
 	else
 		get_virual_operands(tree->right->value,
-				(t_openpar){O_CREAT | O_WRONLY | O_TRUNC, 0777, x.output},
-				is_child, tree);
+			(t_openpar){O_CREAT | O_WRONLY | O_TRUNC, 0777, x.output}, \
+			is_child, tree);
 	close(fd);
 }
 
@@ -67,8 +67,8 @@ void	handle_rediri(t_ast *tree, t_io x, int is_child)
 		eval_tree(tree->left, is_child, x);
 	}
 	else
-		get_virual_operands(tree->right->value, (t_openpar){O_RDONLY, 0,
-				x.input}, is_child, tree);
+		get_virual_operands(tree->right->value, (t_openpar){O_RDONLY, 0, \
+			x.input}, is_child, tree);
 	close(fd);
 }
 
@@ -80,11 +80,9 @@ void	handle_append(t_ast *tree, t_io x, int is_child)
 	if (ft_redir_optimizer(tree))
 	{
 		if (access(tree->right->value, F_OK))
-			fd = open(tree->right->value, O_CREAT | O_WRONLY, 0777);
+			fd = ft_open(tree->right->value, O_CREAT | O_WRONLY, 0777);
 		else
-			fd = open(tree->right->value, O_WRONLY | O_APPEND);
-		if (fd == -1)
-			show_error(strerror(errno), 126);
+			fd = ft_open(tree->right->value, O_WRONLY | O_APPEND, 0);
 		if (is_child)
 			dup2(fd, x.output);
 		else
@@ -96,13 +94,34 @@ void	handle_append(t_ast *tree, t_io x, int is_child)
 			eval_tree(tree->left, is_child, x);
 	}
 	else
-		get_virual_operands(tree->right->value,
-				(t_openpar){O_CREAT | O_WRONLY | O_TRUNC, 0777, x.output},
-				is_child, tree);
+		get_virual_operands(tree->right->value, \
+			(t_openpar){O_CREAT | O_WRONLY | O_TRUNC, 0777, x.output},
+			is_child, tree);
 	close(fd);
 }
 
-void handle_heredoc(t_ast *tree, t_io x, int is_child)
+void	handle_heredoc(t_ast *tree, t_io x, int is_child)
 {
-	
+	int	fd;
+
+	fd = -1;
+	if (ft_redir_optimizer(tree) == 1)
+	{
+		fd = open(tree->right->value, O_RDONLY);
+		if (fd == -1)
+			show_error(strerror(errno), 126);
+		if (is_child)
+			dup2(fd, x.input);
+		else
+		{
+			x.be_dupped = fd;
+			x.stream = x.input;
+		}
+		eval_tree(tree->left, is_child, x);
+	}
+	else
+		get_virual_operands(tree->right->value, (t_openpar){O_RDONLY, 0,
+			x.input}, is_child, tree);
+	close(fd);
+	unlink(*contrui_cmnds(tree->right));
 }
