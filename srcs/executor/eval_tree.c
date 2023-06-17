@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   eval_tree.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 10:34:18 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/16 18:03:58 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/17 14:53:38 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,17 @@ void	eval_tree(t_ast *tree, int is_child, t_io x)
 	char	**cmnds;
 
 	expand_term(tree);
+	{
+		printf("After Expanding \n");
+		printf("H->[%s]\n", tree->value);
+		t_list *n = tree->next_word;
+		while (n)
+		{
+			printf("[%s]\n", n->content);
+			n = n->next_word;
+		}
+		printf("\n");
+	}
 	if (!tree)
 		return ;
 	if (tree->type == redir_o)
@@ -104,6 +115,15 @@ void	eval_tree(t_ast *tree, int is_child, t_io x)
 	if (tree->type == WORD)
 	{
 		cmnds = contrui_cmnds(tree);
+		if (cmnds)
+		{
+			printf("After Contruire Cmnds\n");
+			for (int i = 0; cmnds[i]; i++)
+			{
+				printf("{%s}->", cmnds[i]);
+			}
+			printf("{null}\n");
+		}
 		if (is_child)
 			execute(cmnds);
 		else

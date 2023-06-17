@@ -6,13 +6,13 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 14:05:35 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/17 14:31:44 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/17 14:57:44 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mnsh.h"
 
-static char	**trans_list(t_list *words)
+static char	**trans_list(t_my_list *words)
 {
 	char		**cmnds;
 	int			i;
@@ -39,7 +39,7 @@ static int	strs_push_back(t_my_list **words, char **strs)
 
 	i = -1;
 	while (strs[++i])
-		if (my_list_push_back(words, my_list_new_elem(strs + i, free_string)) == -1)
+		if (my_list_push_back(words, my_list_new_elem(my_string_dup(strs[i]), free_string)) == -1)
 			return (-1);
 	return (0);
 }
@@ -48,18 +48,21 @@ static int	words_push_back(t_my_list **words, char *s)
 {
 	char	**strs;
 
-	if (*s != '\'' || *s != '"')
+	if (*s != '\'' && *s != '"')
 	{
 		strs = my_string_split(s, " \t");
 		if (!strs)
 			return (-1);
 		if (strs_push_back(words, strs) == -1)
 			return (-1);
+		my_strings_free(&strs);
 	}
 	else
 	{
+		printf("Before Remove Quotes->{%s}\n", s);
 		if (remove_quotes(&s) == -1)
 			return (-1);
+		printf("After Remove Quotes->{%s}\n", s);
 		if (my_list_push_back(words, my_list_new_elem(s, free_string)) == -1)
 			return (-1);
 	}
@@ -72,8 +75,10 @@ char	**contrui_cmnds(t_ast *tree)
 	t_list		*n;
 
 	my_list_init(&words);
+
 	if (words_push_back(&words, tree->value) == -1)
 		exit(EXIT_FAILURE);
+
 	n = tree->next_word;
 	while (n)
 	{
@@ -81,5 +86,18 @@ char	**contrui_cmnds(t_ast *tree)
 			exit(EXIT_FAILURE);
 		n = n->next_word;
 	}
+
+	{
+		printf("Generated List Words:\n");
+		t_my_list *it = words;
+		while (it)
+		{
+			printf("{%s}->", it->data);
+			it = it->next;
+		}
+		printf("{null}\n");
+	}
+
+	return (NULL);
 	return (trans_list(words));
 }
