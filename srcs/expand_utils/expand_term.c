@@ -6,12 +6,12 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 15:30:22 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/17 18:41:52 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/17 23:30:46 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mnsh.h"
-
+/*
 static int	to_expand(char **s, char **new, int i)
 {
 	char	*key;
@@ -88,25 +88,83 @@ static void	expand_line(char **org, char **s)
 	free(*org);
 	*org = new;
 }
+*/
 
-void	expand_term(t_ast *term)
+static t_my_list	*trans_to_list(t_ast *term)
 {
-	char	**line;
-	t_list	*n;
+	t_my_list	*cmnds;
+	t_list		*n;
 
-	line = ft_alphasplit2(term->value, 0, (t_alphasplit){0, 0, 0, 0, 0, 0, 0, 0,
-			0});
-	if (!line)
+	my_list_init(&cmnds);
+	if (my_list_push_back(&cmnds, my_list_new_elem(my_string_dup(term->value),
+				free_string)) == -1)
 		exit(EXIT_FAILURE);
-	expand_line((char **)(&term->value), line);
 	n = term->next_word;
 	while (n)
 	{
-		line = ft_alphasplit2(n->content, 0, (t_alphasplit){0, 0, 0, 0, 0, 0, 0,
-				0, 0});
-		if (!line)
+		if (my_list_push_back(&cmnds,
+				my_list_new_elem(my_string_dup(n->content), free_string)) == -1)
 			exit(EXIT_FAILURE);
-		expand_line((char **)(&n->content), line);
 		n = n->next_word;
 	}
+	return (cmnds);
+}
+
+static void	expand_word(t_my_list **new, char **word)
+{
+	int	i;
+
+	if (**word == '\'')
+	{
+		if (remove_quotes(word) == -1)
+			exit(EXIT_FAILURE);
+		if (my_list_push_back(new, my_list_new_elem(my_string_dup(*word), free_string)) == -1)
+			exit(EXIT_FAILURE);
+	}
+	else if (**word == '"')
+	{
+		if (remove_quotes(word) == -1)
+			exit(EXIT_FAILURE);
+		
+	}
+
+}
+
+static void	expand_line(t_my_list **new, char *line)
+{
+	char	**words;
+	int		i;
+
+	words = ft_alphasplit2(line, 0, (t_alphasplit){0, 0, 0, 0, 0, 0, 0, 0, 0});
+	if (!words)
+		exit(EXIT_FAILURE);
+	i = 0;
+	while (words[i])
+		expand_word(new, &words[i++]);
+}
+
+static	void	to_expand(t_my_list **list)
+{
+	t_my_list	*new;
+	t_my_list 	*it;
+
+	my_list_init(&new);
+	it = *list;
+	while (it)
+	{
+		expand_line(&new, it->data);
+		it = it->next;
+	}
+}
+
+char **expand_term(t_ast *term)
+{
+	t_my_list	*list;
+	char		**cmnds;
+
+
+	cmnds = NULL;
+	list = trans_to_list(term);
+	to_expand(&list);
+	return (cmnds);
 }
