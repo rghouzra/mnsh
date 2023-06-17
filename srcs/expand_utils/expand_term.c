@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_term.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 15:30:22 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/17 11:37:13 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/17 13:37:33 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,35 +45,17 @@ static int	to_expand(char **s, char **new, int i)
 	return (free(key), i);
 }
 
-static	int	escape_word(char **s)
-{
-	char	*r;
-	int		i;
-	int		len;
-
-	if (**s != '\'' && **s != '"')
-		return (0);
-	len = (my_string_len(*s) - 2);
-	r = (char *)malloc(sizeof(char) * (len + 1));
-	if (!r)
-		exit(EXIT_FAILURE);
-	i = -1;
-	while (++i < len)
-		r[i] = (*s)[i + 1];
-	r[i] = '\0';
-	i = (**s == '\'');
-	return (free(*s), *s = r, i);
-}
-
 static void	expand_word(char **s)
 {
 	char	*new;
 	int		i;
 
-	if (escape_word(s))
+	if (**s == '\'')
 		return ;
 	new = (char *)0;
 	i = 0;
+	if (!(*s)[i])
+		return ;
 	while ((*s)[i])
 	{
 		if ((*s)[i] == '$')
@@ -112,7 +94,6 @@ void	expand_term(t_ast *term)
 	char	**line;
 	t_list	*n;
 
-	printf("term->[%s]\n", term->value);
 	line = ft_alphasplit2(term->value, 0, (t_alphasplit){0, 0, 0, 0,0, 0, 0, 0, 0});
 	if (!line)
 		exit(EXIT_FAILURE);
@@ -120,7 +101,6 @@ void	expand_term(t_ast *term)
 	n = term->next_word;
 	while(n)
 	{
-		printf("n->[%s]\n", n->content);
 		line = ft_alphasplit2(n->content, 0, (t_alphasplit){0, 0, 0, 0,0, 0, 0, 0, 0});
 		if (!line)
 			exit(EXIT_FAILURE);
@@ -128,11 +108,3 @@ void	expand_term(t_ast *term)
 		n = n->next_word;
 	}
 }
-
-/*
-
-words "dsgdfgj oi490363 " 'suhfdsg | fdgs' "fsddsfh | fsh"'dfdsh'
-
-
-
-*/

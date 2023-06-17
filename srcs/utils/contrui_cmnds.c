@@ -6,63 +6,80 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 14:05:35 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/14 15:35:26 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/17 14:31:44 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mnsh.h"
 
-static int	cmnds_count(t_ast *tree)
+static char	**trans_list(t_list *words)
 {
-	int		i;
-	t_list	*n;
+	char		**cmnds;
+	int			i;
+	t_my_list	*it;
 
+	cmnds = (char **)malloc(sizeof(char *) * (my_list_size(words) + 1));
+	if (!cmnds)
+		exit(EXIT_FAILURE);
 	i = 0;
-	if (tree->value)
-		i++;
-	n = tree->next_word;
-	while (n)
+	it = words;
+	while (it)
 	{
-		if (n->content)
-			i++;
-		n = n->next_word;
-	}
-	return (i);
-}
-
-static void	puts_words(char **cmnds, t_ast *tree)
-{
-	int		i;
-	t_list	*n;
-
-	i = 0;
-	if (tree->value)
-	{
-		cmnds[i] = my_string_dup(tree->value);
+		cmnds[i] = my_string_dup((char *)it->data);
 		if (!cmnds[i++])
 			exit(EXIT_FAILURE);
+		it = it->next;
 	}
-	n = tree->next_word;
-	while (n)
+	return (my_list_clear(&words, free_string), cmnds[i] = NULL, cmnds);
+}
+
+static int	strs_push_back(t_my_list **words, char **strs)
+{
+	int	i;
+
+	i = -1;
+	while (strs[++i])
+		if (my_list_push_back(words, my_list_new_elem(strs + i, free_string)) == -1)
+			return (-1);
+	return (0);
+}
+
+static int	words_push_back(t_my_list **words, char *s)
+{
+	char	**strs;
+
+	if (*s != '\'' || *s != '"')
 	{
-		if (n->content)
-		{
-			cmnds[i] = my_string_dup(n->content);
-			if (!cmnds[i++])
-				exit(EXIT_FAILURE);
-		}
-		n = n->next_word;
+		strs = my_string_split(s, " \t");
+		if (!strs)
+			return (-1);
+		if (strs_push_back(words, strs) == -1)
+			return (-1);
 	}
+	else
+	{
+		if (remove_quotes(&s) == -1)
+			return (-1);
+		if (my_list_push_back(words, my_list_new_elem(s, free_string)) == -1)
+			return (-1);
+	}
+	return (0);
 }
 
 char	**contrui_cmnds(t_ast *tree)
 {
-	char	**cmnds;
-	int		count;
+	t_my_list	*words;
+	t_list		*n;
 
-	count = cmnds_count(tree);
-	cmnds = (char **)malloc(sizeof(char *) * (count + 1));
-	if (!cmnds)
+	my_list_init(&words);
+	if (words_push_back(&words, tree->value) == -1)
 		exit(EXIT_FAILURE);
-	return (puts_words(cmnds, tree), cmnds[count] = NULL, cmnds);
+	n = tree->next_word;
+	while (n)
+	{
+		if (words_push_back(&words, n->content) == -1)
+			exit(EXIT_FAILURE);
+		n = n->next_word;
+	}
+	return (trans_list(words));
 }
