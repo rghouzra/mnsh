@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_term.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 15:30:22 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/16 10:47:23 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/17 11:37:13 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,7 @@ void	expand_term(t_ast *term)
 	char	**line;
 	t_list	*n;
 
+	printf("term->[%s]\n", term->value);
 	line = ft_alphasplit2(term->value, 0, (t_alphasplit){0, 0, 0, 0,0, 0, 0, 0, 0});
 	if (!line)
 		exit(EXIT_FAILURE);
@@ -119,6 +120,7 @@ void	expand_term(t_ast *term)
 	n = term->next_word;
 	while(n)
 	{
+		printf("n->[%s]\n", n->content);
 		line = ft_alphasplit2(n->content, 0, (t_alphasplit){0, 0, 0, 0,0, 0, 0, 0, 0});
 		if (!line)
 			exit(EXIT_FAILURE);
@@ -126,3 +128,11 @@ void	expand_term(t_ast *term)
 		n = n->next_word;
 	}
 }
+
+/*
+
+words "dsgdfgj oi490363 " 'suhfdsg | fdgs' "fsddsfh | fsh"'dfdsh'
+
+
+
+*/

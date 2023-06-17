@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+         #
+#    By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/27 05:38:22 by yrhiba            #+#    #+#              #
-#    Updated: 2023/06/16 12:46:48 by yrhiba           ###   ########.fr        #
+#    Updated: 2023/06/17 11:41:29 by rghouzra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -114,7 +114,7 @@ USER = $(shell whoami)
 
 ifeq ($(USER), rghouzra)
 	rlpath = /Volumes/REDA/.brew/opt/readline
-	FLAGS = -Wall -Wextra -Werror -g -fsanitize=address
+	FLAGS = -Wall -Wextra  -g -fsanitize=address
 else
 	rlpath = $(shell brew --prefix readline)
 endif

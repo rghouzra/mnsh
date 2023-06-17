@@ -6,7 +6,7 @@
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 17:57:25 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/16 06:12:01 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/17 11:29:55 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,19 @@ void	ft_parse_str(char *line, int j, t_list **token, int i)
 	(void)j;
 	while (line[i])
 	{
-		if (line[i] && !is_an_op(line[i]))
+		if (line[i] && !is_an_op(line[i]) && line[i] != DQ && line[i] != SQ)
 		{
 			if (check_prev(*token))
 				ft_lstwordadd_back(token, ft_token_word(line, &i));
 			else
 				ft_lstadd_back(token, ft_token_word(line, &i));
+		}
+		else if (line[i] == DQ || line [i] == SQ)
+		{
+			if (check_prev(*token))
+				ft_lstwordadd_back(token, ft_token_quote(line, &i, line[i]));
+			else
+				ft_lstadd_back(token, ft_token_quote(line, &i, line[i]));
 		}
 		else if (line[i] && is_an_op(line[i]))
 			ft_lstadd_back(token, handl_syntax_operrator(token, line, &i,

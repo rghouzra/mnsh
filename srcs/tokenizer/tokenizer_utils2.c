@@ -6,7 +6,7 @@
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 20:26:19 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/15 10:45:01 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/17 11:41:19 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,8 @@ t_list	*ft_token_quote(char *line, int *ind, char c)
 
 	i = *ind;
 	i++;
-	while (line[i] && line[i] != c)
+	while (line[i])
 		i++;
-	i++;
 	token = ft_tokennew(ft_substr(line, *ind, i - *ind), WORD);
 	*ind = i;
 	return (token);
