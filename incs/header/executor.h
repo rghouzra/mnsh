@@ -6,7 +6,7 @@
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 18:16:13 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/16 07:34:34 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/17 17:48:57 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ typedef struct s_exec
 
 typedef struct s_io
 {
+	int		rediro_prev;
+	int		rediri_prev;
 	int		input;
 	int		output;
 	int		be_dupped;
