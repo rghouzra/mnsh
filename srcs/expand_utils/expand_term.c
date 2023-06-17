@@ -6,7 +6,7 @@
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 15:30:22 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/17 13:12:28 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/17 13:34:52 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,6 @@ void	expand_term(t_ast *term)
 	n = term->next_word;
 	while(n)
 	{
-		printf("n->[%s]\n", n->content);
 		line = ft_alphasplit2(n->content, 0, (t_alphasplit){0, 0, 0, 0,0, 0, 0, 0, 0});
 		if (!line)
 			exit(EXIT_FAILURE);
@@ -131,11 +130,3 @@ void	expand_term(t_ast *term)
 		n = n->next_word;
 	}
 }
-
-/*
-
-words "dsgdfgj oi490363 " 'suhfdsg | fdgs' "fsddsfh | fsh"'dfdsh'
-
-
-
-*/
