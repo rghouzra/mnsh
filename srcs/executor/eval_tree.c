@@ -6,7 +6,7 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 10:34:18 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/17 14:53:38 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/17 16:07:48 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,15 +90,15 @@ void	eval_tree(t_ast *tree, int is_child, t_io x)
 
 	expand_term(tree);
 	{
-		printf("After Expanding \n");
-		printf("H->[%s]\n", tree->value);
+		printf("expanded Result\n");
+		printf("[%s]->", tree->value);
 		t_list *n = tree->next_word;
 		while (n)
 		{
-			printf("[%s]\n", n->content);
+			printf("[%s]->", n->content);
 			n = n->next_word;
 		}
-		printf("\n");
+		printf("[null]\n");
 	}
 	if (!tree)
 		return ;

@@ -6,7 +6,7 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 14:05:35 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/17 14:57:44 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/17 15:57:48 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,10 @@ static char	**trans_list(t_my_list *words)
 	while (it)
 	{
 		cmnds[i] = my_string_dup((char *)it->data);
-		if (!cmnds[i++])
+		if (!cmnds[i])
 			exit(EXIT_FAILURE);
 		it = it->next;
+		i++;
 	}
 	return (my_list_clear(&words, free_string), cmnds[i] = NULL, cmnds);
 }
@@ -44,13 +45,13 @@ static int	strs_push_back(t_my_list **words, char **strs)
 	return (0);
 }
 
-static int	words_push_back(t_my_list **words, char *s)
+static int	words_push_back(t_my_list **words, char **s)
 {
 	char	**strs;
 
-	if (*s != '\'' && *s != '"')
+	if (**s != '\'' && **s != '"')
 	{
-		strs = my_string_split(s, " \t");
+		strs = ft_alphasplit(*s, ' ',  (t_alphasplit){0, 0, 0, 0, 0, 0, 0, 0, 0});
 		if (!strs)
 			return (-1);
 		if (strs_push_back(words, strs) == -1)
@@ -59,11 +60,11 @@ static int	words_push_back(t_my_list **words, char *s)
 	}
 	else
 	{
-		printf("Before Remove Quotes->{%s}\n", s);
-		if (remove_quotes(&s) == -1)
+		printf("Before Remove Quotes->{%s}\n", *s);
+		if (remove_quotes(s) == -1)
 			return (-1);
-		printf("After Remove Quotes->{%s}\n", s);
-		if (my_list_push_back(words, my_list_new_elem(s, free_string)) == -1)
+		printf("After Remove Quotes->{%s}\n", *s);
+		if (my_list_push_back(words, my_list_new_elem(my_string_dup(*s), free_string)) == -1)
 			return (-1);
 	}
 	return (0);
@@ -76,13 +77,13 @@ char	**contrui_cmnds(t_ast *tree)
 
 	my_list_init(&words);
 
-	if (words_push_back(&words, tree->value) == -1)
+	if (words_push_back(&words, &tree->value) == -1)
 		exit(EXIT_FAILURE);
 
 	n = tree->next_word;
 	while (n)
 	{
-		if (words_push_back(&words, n->content) == -1)
+		if (words_push_back(&words, &n->content) == -1)
 			exit(EXIT_FAILURE);
 		n = n->next_word;
 	}
@@ -97,7 +98,5 @@ char	**contrui_cmnds(t_ast *tree)
 		}
 		printf("{null}\n");
 	}
-
-	return (NULL);
 	return (trans_list(words));
 }
