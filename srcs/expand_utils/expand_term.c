@@ -6,7 +6,7 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 15:30:22 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/17 13:37:33 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/17 18:41:52 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	to_expand(char **s, char **new, int i)
 
 	key = (char *)0;
 	j = i;
-	while (is_valid_char((*s)[i], ((i) - j)))
+	while (is_valid_char((*s)[i], ((i)-j)))
 	{
 		if (my_string_append_char(&key, (*s)[i]) == -1)
 			exit(EXIT_FAILURE);
@@ -60,7 +60,7 @@ static void	expand_word(char **s)
 	{
 		if ((*s)[i] == '$')
 			i = to_expand(s, &new, i + 1);
-		else 
+		else
 		{
 			if (my_string_append_char(&new, (*s)[i]) == -1)
 				exit(EXIT_FAILURE);
@@ -94,14 +94,16 @@ void	expand_term(t_ast *term)
 	char	**line;
 	t_list	*n;
 
-	line = ft_alphasplit2(term->value, 0, (t_alphasplit){0, 0, 0, 0,0, 0, 0, 0, 0});
+	line = ft_alphasplit2(term->value, 0, (t_alphasplit){0, 0, 0, 0, 0, 0, 0, 0,
+			0});
 	if (!line)
 		exit(EXIT_FAILURE);
 	expand_line((char **)(&term->value), line);
 	n = term->next_word;
-	while(n)
+	while (n)
 	{
-		line = ft_alphasplit2(n->content, 0, (t_alphasplit){0, 0, 0, 0,0, 0, 0, 0, 0});
+		line = ft_alphasplit2(n->content, 0, (t_alphasplit){0, 0, 0, 0, 0, 0, 0,
+				0, 0});
 		if (!line)
 			exit(EXIT_FAILURE);
 		expand_line((char **)(&n->content), line);

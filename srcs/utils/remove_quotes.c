@@ -28,5 +28,5 @@ int	remove_quotes(char **s)
 	while (++i < len)
 		r[i] = (*s)[i + 1];
 	r[i] = '\0';
-	return (free(*s), *s = r,  (**s == '\''));
+	return (free(*s), *s = r, (**s == '\''));
 }

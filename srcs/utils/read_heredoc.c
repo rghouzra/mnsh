@@ -18,18 +18,18 @@ char	*read_heredoc(char *delemiter)
 	int fd;
 	char *name;
 
-	if(!delemiter)
-		return NULL;
+	if (!delemiter)
+		return (NULL);
 	name = generate_filename();
 	fd = open(name, O_CREAT | O_RDWR | O_TRUNC, 0644);
-	if(fd == -1)
-		return NULL;
-	while(1)
+	if (fd == -1)
+		return (NULL);
+	while (1)
 	{
 		line = readline("> ");
-		if(!line)
+		if (!line)
 			break ;
-		if(!ft_strcmp(line, delemiter))
+		if (!ft_strcmp(line, delemiter))
 			break ;
 		write(fd, line, ft_strlen(line));
 		write(fd, "\n", 1);

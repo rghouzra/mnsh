@@ -6,7 +6,7 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 10:34:18 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/17 16:07:48 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/17 18:43:14 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,20 +88,9 @@ void	eval_tree(t_ast *tree, int is_child, t_io x)
 {
 	char	**cmnds;
 
-	expand_term(tree);
-	{
-		printf("expanded Result\n");
-		printf("[%s]->", tree->value);
-		t_list *n = tree->next_word;
-		while (n)
-		{
-			printf("[%s]->", n->content);
-			n = n->next_word;
-		}
-		printf("[null]\n");
-	}
 	if (!tree)
 		return ;
+	expand_term(tree);
 	if (tree->type == redir_o)
 		handle_rediro(tree, x, is_child);
 	if (tree->type == redir_i)
@@ -115,15 +104,6 @@ void	eval_tree(t_ast *tree, int is_child, t_io x)
 	if (tree->type == WORD)
 	{
 		cmnds = contrui_cmnds(tree);
-		if (cmnds)
-		{
-			printf("After Contruire Cmnds\n");
-			for (int i = 0; cmnds[i]; i++)
-			{
-				printf("{%s}->", cmnds[i]);
-			}
-			printf("{null}\n");
-		}
 		if (is_child)
 			execute(cmnds);
 		else

@@ -43,16 +43,17 @@ void	print_tree_dot(t_ast *root, char *s)
 void	print_tk(t_list *token)
 {
 	t_list	*tmp;
+
 	while (token)
 	{
 		printf("[%s]->:\t%d\n", token->content, token->type);
 		tmp = token->next_word;
-		if(tmp)
+		if (tmp)
 		{
-			while(tmp)
+			while (tmp)
 			{
-				printf("next_word: %s\n",tmp->content);
-				tmp = tmp->next_word;	
+				printf("next_word: %s\n", tmp->content);
+				tmp = tmp->next_word;
 			}
 		}
 		token = token->next;

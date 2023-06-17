@@ -21,7 +21,7 @@ static void	swapstep(void)
 	while (it->next)
 	{
 		if (my_string_compare(((char **)it->data)[0],
-				((char **)it->next->data)[0]) == LS_GREAT)
+								((char **)it->next->data)[0]) == LS_GREAT)
 		{
 			tmp = it->data;
 			it->data = it->next->data;

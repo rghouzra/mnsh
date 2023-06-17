@@ -6,7 +6,7 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 14:05:35 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/17 15:57:48 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/17 18:44:34 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ static int	strs_push_back(t_my_list **words, char **strs)
 
 	i = -1;
 	while (strs[++i])
-		if (my_list_push_back(words, my_list_new_elem(my_string_dup(strs[i]), free_string)) == -1)
+		if (my_list_push_back(words, my_list_new_elem(my_string_dup(strs[i]),
+					free_string)) == -1)
 			return (-1);
 	return (0);
 }
@@ -51,7 +52,8 @@ static int	words_push_back(t_my_list **words, char **s)
 
 	if (**s != '\'' && **s != '"')
 	{
-		strs = ft_alphasplit(*s, ' ',  (t_alphasplit){0, 0, 0, 0, 0, 0, 0, 0, 0});
+		strs = ft_alphasplit(*s, ' ', (t_alphasplit){0, 0, 0, 0, 0, 0, 0, 0,
+				0});
 		if (!strs)
 			return (-1);
 		if (strs_push_back(words, strs) == -1)
@@ -64,7 +66,8 @@ static int	words_push_back(t_my_list **words, char **s)
 		if (remove_quotes(s) == -1)
 			return (-1);
 		printf("After Remove Quotes->{%s}\n", *s);
-		if (my_list_push_back(words, my_list_new_elem(my_string_dup(*s), free_string)) == -1)
+		if (my_list_push_back(words, my_list_new_elem(my_string_dup(*s),
+					free_string)) == -1)
 			return (-1);
 	}
 	return (0);
@@ -74,23 +77,21 @@ char	**contrui_cmnds(t_ast *tree)
 {
 	t_my_list	*words;
 	t_list		*n;
+	t_my_list	*it;
 
 	my_list_init(&words);
-
-	if (words_push_back(&words, &tree->value) == -1)
+	if (words_push_back(&words, (char **)&tree->value) == -1)
 		exit(EXIT_FAILURE);
-
 	n = tree->next_word;
 	while (n)
 	{
-		if (words_push_back(&words, &n->content) == -1)
+		if (words_push_back(&words, (char **)&n->content) == -1)
 			exit(EXIT_FAILURE);
 		n = n->next_word;
 	}
-
 	{
 		printf("Generated List Words:\n");
-		t_my_list *it = words;
+		it = words;
 		while (it)
 		{
 			printf("{%s}->", it->data);
