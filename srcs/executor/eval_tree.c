@@ -6,7 +6,7 @@
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 10:34:18 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/16 18:03:58 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/17 13:11:55 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,9 +88,9 @@ void	eval_tree(t_ast *tree, int is_child, t_io x)
 {
 	char	**cmnds;
 
-	expand_term(tree);
 	if (!tree)
 		return ;
+	expand_term(tree);
 	if (tree->type == redir_o)
 		handle_rediro(tree, x, is_child);
 	if (tree->type == redir_i)
