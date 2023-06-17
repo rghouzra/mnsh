@@ -6,7 +6,7 @@
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 15:30:22 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/17 11:37:13 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/17 13:12:28 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,10 @@ void	expand_term(t_ast *term)
 	char	**line;
 	t_list	*n;
 
-	printf("term->[%s]\n", term->value);
+	if(!term)
+		return ;
+	expand_term(term->left);
+	expand_term(term->right);
 	line = ft_alphasplit2(term->value, 0, (t_alphasplit){0, 0, 0, 0,0, 0, 0, 0, 0});
 	if (!line)
 		exit(EXIT_FAILURE);
