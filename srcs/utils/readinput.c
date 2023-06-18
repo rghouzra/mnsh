@@ -6,7 +6,7 @@
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 06:57:44 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/18 08:08:23 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/18 11:15:22 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	print_tree_dot(t_ast *root, char *s)
 	print_dot(root, -666, &count, p);
 	fprintf(p, "}\n");
 	fflush(p);
+	fclose(p);
 }
 
 void	print_tk(t_list *token)
@@ -87,6 +88,7 @@ void	read_input(void)
 		}
 		ft_tokencleaner(&token);
 		free(s);
+		g_mnsh->exit_status = 0;
 	}
 	clear_history();
 }
