@@ -1,26 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   garbage_cleaner.c                                  :+:      :+:    :+:   */
+/*   remove_quotes.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/25 18:44:58 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/18 15:15:31 by yrhiba           ###   ########.fr       */
+/*   Created: 2023/06/17 13:28:46 by yrhiba            #+#    #+#             */
+/*   Updated: 2023/06/18 15:01:48 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#include "mnsh.h"
 
-void	tree_cleaner(t_ast **tree)
+int	remove_quotes(char **s)
 {
-	if (!*tree)
-		return ;
-	tree_cleaner(&(*tree)->left);
-	tree_cleaner(&(*tree)->right);
-	ft_clean_nextword(&(*tree)->next_word);
-	my_list_clear(&((*tree)->value_expanded), free_string);
-	free((*tree)->value);
-	free(*tree);
-	*tree = NULL;
+	char	*r;
+	int		i;
+	int		len;
+
+	if (**s != '\'' && **s != '"')
+		return (0);
+	len = (my_string_len(*s) - 2);
+	r = (char *)malloc(sizeof(char) * (len + 1));
+	if (!r)
+		return (-1);
+	i = -1;
+	while (++i < len)
+		r[i] = (*s)[i + 1];
+	r[i] = '\0';
+	return (free(*s), *s = r, (**s == '\''));
 }

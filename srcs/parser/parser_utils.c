@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 20:32:24 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/14 15:18:09 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/18 13:09:07 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ t_ast	*ft_newastnode(t_tokentype type, void *value, t_list *next_word)
 	node->value = value;
 	node->left = NULL;
 	node->right = NULL;
+	my_list_init(&node->value_expanded);
 	node->next_word = next_word;
 	return (node);
 }

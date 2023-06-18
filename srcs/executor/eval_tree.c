@@ -6,7 +6,7 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 10:34:18 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/17 22:52:57 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/18 15:04:16 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,8 @@ void	eval_tree(t_ast *tree, int is_child, t_io x)
 
 	if (!tree)
 		return ;
-	cmnds = expand_term(tree);
+	expand_term(tree);
+	return ;
 	if (tree->type == redir_o)
 		handle_rediro(tree, x, is_child);
 	if (tree->type == redir_i)
