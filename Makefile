@@ -6,7 +6,7 @@
 #    By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/27 05:38:22 by yrhiba            #+#    #+#              #
-#    Updated: 2023/06/18 10:18:55 by rghouzra         ###   ########.fr        #
+#    Updated: 2023/06/18 11:23:15 by rghouzra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -111,12 +111,17 @@ LIBLIST = libs/libmylist/libmylist.a
 LIBFT = libs/libft/libft.a
 
 USER = $(shell whoami)
-
-ifeq ($(USER), rghouzra)
-	rlpath = /Volumes/REDA/.brew/opt/readline
-	FLAGS = -Wall -Wextra  -g #-fsanitize=address
+OS = $(shell uname)
+ifeq ($(OS), Darwin)
+	ifeq ($(USER), rghouzra)
+		rlpath = /Volumes/REDA/.brew/opt/readline
+		FLAGS = -Wall -Wextra  -g #-fsanitize=address
+	else
+		rlpath = $(shell brew --prefix readline)
+	endif
 else
-	rlpath = $(shell brew --prefix readline)
+	FLAGS = -Wall -Wextra  -g #-fsanitize=address
+
 endif
 
 RL = -L$(rlpath)/lib -lreadline -I$(rlpath)/include
