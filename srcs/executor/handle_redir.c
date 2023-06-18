@@ -6,7 +6,7 @@
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:17:53 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/17 19:57:08 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/18 07:49:34 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	handle_rediri(t_ast *tree, t_io x, int is_child)
 	int	fd;
 
 	fd = -1;
-	if (ft_redir_optimizer(tree))
+	if (ft_redir_optimizer(tree) == 1)
 	{
 		fd = open(tree->right->value, O_RDONLY);
 		if (fd == -1)
