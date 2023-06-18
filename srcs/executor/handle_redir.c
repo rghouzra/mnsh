@@ -6,7 +6,7 @@
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:17:53 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/18 07:49:34 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/18 08:10:40 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ int	ft_redir_optimizer(t_ast *tree)
 	}
 	if (tree->left)
 	{
-		if(tree->left->type == redir_o || tree->left->type == append_o)
+		if (tree->left->type == redir_o || tree->left->type == append_o)
 			return (2);
-		if(tree->left->type == redir_i)
+		if (tree->left->type == redir_i)
 			return (3);
-		if(tree->left->type == heredoc_i)
+		if (tree->left->type == heredoc_i)
 			return (4);
 	}
 	return (0);
@@ -70,7 +70,7 @@ void	handle_rediri(t_ast *tree, t_io x, int is_child)
 			show_error(strerror(errno), 126);
 		if (is_child)
 			dup2(fd, x.input);
-		else if(!x.rediri_prev)
+		else if (!x.rediri_prev)
 		{
 			x.rediri_prev = 1;
 			x.be_dupped = fd;
