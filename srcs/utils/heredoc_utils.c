@@ -14,13 +14,13 @@
 
 char	*generate_filename(void)
 {
-	char	*file_name_base;
-	char	*number;
-	int 	i;
+	char *file_name_base;
+	char *number;
+	int i;
 
 	i = 0;
 	file_name_base = ft_strdup("/tmp/.heredoc");
-	while(access(file_name_base, F_OK) == 0)
+	while (access(file_name_base, F_OK) == 0)
 	{
 		free(file_name_base);
 		file_name_base = ft_strdup("/tmp/.heredoc");

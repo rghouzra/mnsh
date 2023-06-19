@@ -6,7 +6,7 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 18:06:57 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/16 10:48:24 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/17 14:15:34 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,5 +62,8 @@ int					get_arg_pos(t_my_list *it, char *arg);
 
 char				*generate_filename(void);
 char				*read_heredoc(char *delemiter);
+
+int					remove_quotes(char **s);
+void				free_string(void **arg);
 
 #endif

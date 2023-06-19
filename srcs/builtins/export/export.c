@@ -6,7 +6,7 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 09:08:01 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/15 18:37:55 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/17 18:35:00 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ static int	add_to_export(char **kv)
 			return (my_strings_free_count(&kv, 2), -1);
 		return (0);
 	}
-	if (my_list_push_back(&g_mnsh->export_list, my_list_new_elem(my_strings_dup_count(kv, 2),
+	if (my_list_push_back(&g_mnsh->export_list,
+			my_list_new_elem(my_strings_dup_count(kv, 2),
 				&my_list_data_clear)) == -1)
 		return (-1);
 	return (export_sort(), 0);
@@ -67,10 +68,12 @@ void	export(int ac, char **av, int mode)
 	if (ac == 1)
 		print_export();
 	while (++i < ac)
+	{
 		if (export_var(av[i]) == -1)
 		{
 			f = EXIT_FAILURE;
 			printf("export: %s: not a valid identifier\n", av[i]);
 		}
+	}
 	exit_status(f, mode);
 }

@@ -1,44 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   export_sort.c                                      :+:      :+:    :+:   */
+/*   remove_quotes.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/26 16:44:32 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/15 14:53:55 by yrhiba           ###   ########.fr       */
+/*   Created: 2023/06/17 13:28:46 by yrhiba            #+#    #+#             */
+/*   Updated: 2023/06/18 15:01:48 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mnsh.h"
 
-static void	swapstep(void)
+int	remove_quotes(char **s)
 {
-	t_my_list	*it;
-	void		*tmp;
+	char	*r;
+	int		i;
+	int		len;
 
-	it = g_mnsh->export_list;
-	while (it->next)
-	{
-		if (my_string_compare(((char **)it->data)[0],
-								((char **)it->next->data)[0]) == LS_GREAT)
-		{
-			tmp = it->data;
-			it->data = it->next->data;
-			it->next->data = tmp;
-		}
-		it = it->next;
-	}
-}
-
-void	export_sort(void)
-{
-	t_my_list	*it;
-
-	it = g_mnsh->export_list;
-	while (it)
-	{
-		swapstep();
-		it = it->next;
-	}
+	if (**s != '\'' && **s != '"')
+		return (0);
+	len = (my_string_len(*s) - 2);
+	r = (char *)malloc(sizeof(char) * (len + 1));
+	if (!r)
+		return (-1);
+	i = -1;
+	while (++i < len)
+		r[i] = (*s)[i + 1];
+	r[i] = '\0';
+	return (free(*s), *s = r, (**s == '\''));
 }

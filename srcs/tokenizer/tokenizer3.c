@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer3.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 11:51:09 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/16 06:23:11 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/19 14:06:27 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static char	*ft_words(const char *s, char sep, t_alphasplit x)
 	{
 		x.c = *(s + x.length);
 		if (helper_visualizer(s, x.c) == 1)
-			x.length = 0;
+			x.length = 2;
 		else
 		{
 			if (*(s + x.length) && *(s + x.length) == x.c)
