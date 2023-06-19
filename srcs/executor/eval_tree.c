@@ -48,14 +48,14 @@ void	pipeline(t_ast *tree, t_io x)
 	if (!tree)
 		return ;
 	ft_pipe(fd);
-	pid1 = fork();
+	pid1 = ft_fork();
 	if (pid1 == 0)
 	{
 		dup_close(fd, x.output, 1);
 		eval_tree(tree->left, 1, x);
 		exit(0);
 	}
-	pid2 = fork();
+	pid2 = ft_fork();
 	if (pid2 == 0)
 	{
 		dup_close(fd, x.input, 0);

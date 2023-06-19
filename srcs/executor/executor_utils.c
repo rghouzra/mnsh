@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   executor_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 08:43:03 by rghouzra          #+#    #+#             */
 /*   Updated: 2023/06/17 15:40:33 by yrhiba           ###   ########.fr       */
@@ -25,7 +25,7 @@ char	*execute(char **cmnds)
 	execve(cmd, cmnds, ev);
 	ft_putstr_fd(cmnds[0], 2);
 	ft_putstr_fd(": Command not found\n", 2);
-	return (my_strings_free(&cmnds), my_strings_free(&ev), free(cmd), exit(127),
+	return (my_strings_free(&ev), free(cmd), exit(127),
 		NULL);
 }
 
@@ -70,6 +70,6 @@ void	get_virual_operands(char *operands, t_openpar x, int is_running,
 		execute(leafs + 1);
 	}
 	else
-		execute_with_fork(leafs, (t_io){-2, -2, fd, x.stream, 1});
+		execute_with_fork(leafs, (t_io){0, 0, -2, -2, fd, x.stream, 1});
 	close(fd);
 }

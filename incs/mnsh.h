@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   mnsh.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 21:30:50 by yrhiba            #+#    #+#             */
 /*   Updated: 2023/06/17 18:31:29 by yrhiba           ###   ########.fr       */
@@ -30,6 +30,6 @@ typedef struct s_minishell
 	int			exit_status;
 }				t_minishell;
 
-t_minishell		*g_mnsh;
+extern t_minishell		*g_mnsh;
 
 #endif

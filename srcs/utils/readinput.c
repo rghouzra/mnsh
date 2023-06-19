@@ -38,6 +38,7 @@ void	print_tree_dot(t_ast *root, char *s)
 	print_dot(root, -666, &count, p);
 	fprintf(p, "}\n");
 	fflush(p);
+	fclose(p);
 }
 
 void	print_tk(t_list *token)
@@ -82,11 +83,12 @@ void	read_input(void)
 			add_history(s);
 			tree = shunting_algorithm(token);
 			if (tree)
-				eval_tree(tree, 0, (t_io){0, 1, -2, -2, 0});
+				eval_tree(tree, 0, (t_io){0, 0, 0, 1, -2, -2, 0});
 			tree_cleaner(&tree);
 		}
 		ft_tokencleaner(&token);
 		free(s);
+		g_mnsh->exit_status = 0;
 	}
 	clear_history();
 }

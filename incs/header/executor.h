@@ -29,6 +29,8 @@ typedef struct s_exec
 
 typedef struct s_io
 {
+	int		rediro_prev;
+	int		rediri_prev;
 	int		input;
 	int		output;
 	int		be_dupped;
