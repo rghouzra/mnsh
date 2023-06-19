@@ -6,7 +6,7 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 15:30:22 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/19 15:28:14 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/19 17:13:44 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static void	append_res(char **s, t_my_list **new, char **r)
 	}
 }
 
-static void	expand_node(t_my_list **new, char *s)
+void	expand_node(t_my_list **new, char *s)
 {
 	char	*sres;
 	char	**r;
