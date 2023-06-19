@@ -6,7 +6,7 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 15:30:22 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/19 14:57:13 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/19 15:01:35 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,16 +61,13 @@ static void	expand_node(t_my_list **new, char *s)
 	words = ft_alphasplit2(s, 0, (t_alphasplit){0, 0, 0, 0, 0, 0, 0, 0, 0});
 	if (!words)
 		exit(EXIT_FAILURE);
-	printf("this is {%s}\n", s);
-	for (int i = 0; words[i]; i++)
-		printf("{%s}->", words[i]);
-	printf("{null}\n");
 	i = 0;
 	while (words[i])
 	{
 		r = expand_word(&words[i++]);
 		if (!r)
 			continue;
+		printf("{%s} \n", words[i]);
 		append_res(&sres, new, r);
 		my_strings_free(&r);
 	}

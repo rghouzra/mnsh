@@ -6,7 +6,7 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 18:28:17 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/18 18:05:55 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/19 15:12:17 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,10 +74,14 @@ char	**expand_double_quotes(char **s)
 {
 	char	**r;
 
+	expand(s);
 	if (remove_quotes(s) == -1)
 		exit(EXIT_FAILURE);
 	r = (char **)ft_malloc(sizeof(char *) * 2);
-	*r = my_string_dup(expand(s));
+	if (!(**s))
+		*r = my_string_dup("");
+	else
+		*r = my_string_dup(*s);
 	if (!(*r))
 		exit(EXIT_FAILURE);
 	return (r[1] = NULL, r);
