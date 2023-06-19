@@ -6,7 +6,7 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 17:31:25 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/13 14:01:50 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/17 18:41:33 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	env_var_exist(char *key)
 {
-	t_my_list *it;
+	t_my_list	*it;
 
 	it = g_mnsh->env_list;
 	while (it)

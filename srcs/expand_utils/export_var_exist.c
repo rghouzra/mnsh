@@ -6,7 +6,7 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 17:33:45 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/15 14:30:47 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/17 18:42:04 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	export_var_exist(char *key)
 {
-	t_my_list *it;
+	t_my_list	*it;
 
 	it = g_mnsh->export_list;
 	while (it)
