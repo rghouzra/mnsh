@@ -6,7 +6,7 @@
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 15:30:22 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/19 16:03:15 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/19 16:10:23 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,24 +111,6 @@ static void	expand_line(char **org, char **s)
 
 void	expand_term(t_ast *term)
 {
-	char	**line;
-	t_list	*n;
-
-	if(!term)
-		return ;
-	expand_term(term->left);
-	expand_term(term->right);
-	line = ft_alphasplit2(term->value, 0, (t_alphasplit){0, 0, 0, 0,0, 0, 0, 0, 0});
-	if (!line)
-		exit(EXIT_FAILURE);
-	expand_line((char **)(&term->value), line);
-	n = term->next_word;
-	while(n)
-	{
-		line = ft_alphasplit2(n->content, 0, (t_alphasplit){0, 0, 0, 0,0, 0, 0, 0, 0});
-		if (!line)
-			exit(EXIT_FAILURE);
-		expand_line((char **)(&n->content), line);
-		n = n->next_word;
-	}
+  put_to_list(term);
+	expand_list(&term->value_expanded);
 }
