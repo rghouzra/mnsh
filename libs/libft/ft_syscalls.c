@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_syscalls.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 08:57:46 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/17 18:18:25 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/19 15:33:17 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ int	ft_open(char *filename, int flags, int permission)
 		fd = open(filename, flags, permission);
 	else
 		fd = open(filename, flags);
+	if(fd == -1)
+		show_error(strerror(errno), 126);
 	if (fd == -1)
 		show_error(strerror(errno), 1);
 	return (fd);

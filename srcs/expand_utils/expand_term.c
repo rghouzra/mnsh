@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_term.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 15:30:22 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/19 15:15:40 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/19 15:31:45 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,33 @@
 static char	**expand_word(char **s)
 {
 	char	**strs;
-
+	
+	key = (char *)0;
+	j = i;
+	while (is_valid_char((*s)[i], ((i) - j)))
+	{
+		if (my_string_append_char(&key, (*s)[i]) == -1)
+			exit(EXIT_FAILURE);
+		i++;
+	}
+	if (i == j)
+	{
+		if ((*s)[i] == '?')
+		{
+			g_mnsh->exit_status = get_the_exitstatus();
+			printf("g_mnsh->exit:%d\n", g_mnsh->exit_status);
+			key = ft_itoa(g_mnsh->exit_status);
+			if (!key)
+				exit(EXIT_FAILURE);
+			if (my_string_append(new, key) == -1)
+				exit(EXIT_FAILURE);
+			return (++i);
+		}
+		if (my_string_append_char(new, '$') == -1)
+			exit(EXIT_FAILURE);
+		return (i);
+	}
+	else if (append_value(new, key) == -1)
 	strs = (char **)0;
 	if (**s == '\'')
 		return (expand_single_quotes(s));

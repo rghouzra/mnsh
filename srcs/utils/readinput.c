@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   readinput.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 06:57:44 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/19 15:15:02 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/19 15:30:08 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,12 +75,13 @@ void	read_input(void)
 		if (!s)
 		{
 			ft_putendl_fd("exit", STDERR_FILENO);
-			exit(1);
+			exit(0);
 		}
 		token = tokenizer(s);
+		if(token)
+			add_history(s);
 		if (lexer(token))
 		{
-			add_history(s);
 			tree = shunting_algorithm(token);
 			if (tree)
 				eval_tree(tree, 0, (t_io){0, 0, 0, 1, -2, -2, 0});
@@ -88,7 +89,6 @@ void	read_input(void)
 		}
 		ft_tokencleaner(&token);
 		free(s);
-		g_mnsh->exit_status = 0;
 	}
 	clear_history();
 }
