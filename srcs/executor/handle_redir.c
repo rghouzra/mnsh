@@ -6,7 +6,7 @@
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:17:53 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/19 09:06:20 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/18 08:10:40 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,10 +117,8 @@ void	handle_heredoc(t_ast *tree, t_io x, int is_child)
 	int	fd;
 
 	fd = -1;
-	printf("node->%p\n", tree);
 	if (ft_redir_optimizer(tree))
 	{
-		printf("node->right->%p\n", tree->right);
 		fd = open(tree->right->value, O_RDONLY);
 		if (fd == -1)
 			show_error(strerror(errno), 126);
@@ -132,7 +130,6 @@ void	handle_heredoc(t_ast *tree, t_io x, int is_child)
 			x.be_dupped = fd;
 			x.stream = x.input;
 		}
-		printf("node->left->%p\n", tree->left);
 		eval_tree(tree->left, is_child, x);
 	}
 	else

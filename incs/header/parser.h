@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 10:51:33 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/14 15:17:42 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/17 18:16:54 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # define LEFT 666
 # define RIGHT 999
 
-void	read_input();
+void	read_input(void);
 t_ast	*shunting_algorithm(t_list *token);
 int		op_priority(t_tokentype type);
 void	shunting_op_handler(t_list *token, t_queue **queue, t_list **stack);

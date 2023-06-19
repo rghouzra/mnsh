@@ -1,0 +1,96 @@
+Exit status 0: This indicates that the command or script executed successfully without any errors.
+Exit status 1: This indicates that the command or script encountered an error or failed to execute.
+Exit status 2: This indicates that the command or script encountered a syntax error or invalid usage.
+Exit statusz 126: This indicates that the command or script was found but could not be executed due to insufficient permissions.
+Exit status 127: This indicates that the command or script could not be found or was not executable.
+Exit status 128: This indicates that the command or script terminated due to a signal.
+Exit status 130: This indicates that the command or script was terminated by a user interrupt signal (e.g., pressing Ctrl+C).
+Exit status 255: This indicates that the exit status is out of range (i.e., greater than 255).
+SUCCESS 0
+FAILED   1
+SYNTAX_ERROR  2
+PERMISSIONS 127
+SIGNAL 128
+CTRL_C 130
+OUT_OF_RANGE 255
+/*
+Exit Status Code 0:
+Success (no errors or failures)
+Exit Status Code 1:
+Failure due to general or unspecified error
+Failure due to incorrect command line arguments or syntax
+Failure due to file or directory not found
+Exit Status Code 2:
+Failure due to incorrect usage of shell built-in commands
+Exit Status Code 126:
+Failure due to the command not being executable
+Exit Status Code 127:
+Failure due to the command not being found
+Exit Status Code 128:
+Failure due to a fatal error signal (such as SIGBUS, SIGSEGV, or SIGPIPE) being received by the process
+Failure due to an invalid exit argument to exit() system call
+Exit Status Code 130:
+Failure due to the command being terminated by a signal (such as SIGINT, SIGQUIT, or SIGTERM)
+Exit Status Code 139:
+Failure due to a segmentation fault or invalid memory access
+*/
+La somme des ages de khadija, de sa mere et de sa grande mere est 90 ans la grande mere a double d’age de khadija et le tiers de celui de sa mere27
+
+
+—-------------
+es, here are the exit status codes of Bash and their typical meanings:
+0: Success. The command completed successfully without any errors.
+1: General error. This exit code is used to indicate a general error when no specific error code is available or appropriate.
+2: Misuse of shell builtins. This exit code is used to indicate that a shell builtin was used incorrectly, or with invalid arguments.
+126: Command invoked cannot execute. This exit code is used to indicate that a command was invoked that cannot be executed, typically due to insufficient permissions or the command not being found in the system's PATH.
+127: Command not found. This exit code is used to indicate that the command specified in the shell script or command line was not found in the system's PATH.
+128: Invalid argument to exit. This exit code is used to indicate that the exit command was invoked with an invalid argument.
+130: Script terminated by Control-C. This exit code is used to indicate that the script was terminated by the user using the Control-C key combination.
+137: Killed by a signal. This exit code is used to indicate that the process was killed by a signal.
+255: Exit status out of range. This exit code is used to indicate that the exit status specified is out of range.
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/wait.h>
+
+int main() {
+    pid_t pid;
+    int status;
+
+    pid = fork();
+    if (pid == -1) {
+        perror("fork");
+        exit(EXIT_FAILURE);
+    } else if (pid == 0) {
+        // Child process
+        execl("/bin/ls", "ls", "-l", NULL);
+        perror("execl");
+        exit(EXIT_FAILURE);
+    } else {
+        // Parent process
+        if (waitpid(pid, &status, 0) == -1) {
+            perror("waitpid");
+            exit(EXIT_FAILURE);
+        }
+
+        if (WIFEXITED(status)) {
+            printf("Child process exited with status %d\n", WEXITSTATUS(status));
+        } else if (WIFSIGNALED(status)) {
+            printf("Child process terminated by signal %d\n", WTERMSIG(status));
+        }
+    }
+
+    return 0;
+}
+`0: The command executed successfully.
+1: Catchall for general errors.
+2: Misuse of shell built-ins (according to Bash documentation).
+126: Command invoked cannot execute.
+127: "command not found".
+128: Invalid argument to exit command.
+128+n: Fatal error signal "n".
+130: Script terminated by Control-C.
+255: Exit status out of range (exit takes only integer args in the range 0 - 255).
+`
+
+``

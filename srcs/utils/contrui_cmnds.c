@@ -6,63 +6,30 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 14:05:35 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/14 15:35:26 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/19 14:20:44 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mnsh.h"
 
-static int	cmnds_count(t_ast *tree)
-{
-	int		i;
-	t_list	*n;
-
-	i = 0;
-	if (tree->value)
-		i++;
-	n = tree->next_word;
-	while (n)
-	{
-		if (n->content)
-			i++;
-		n = n->next_word;
-	}
-	return (i);
-}
-
-static void	puts_words(char **cmnds, t_ast *tree)
-{
-	int		i;
-	t_list	*n;
-
-	i = 0;
-	if (tree->value)
-	{
-		cmnds[i] = my_string_dup(tree->value);
-		if (!cmnds[i++])
-			exit(EXIT_FAILURE);
-	}
-	n = tree->next_word;
-	while (n)
-	{
-		if (n->content)
-		{
-			cmnds[i] = my_string_dup(n->content);
-			if (!cmnds[i++])
-				exit(EXIT_FAILURE);
-		}
-		n = n->next_word;
-	}
-}
-
 char	**contrui_cmnds(t_ast *tree)
 {
-	char	**cmnds;
-	int		count;
+	t_my_list	*it;
+	char		**cmnds;
+	int			i;
 
-	count = cmnds_count(tree);
-	cmnds = (char **)malloc(sizeof(char *) * (count + 1));
+	cmnds = (char **)ft_malloc(sizeof(char *)
+			* (my_list_size(tree->value_expanded) + 1));
 	if (!cmnds)
-		exit(EXIT_FAILURE);
-	return (puts_words(cmnds, tree), cmnds[count] = NULL, cmnds);
+		return (perror("mnsh::malloc failed"), exit(EXIT_FAILURE), NULL);
+	it = tree->value_expanded;
+	i = 0;
+	while (it)
+	{
+		cmnds[i] = my_string_dup(it->data);
+		if (!cmnds[i++])
+			return (perror("mnsh::malloc failed"), exit(EXIT_FAILURE), NULL);
+		it = it->next;
+	}
+	return (cmnds[i] = (char *)0, cmnds);
 }

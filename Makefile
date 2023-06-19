@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+         #
+#    By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/27 05:38:22 by yrhiba            #+#    #+#              #
-#    Updated: 2023/06/19 16:03:55 by rghouzra         ###   ########.fr        #
+#    Updated: 2023/06/18 16:17:31 by yrhiba           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,9 @@ SRCS_FOOTER =	srcs/expand_utils/envgetvalue.c \
 				srcs/expand_utils/export_var_exist.c \
 				srcs/expand_utils/export_var_update.c \
 				srcs/expand_utils/expand_term.c \
-				srcs/expand_utils/expand_term_utils.c
+				srcs/expand_utils/expand_term_utils.c \
+				srcs/expand_utils/remove_quotes.c \
+				srcs/expand_utils/expand.c
 
 SRCS_UTILS =	srcs/utils/free_tokens.c \
 				srcs/utils/queue_utils.c \
@@ -49,7 +51,8 @@ SRCS_UTILS =	srcs/utils/free_tokens.c \
 				srcs/utils/contrui_cmnds.c \
 				srcs/utils/read_heredoc.c \
 				srcs/utils/heredoc_utils.c \
-				srcs/utils/get_list_pos.c
+				srcs/utils/get_list_pos.c \
+				srcs/utils/free_string.c
 
 SRCS_HEADER =	srcs/executor/eval_tree.c \
 				srcs/executor/executor_utils.c \
@@ -102,7 +105,7 @@ COMPILER = cc
 
 OBJS = $(addprefix $(ODIR), $(SRCS:.c=.o))
 
-FLAGS = -Wall -Wextra  -g -fsanitize=address
+FLAGS = -Wall -Wextra -g -fsanitize=address
 
 LIBSTR = libs/libmystr/libmystr.a
 
@@ -111,17 +114,12 @@ LIBLIST = libs/libmylist/libmylist.a
 LIBFT = libs/libft/libft.a
 
 USER = $(shell whoami)
-OS = $(shell uname)
-ifeq ($(OS), Darwin)
-	ifeq ($(USER), rghouzra)
-		rlpath = /Volumes/REDA/.brew/opt/readline
-		FLAGS = -Wall -Wextra  -g# -fsanitize=address
-	else
-		rlpath = $(shell brew --prefix readline)
-	endif
-else
-	FLAGS = -Wall -Wextra  -g #-fsanitize=address
 
+ifeq ($(USER), rghouzra)
+	rlpath = /Volumes/REDA/.brew/opt/readline
+	FLAGS = -Wall -Wextra  -g #-fsanitize=address
+else
+	rlpath = $(shell brew --prefix readline)
 endif
 
 RL = -L$(rlpath)/lib -lreadline -I$(rlpath)/include

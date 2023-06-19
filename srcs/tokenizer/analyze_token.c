@@ -6,7 +6,7 @@
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 11:27:30 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/19 08:47:43 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/16 06:23:49 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	analyze_token(t_list *token)
 		{
 			ptr = token->next->content;
 			token->next->content = read_heredoc(token->next->content);
-			
 			free(ptr);
 		}
 		token = token->next;

@@ -3,150 +3,100 @@
 /*                                                        :::      ::::::::   */
 /*   expand_term.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 15:30:22 by yrhiba            #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2023/06/18 18:19:15 by yrhiba           ###   ########.fr       */
-=======
-/*   Updated: 2023/06/19 16:10:23 by yrhiba           ###   ########.fr       */
->>>>>>> a096863780225a0dfcc829dfa20444642532ab29
+/*   Updated: 2023/06/19 15:28:14 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mnsh.h"
 
-static int	to_expand(char **s, char **new, int i)
+static char	**expand_word(char **s)
 {
 	char	**strs;
-	
-	char	*key;
-	int		j;
 
-	key = (char *)0;
-	j = i;
-	while (is_valid_char((*s)[i], ((i) - j)))
-	{
-		if (my_string_append_char(&key, (*s)[i]) == -1)
-			exit(EXIT_FAILURE);
-		i++;
-	}
-	if (i == j)
-	{
-		if ((*s)[i] == '?')
-		{
-			key = ft_itoa(g_mnsh->exit_status);
-			if (!key)
-				exit(EXIT_FAILURE);
-			if (my_string_append(new, key) == -1)
-				exit(EXIT_FAILURE);
-			return (++i);
-		}
-		if (my_string_append_char(new, '$') == -1)
-			exit(EXIT_FAILURE);
-		return (i);
-	}
-	else if (append_value(new, key) == -1)
+	strs = (char **)0;
+	if (**s == '\'')
+		return (expand_single_quotes(s));
+	if (**s == '"')
+		return (expand_double_quotes(s));
+	if (!expand(s))
+		return (NULL);
+	strs = my_string_split(*s, " \t");
+	if (!strs)
 		exit(EXIT_FAILURE);
-	return (free(key), i);
+	return (strs);
 }
 
-static	int	escape_word(char **s)
+static void	append_res(char **s, t_my_list **new, char **r)
 {
-	char	*r;
-	int		i;
-	int		len;
+	int	i;
 
-	if (**s != '\'' && **s != '"')
-		return (0);
-	len = (my_string_len(*s) - 2);
-	r = (char *)malloc(sizeof(char) * (len + 1));
-	if (!r)
-		exit(EXIT_FAILURE);
 	i = -1;
-	while (++i < len)
-		r[i] = (*s)[i + 1];
-	r[i] = '\0';
-	i = (**s == '\'');
-	return (free(*s), *s = r, i);
+	while (r[++i])
+	{
+		if (i)
+		{
+			if (my_list_push_back(new, my_list_new_elem(my_string_dup(*s), free_string)) == -1)
+				exit(EXIT_FAILURE);
+			free(*s);
+			*s = my_string_dup(r[i]);
+			if (!*s)
+				exit(EXIT_FAILURE);
+		}
+		else if (my_string_append(s, r[i]) == -1)
+				exit(EXIT_FAILURE);
+	}
 }
 
-static void	expand_word(char **s)
+static void	expand_node(t_my_list **new, char *s)
 {
-	char	*new;
+	char	*sres;
+	char	**r;
+	char	**words;
 	int		i;
 
-	if (escape_word(s))
-		return ;
-	new = (char *)0;
+	sres = (char *)0;
+	words = ft_alphasplit2(s, 0, (t_alphasplit){0, 0, 0, 0, 0, 0, 0, 0, 0});
+	if (!words)
+		exit(EXIT_FAILURE);
 	i = 0;
-	while ((*s)[i])
+	while (words[i])
 	{
-<<<<<<< HEAD
-		// printf("{%s}->", words[i]);
 		r = expand_word(&words[i++]);
 		if (!r)
 			continue;
 		append_res(&sres, new, r);
 		my_strings_free(&r);
 	}
-	// printf("{null}\n");
 	if (sres)
 	{
 		if (my_list_push_back(new, my_list_new_elem(my_string_dup(sres), free_string)) == -1)
 			exit(EXIT_FAILURE);
 		free(sres);
-=======
-		if ((*s)[i] == '$')
-			i = to_expand(s, &new, i + 1);
-		else 
-		{
-			if (my_string_append_char(&new, (*s)[i]) == -1)
-				exit(EXIT_FAILURE);
-			i++;
-		}
->>>>>>> a096863780225a0dfcc829dfa20444642532ab29
 	}
-	free(*s);
-	*s = new;
+	my_strings_free(&words);
 }
 
-static void	expand_line(char **org, char **s)
+static void	expand_list(t_my_list **list)
 {
-	char	*new;
-	int		i;
+	t_my_list	*new;
+	t_my_list	*it;
 
-	new = (char *)0;
-	i = -1;
-	while (s[++i])
+	my_list_init(&new);
+	it = *list;
+	while (it)
 	{
-		expand_word(&s[i]);
-		if (s[i] && (my_string_append(&new, s[i]) == -1))
-			exit(EXIT_FAILURE);
+		expand_node(&new, it->data);
+		it = it->next;
 	}
-	my_strings_free(&s);
-	free(*org);
-	*org = new;
+	my_list_clear(list, free_string);
+	*list = new;
 }
 
 void	expand_term(t_ast *term)
 {
-<<<<<<< HEAD
 	put_to_list(term);
 	expand_list(&term->value_expanded);
-
-	t_my_list *it;
-
-	printf("List Result\n");
-	it = term->value_expanded;
-	while (it)
-	{
-		printf("{%s}->", it->data);
-		it = it->next;
-	}
-	printf("{null}\n");
-=======
-  put_to_list(term);
-	expand_list(&term->value_expanded);
->>>>>>> a096863780225a0dfcc829dfa20444642532ab29
 }
