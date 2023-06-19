@@ -6,7 +6,7 @@
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 10:34:18 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/17 19:43:10 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/19 10:27:24 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,14 @@ void	eval_logical_op(t_ast *tree, t_io x)
 	}
 }
 
+void	eval_other_types(t_ast *tree, t_io x, int is_child)
+{
+	if (tree->type == heredoc_i)
+		handle_heredoc(tree, x, is_child);
+	else
+		eval_logical_op(tree, x);
+}
+
 void	eval_tree(t_ast *tree, int is_child, t_io x)
 {
 	char	**cmnds;
@@ -97,8 +105,6 @@ void	eval_tree(t_ast *tree, int is_child, t_io x)
 		handle_rediri(tree, x, is_child);
 	if (tree->type == append_o)
 		handle_append(tree, x, is_child);
-	if (tree->type == heredoc_i)
-		handle_heredoc(tree, x, is_child);
 	if (tree->type == PIPE)
 		pipeline(tree, x);
 	if (tree->type == WORD)
@@ -110,5 +116,5 @@ void	eval_tree(t_ast *tree, int is_child, t_io x)
 			execute_with_fork(cmnds, x);
 	}
 	else
-		eval_logical_op(tree, x);
+		eval_other_types(tree, x, is_child);
 }

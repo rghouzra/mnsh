@@ -63,4 +63,5 @@ int					get_arg_pos(t_my_list *it, char *arg);
 char				*generate_filename(void);
 char				*read_heredoc(char *delemiter);
 
+int				get_the_exitstatus();
 #endif

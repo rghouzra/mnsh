@@ -29,6 +29,8 @@ static int	to_expand(char **s, char **new, int i)
 	{
 		if ((*s)[i] == '?')
 		{
+			g_mnsh->exit_status = get_the_exitstatus();
+			printf("g_mnsh->exit:%d\n", g_mnsh->exit_status);
 			key = ft_itoa(g_mnsh->exit_status);
 			if (!key)
 				exit(EXIT_FAILURE);

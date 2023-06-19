@@ -6,7 +6,7 @@
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 15:41:31 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/18 10:04:44 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/19 05:26:04 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 t_minishell	*g_mnsh;
 
 int	main(int ac, char **av, char **env)
-{
+{ 
 	(void)av;
 	(void)ac;
 	g_mnsh = (t_minishell *)ft_malloc(sizeof(t_minishell));

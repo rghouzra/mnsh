@@ -39,6 +39,6 @@ int	ft_open(char *filename, int flags, int permission)
 	else
 		fd = open(filename, flags);
 	if(fd == -1)
-		show_error(strerror(errno), 1);
+		show_error(strerror(errno), 126);
 	return (fd);
 }
