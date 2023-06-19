@@ -6,7 +6,7 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 15:30:22 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/19 15:15:40 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/19 15:28:14 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,8 +97,6 @@ static void	expand_list(t_my_list **list)
 
 void	expand_term(t_ast *term)
 {
-	t_my_list *it;
-
 	put_to_list(term);
 	expand_list(&term->value_expanded);
 }
