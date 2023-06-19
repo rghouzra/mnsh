@@ -6,7 +6,7 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 17:19:42 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/18 17:29:49 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/19 17:13:57 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,6 @@ char	**expand_double_quotes(char **s);
 char	**expand_single_quotes(char **s);
 
 char	*expand(char **s);
+void	expand_node(t_my_list **new, char *s);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_redir.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:17:53 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/18 08:10:40 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/19 17:18:16 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,19 @@ void	handle_rediro(t_ast *tree, t_io x, int is_child)
 	fd = -1;
 	if (ft_redir_optimizer(tree))
 	{
+		// ########### test
+		{
+			t_my_list *expanded_values = NULL;
+			expand_node(&expanded_values, tree->right->value);
+			t_my_list *it = expanded_values;
+			while (it)
+			{
+				printf("{%s}->", it->data);
+				it = it->next;
+			}
+			printf("{null}\n");
+		}
+		// ########### test
 		fd = open(tree->right->value, O_CREAT | O_WRONLY | O_TRUNC, 0644);
 		if (fd == -1)
 			show_error(strerror(errno), 126);
