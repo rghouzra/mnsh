@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   readinput.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 06:57:44 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/19 15:15:02 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/19 16:05:31 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,17 +44,16 @@ void	print_tree_dot(t_ast *root, char *s)
 void	print_tk(t_list *token)
 {
 	t_list	*tmp;
-
 	while (token)
 	{
 		printf("[%s]->:\t%d\n", token->content, token->type);
 		tmp = token->next_word;
-		if (tmp)
+		if(tmp)
 		{
-			while (tmp)
+			while(tmp)
 			{
-				printf("next_word: %s\n", tmp->content);
-				tmp = tmp->next_word;
+				printf("next_word: %s\n",tmp->content);
+				tmp = tmp->next_word;	
 			}
 		}
 		token = token->next;
@@ -75,20 +74,21 @@ void	read_input(void)
 		if (!s)
 		{
 			ft_putendl_fd("exit", STDERR_FILENO);
-			exit(1);
+			exit(0);
 		}
 		token = tokenizer(s);
+		if(token)
+			add_history(s);
 		if (lexer(token))
 		{
-			add_history(s);
 			tree = shunting_algorithm(token);
+			print_tree_dot(tree, s);
 			if (tree)
 				eval_tree(tree, 0, (t_io){0, 0, 0, 1, -2, -2, 0});
 			tree_cleaner(&tree);
 		}
 		ft_tokencleaner(&token);
 		free(s);
-		g_mnsh->exit_status = 0;
 	}
 	clear_history();
 }

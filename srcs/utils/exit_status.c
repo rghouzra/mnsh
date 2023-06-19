@@ -19,3 +19,14 @@ int	exit_status(int status, int mode)
 	g_mnsh->exit_status = status;
 	return (status);
 }
+
+int	get_the_exitstatus()
+{
+	printf("before->%d\n", g_mnsh->exit_status);
+	if (WIFEXITED(g_mnsh->exit_status)) 
+		return WEXITSTATUS(g_mnsh->exit_status);
+	else if (WIFSIGNALED(g_mnsh->exit_status))
+		return WTERMSIG(g_mnsh->exit_status) + 128;
+	else
+		return -1;
+}

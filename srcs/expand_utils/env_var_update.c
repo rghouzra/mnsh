@@ -6,7 +6,7 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 17:34:57 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/17 18:41:41 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/07 17:42:40 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	env_var_update(char *key, char *new_value)
 {
-	t_my_list	*it;
+	t_my_list *it;
 
 	it = g_mnsh->env_list;
 	while (it)
