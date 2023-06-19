@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 22:54:04 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/18 13:17:07 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/16 07:31:55 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,10 +72,8 @@ typedef struct s_ast
 	struct s_ast	*left;
 	int				side;
 	struct s_ast	*right;
-	t_my_list		*value_expanded;
 
 }					t_ast;
-
 
 void				ft_putnbr(int n);
 void				ft_putchar_fd(char c, int fd);

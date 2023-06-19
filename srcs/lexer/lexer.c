@@ -38,13 +38,13 @@ int	lexer(t_list *token)
 	if (token)
 	{
 		if (check_token(token) != 1)
-			return (printf("syntax error\n"), g_mnsh->exit_status = 258, 0);
+			return (printf("syntax error\n"), g_mnsh->exit_status = 2, 0);
 		if (paranthesis_lexer(token) != 1)
 			return (printf("bash: parse error near`()'\n"), 0);
 		if (is_there_invalid_op(token) != 1 || check_valid_syntax(token) != 1)
-			return (printf("syntax error\n"), g_mnsh->exit_status = 258, 0);
+			return (printf("syntax error\n"), g_mnsh->exit_status = 2, 0);
 		if (is_there_unexpected_token(token))
-			return (printf("syntax error near unexpected token\n"), g_mnsh->exit_status = 258, 0);
+			return (printf("syntax error near unexpected token\n"), g_mnsh->exit_status = 2, 0);
 		return (1);
 	}
 	return (0);

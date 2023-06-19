@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer3.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 11:51:09 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/19 14:06:27 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/19 16:04:28 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static char	*ft_words(const char *s, char sep, t_alphasplit x)
 			x.length++;
 	}
 	x.word = (char *)ft_malloc((x.length + 1) * sizeof(char));
-	return (ft_strlcpy(x.word, s, x.length + 1), x.word);
+	return (ft_strlcpy(x.word, s, x.length + 1) ,x.word);
 }
 
 static int	ft_second_handle_quote(const char *s, char c)
@@ -110,7 +110,7 @@ static int	ft_handle_quote(const char *s, size_t *i, char c, int quotes_ctr)
 		check_quote_ctr++;
 		j++;
 	}
-	if (!quotes_ctr || !check_quote_ctr || (quotes_ctr % 2 == 0
+	if (!quotes_ctr || !check_quote_ctr || ((quotes_ctr % 2 == 0) \
 			+ check_quote_ctr % 2 == 0) % 2 != 0)
 		return (0);
 	*i = j;

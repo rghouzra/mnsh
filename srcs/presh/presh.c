@@ -6,7 +6,7 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 09:15:54 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/17 18:45:56 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/15 17:37:07 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@ static int	addenvto(char *ev, t_my_list **list)
 	char	**key_value;
 
 	key_value = my_string_split_by_first(ev, "=");
-	if (my_list_push_back(list, my_list_new_elem((void *)key_value,
-				&my_list_data_clear)) == -1)
+	if (my_list_push_back(list, my_list_new_elem((void *)key_value, &my_list_data_clear)) == -1)
 		return (perror("mnsh::"), exit(EXIT_FAILURE), -1);
 	return (0);
 }
