@@ -6,7 +6,7 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 10:34:18 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/19 14:58:17 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/19 15:16:21 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,6 @@ void	eval_logical_op(t_ast *tree, t_io x)
 void	eval_tree(t_ast *tree, int is_child, t_io x)
 {
 	char		**cmnds;
-	t_my_list	*it;
 
 	if (!tree)
 		return ;

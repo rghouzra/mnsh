@@ -6,7 +6,7 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 15:30:22 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/19 15:01:35 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/19 15:15:40 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ static void	expand_node(t_my_list **new, char *s)
 		r = expand_word(&words[i++]);
 		if (!r)
 			continue;
-		printf("{%s} \n", words[i]);
 		append_res(&sres, new, r);
 		my_strings_free(&r);
 	}
@@ -101,15 +100,5 @@ void	expand_term(t_ast *term)
 	t_my_list *it;
 
 	put_to_list(term);
-
 	expand_list(&term->value_expanded);
-
-	printf("List Result\n");
-	it = term->value_expanded;
-	while (it)
-	{
-		printf("{%s}->", it->data);
-		it = it->next;
-	}
-	printf("{null}\n");
 }

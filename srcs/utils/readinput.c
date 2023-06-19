@@ -6,7 +6,7 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 06:57:44 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/18 15:15:34 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/19 15:15:02 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ void	read_input(void)
 		{
 			add_history(s);
 			tree = shunting_algorithm(token);
-			// print_tree_dot(tree, s);
 			if (tree)
 				eval_tree(tree, 0, (t_io){0, 1, -2, -2, 0});
 			tree_cleaner(&tree);
