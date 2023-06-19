@@ -6,98 +6,63 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 14:05:35 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/17 18:44:34 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/14 15:35:26 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mnsh.h"
 
-static char	**trans_list(t_my_list *words)
+static int	cmnds_count(t_ast *tree)
 {
-	char		**cmnds;
-	int			i;
-	t_my_list	*it;
+	int		i;
+	t_list	*n;
 
-	cmnds = (char **)malloc(sizeof(char *) * (my_list_size(words) + 1));
-	if (!cmnds)
-		exit(EXIT_FAILURE);
 	i = 0;
-	it = words;
-	while (it)
-	{
-		cmnds[i] = my_string_dup((char *)it->data);
-		if (!cmnds[i])
-			exit(EXIT_FAILURE);
-		it = it->next;
+	if (tree->value)
 		i++;
+	n = tree->next_word;
+	while (n)
+	{
+		if (n->content)
+			i++;
+		n = n->next_word;
 	}
-	return (my_list_clear(&words, free_string), cmnds[i] = NULL, cmnds);
+	return (i);
 }
 
-static int	strs_push_back(t_my_list **words, char **strs)
+static void	puts_words(char **cmnds, t_ast *tree)
 {
-	int	i;
+	int		i;
+	t_list	*n;
 
-	i = -1;
-	while (strs[++i])
-		if (my_list_push_back(words, my_list_new_elem(my_string_dup(strs[i]),
-					free_string)) == -1)
-			return (-1);
-	return (0);
-}
-
-static int	words_push_back(t_my_list **words, char **s)
-{
-	char	**strs;
-
-	if (**s != '\'' && **s != '"')
+	i = 0;
+	if (tree->value)
 	{
-		strs = ft_alphasplit(*s, ' ', (t_alphasplit){0, 0, 0, 0, 0, 0, 0, 0,
-				0});
-		if (!strs)
-			return (-1);
-		if (strs_push_back(words, strs) == -1)
-			return (-1);
-		my_strings_free(&strs);
+		cmnds[i] = my_string_dup(tree->value);
+		if (!cmnds[i++])
+			exit(EXIT_FAILURE);
 	}
-	else
+	n = tree->next_word;
+	while (n)
 	{
-		printf("Before Remove Quotes->{%s}\n", *s);
-		if (remove_quotes(s) == -1)
-			return (-1);
-		printf("After Remove Quotes->{%s}\n", *s);
-		if (my_list_push_back(words, my_list_new_elem(my_string_dup(*s),
-					free_string)) == -1)
-			return (-1);
+		if (n->content)
+		{
+			cmnds[i] = my_string_dup(n->content);
+			if (!cmnds[i++])
+				exit(EXIT_FAILURE);
+		}
+		n = n->next_word;
 	}
-	return (0);
 }
 
 char	**contrui_cmnds(t_ast *tree)
 {
-	t_my_list	*words;
-	t_list		*n;
-	t_my_list	*it;
+	char	**cmnds;
+	int		count;
 
-	my_list_init(&words);
-	if (words_push_back(&words, (char **)&tree->value) == -1)
+	count = cmnds_count(tree);
+	cmnds = (char **)malloc(sizeof(char *) * (count + 1));
+	if (!cmnds)
 		exit(EXIT_FAILURE);
-	n = tree->next_word;
-	while (n)
-	{
-		if (words_push_back(&words, (char **)&n->content) == -1)
-			exit(EXIT_FAILURE);
-		n = n->next_word;
-	}
-	{
-		printf("Generated List Words:\n");
-		it = words;
-		while (it)
-		{
-			printf("{%s}->", it->data);
-			it = it->next;
-		}
-		printf("{null}\n");
-	}
-	return (trans_list(words));
+	return (puts_words(cmnds, tree), cmnds[count] = NULL, cmnds);
 }

@@ -6,7 +6,7 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 17:39:12 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/17 18:42:15 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/07 17:39:57 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	export_var_update(char *key, char *new_value)
 {
-	t_my_list	*it;
+	t_my_list *it;
 
 	it = g_mnsh->export_list;
 	while (it)

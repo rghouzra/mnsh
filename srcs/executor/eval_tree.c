@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   eval_tree.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 10:34:18 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/18 15:04:16 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/19 16:04:14 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "mnsh.h"
 
@@ -48,14 +49,14 @@ void	pipeline(t_ast *tree, t_io x)
 	if (!tree)
 		return ;
 	ft_pipe(fd);
-	pid1 = fork();
+	pid1 = ft_fork();
 	if (pid1 == 0)
 	{
 		dup_close(fd, x.output, 1);
 		eval_tree(tree->left, 1, x);
 		exit(0);
 	}
-	pid2 = fork();
+	pid2 = ft_fork();
 	if (pid2 == 0)
 	{
 		dup_close(fd, x.input, 0);
@@ -84,32 +85,37 @@ void	eval_logical_op(t_ast *tree, t_io x)
 	}
 }
 
+void	eval_other_types(t_ast *tree, t_io x, int is_child)
+{
+	if (tree->type == heredoc_i)
+		handle_heredoc(tree, x, is_child);
+	else
+		eval_logical_op(tree, x);
+}
+
 void	eval_tree(t_ast *tree, int is_child, t_io x)
 {
-	char		**cmnds;
-	t_my_list	*it;
+	char	**cmnds;
 
 	if (!tree)
 		return ;
 	expand_term(tree);
-	return ;
 	if (tree->type == redir_o)
 		handle_rediro(tree, x, is_child);
 	if (tree->type == redir_i)
 		handle_rediri(tree, x, is_child);
 	if (tree->type == append_o)
 		handle_append(tree, x, is_child);
-	if (tree->type == heredoc_i)
-		handle_heredoc(tree, x, is_child);
 	if (tree->type == PIPE)
 		pipeline(tree, x);
 	if (tree->type == WORD)
 	{
+		cmnds = contrui_cmnds(tree);
 		if (is_child)
 			execute(cmnds);
 		else
 			execute_with_fork(cmnds, x);
 	}
 	else
-		eval_logical_op(tree, x);
+		eval_other_types(tree, x, is_child);
 }
