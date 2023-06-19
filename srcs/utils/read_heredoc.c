@@ -6,7 +6,7 @@
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 15:01:02 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/17 13:27:43 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/19 08:48:22 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ char	*read_heredoc(char *delemiter)
 	int fd;
 	char *name;
 
-	if (!delemiter)
-		return (NULL);
+	if(!delemiter)
+		return NULL;
 	name = generate_filename();
 	fd = ft_open(name, O_CREAT | O_RDWR | O_TRUNC, 0644);
 	if(ft_fork() == 0)
@@ -38,5 +38,6 @@ char	*read_heredoc(char *delemiter)
 		}
 		exit(0);
 	}
+	printf("name_addr->%p\n", name);
 	return (waitpid(0, 0, 0), close(fd), name);
 }
