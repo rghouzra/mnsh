@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 18:16:13 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/17 18:16:24 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/17 17:48:57 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 
 # include "header.h"
 
-# define EXEC 111
-# define LEFT 666
-# define RIGHT 999
-# define PARENT 0
+#define EXEC 111
+#define LEFT 666
+#define RIGHT 999
+#define PARENT 0
 
 typedef struct s_exec
 {
@@ -51,8 +51,7 @@ void		eval_tree(t_ast *tree, int is_child, t_io x);
 int			check_access(char *path, int which);
 void		handle_rediro(t_ast *tree, t_io x, int is_child);
 void		handle_rediri(t_ast *tree, t_io x, int is_child);
-void		get_virual_operands(char *operands, t_openpar x, int is_running,
-				t_ast *tree);
+void		get_virual_operands(char *operands, t_openpar x, int is_running, t_ast *tree);
 void		handle_append(t_ast *tree, t_io x, int is_child);
 void		execute_with_fork(char **cmnds, t_io x);
 #endif

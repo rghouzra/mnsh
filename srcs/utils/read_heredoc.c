@@ -18,8 +18,8 @@ char	*read_heredoc(char *delemiter)
 	int fd;
 	char *name;
 
-	if (!delemiter)
-		return (NULL);
+	if(!delemiter)
+		return NULL;
 	name = generate_filename();
 	fd = ft_open(name, O_CREAT | O_RDWR | O_TRUNC, 0644);
 	if(ft_fork() == 0)

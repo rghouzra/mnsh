@@ -6,7 +6,7 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 22:46:31 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/17 18:27:25 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/09 14:47:46 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,27 +43,13 @@ static int	scan_synp(t_echo *data, char *s)
 static int	addbn(t_echo *data)
 {
 	if (!(data->n))
-	{
 		if (my_string_append(&(data->buff), "\n") == -1)
 		{
 			perror("echo::");
 			free(data->buff);
 			exit(EXIT_FAILURE);
 		}
-	}
 	return (0);
-}
-
-static void	echo_scan_arg(t_echo *data, char *av, int mode)
-{
-	if (scan_synp(data, av))
-	{
-		if (addarg(data, av) == -1)
-		{
-			free(data->buff);
-			exit_status(EXIT_FAILURE, mode);
-		}
-	}
 }
 
 void	echo(int ac, char **av, int mode)
@@ -75,7 +61,20 @@ void	echo(int ac, char **av, int mode)
 	data.n = 0;
 	i = 0;
 	while (++i < ac)
-		echo_scan_arg(&data, av[i], mode);
+	{
+		if (scan_synp(&data, av[i]))
+			if (addarg(&data, av[i]) == -1)
+			{
+				free(data.buff);
+				if (mode == YES_EXIT)
+					exit(EXIT_FAILURE);
+				else
+				{
+					g_mnsh->exit_status = EXIT_FAILURE;
+					return ;
+				}
+			}
+	}
 	addbn(&data);
 	i = EXIT_SUCCESS;
 	if (write(STDOUT_FILENO, data.buff, my_string_len(data.buff)) == -1)
@@ -83,5 +82,7 @@ void	echo(int ac, char **av, int mode)
 	free(data.buff);
 	if (i == EXIT_FAILURE)
 		perror("echo::");
-	exit_status(i, mode);
+	if (mode == YES_EXIT)
+		exit(i);
+	g_mnsh->exit_status = i;
 }

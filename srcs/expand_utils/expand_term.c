@@ -6,16 +6,19 @@
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 15:30:22 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/19 15:31:45 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/19 16:03:15 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mnsh.h"
 
-static char	**expand_word(char **s)
+static int	to_expand(char **s, char **new, int i)
 {
 	char	**strs;
 	
+	char	*key;
+	int		j;
+
 	key = (char *)0;
 	j = i;
 	while (is_valid_char((*s)[i], ((i) - j)))
@@ -28,8 +31,6 @@ static char	**expand_word(char **s)
 	{
 		if ((*s)[i] == '?')
 		{
-			g_mnsh->exit_status = get_the_exitstatus();
-			printf("g_mnsh->exit:%d\n", g_mnsh->exit_status);
 			key = ft_itoa(g_mnsh->exit_status);
 			if (!key)
 				exit(EXIT_FAILURE);
@@ -42,89 +43,92 @@ static char	**expand_word(char **s)
 		return (i);
 	}
 	else if (append_value(new, key) == -1)
-	strs = (char **)0;
-	if (**s == '\'')
-		return (expand_single_quotes(s));
-	if (**s == '"')
-		return (expand_double_quotes(s));
-	if (!expand(s))
-		return (NULL);
-	strs = my_string_split(*s, " \t");
-	if (!strs)
 		exit(EXIT_FAILURE);
-	return (strs);
+	return (free(key), i);
 }
 
-static void	append_res(char **s, t_my_list **new, char **r)
+static	int	escape_word(char **s)
 {
-	int	i;
+	char	*r;
+	int		i;
+	int		len;
 
+	if (**s != '\'' && **s != '"')
+		return (0);
+	len = (my_string_len(*s) - 2);
+	r = (char *)malloc(sizeof(char) * (len + 1));
+	if (!r)
+		exit(EXIT_FAILURE);
 	i = -1;
-	while (r[++i])
-	{
-		if (i)
-		{
-			if (my_list_push_back(new, my_list_new_elem(my_string_dup(*s), free_string)) == -1)
-				exit(EXIT_FAILURE);
-			free(*s);
-			*s = my_string_dup(r[i]);
-			if (!*s)
-				exit(EXIT_FAILURE);
-		}
-		else if (my_string_append(s, r[i]) == -1)
-				exit(EXIT_FAILURE);
-	}
+	while (++i < len)
+		r[i] = (*s)[i + 1];
+	r[i] = '\0';
+	i = (**s == '\'');
+	return (free(*s), *s = r, i);
 }
 
-static void	expand_node(t_my_list **new, char *s)
+static void	expand_word(char **s)
 {
-	char	*sres;
-	char	**r;
-	char	**words;
+	char	*new;
 	int		i;
 
-	sres = (char *)0;
-	words = ft_alphasplit2(s, 0, (t_alphasplit){0, 0, 0, 0, 0, 0, 0, 0, 0});
-	if (!words)
-		exit(EXIT_FAILURE);
+	if (escape_word(s))
+		return ;
+	new = (char *)0;
 	i = 0;
-	while (words[i])
+	while ((*s)[i])
 	{
-		r = expand_word(&words[i++]);
-		if (!r)
-			continue;
-		append_res(&sres, new, r);
-		my_strings_free(&r);
+		if ((*s)[i] == '$')
+			i = to_expand(s, &new, i + 1);
+		else 
+		{
+			if (my_string_append_char(&new, (*s)[i]) == -1)
+				exit(EXIT_FAILURE);
+			i++;
+		}
 	}
-	if (sres)
-	{
-		if (my_list_push_back(new, my_list_new_elem(my_string_dup(sres), free_string)) == -1)
-			exit(EXIT_FAILURE);
-		free(sres);
-	}
-	my_strings_free(&words);
+	free(*s);
+	*s = new;
 }
 
-static void	expand_list(t_my_list **list)
+static void	expand_line(char **org, char **s)
 {
-	t_my_list	*new;
-	t_my_list	*it;
+	char	*new;
+	int		i;
 
-	my_list_init(&new);
-	it = *list;
-	while (it)
+	new = (char *)0;
+	i = -1;
+	while (s[++i])
 	{
-		expand_node(&new, it->data);
-		it = it->next;
+		expand_word(&s[i]);
+		if (s[i] && (my_string_append(&new, s[i]) == -1))
+			exit(EXIT_FAILURE);
 	}
-	my_list_clear(list, free_string);
-	*list = new;
+	my_strings_free(&s);
+	free(*org);
+	*org = new;
 }
 
 void	expand_term(t_ast *term)
 {
-	t_my_list *it;
+	char	**line;
+	t_list	*n;
 
-	put_to_list(term);
-	expand_list(&term->value_expanded);
+	if(!term)
+		return ;
+	expand_term(term->left);
+	expand_term(term->right);
+	line = ft_alphasplit2(term->value, 0, (t_alphasplit){0, 0, 0, 0,0, 0, 0, 0, 0});
+	if (!line)
+		exit(EXIT_FAILURE);
+	expand_line((char **)(&term->value), line);
+	n = term->next_word;
+	while(n)
+	{
+		line = ft_alphasplit2(n->content, 0, (t_alphasplit){0, 0, 0, 0,0, 0, 0, 0, 0});
+		if (!line)
+			exit(EXIT_FAILURE);
+		expand_line((char **)(&n->content), line);
+		n = n->next_word;
+	}
 }

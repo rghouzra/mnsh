@@ -6,7 +6,7 @@
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 10:34:18 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/19 15:33:28 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/19 16:04:14 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ void	eval_other_types(t_ast *tree, t_io x, int is_child)
 
 void	eval_tree(t_ast *tree, int is_child, t_io x)
 {
-	char		**cmnds;
+	char	**cmnds;
 
 	if (!tree)
 		return ;

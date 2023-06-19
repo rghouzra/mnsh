@@ -6,7 +6,7 @@
 #    By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/27 05:38:22 by yrhiba            #+#    #+#              #
-#    Updated: 2023/06/19 15:29:22 by rghouzra         ###   ########.fr        #
+#    Updated: 2023/06/19 16:03:55 by rghouzra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,9 +32,7 @@ SRCS_FOOTER =	srcs/expand_utils/envgetvalue.c \
 				srcs/expand_utils/export_var_exist.c \
 				srcs/expand_utils/export_var_update.c \
 				srcs/expand_utils/expand_term.c \
-				srcs/expand_utils/expand_term_utils.c \
-				srcs/expand_utils/remove_quotes.c \
-				srcs/expand_utils/expand.c
+				srcs/expand_utils/expand_term_utils.c
 
 SRCS_UTILS =	srcs/utils/free_tokens.c \
 				srcs/utils/queue_utils.c \
@@ -51,8 +49,7 @@ SRCS_UTILS =	srcs/utils/free_tokens.c \
 				srcs/utils/contrui_cmnds.c \
 				srcs/utils/read_heredoc.c \
 				srcs/utils/heredoc_utils.c \
-				srcs/utils/get_list_pos.c \
-				srcs/utils/free_string.c
+				srcs/utils/get_list_pos.c
 
 SRCS_HEADER =	srcs/executor/eval_tree.c \
 				srcs/executor/executor_utils.c \
@@ -105,7 +102,7 @@ COMPILER = cc
 
 OBJS = $(addprefix $(ODIR), $(SRCS:.c=.o))
 
-FLAGS = -Wall -Wextra -g -fsanitize=address
+FLAGS = -Wall -Wextra  -g -fsanitize=address
 
 LIBSTR = libs/libmystr/libmystr.a
 
