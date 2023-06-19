@@ -6,7 +6,7 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 15:30:22 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/19 13:42:46 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/19 14:57:13 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,17 +105,7 @@ void	expand_term(t_ast *term)
 
 	put_to_list(term);
 
-	// printf("List Before\n");
-	// it = term->value_expanded;
-	// while (it)
-	// {
-	// 	printf("{%s}->", it->data);
-	// 	it = it->next;
-	// }
-	// printf("{null}\n");
-	
 	expand_list(&term->value_expanded);
-
 
 	printf("List Result\n");
 	it = term->value_expanded;

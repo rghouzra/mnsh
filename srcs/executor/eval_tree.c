@@ -6,7 +6,7 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 10:34:18 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/18 15:04:16 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/19 14:03:59 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ void	eval_tree(t_ast *tree, int is_child, t_io x)
 		pipeline(tree, x);
 	if (tree->type == WORD)
 	{
+		cmnds = contrui_cmnds(tree);
 		if (is_child)
 			execute(cmnds);
 		else
