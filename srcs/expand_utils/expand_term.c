@@ -6,7 +6,7 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 15:30:22 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/18 20:29:54 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/19 13:42:46 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,20 +61,19 @@ static void	expand_node(t_my_list **new, char *s)
 	words = ft_alphasplit2(s, 0, (t_alphasplit){0, 0, 0, 0, 0, 0, 0, 0, 0});
 	if (!words)
 		exit(EXIT_FAILURE);
+	printf("this is {%s}\n", s);
+	for (int i = 0; words[i]; i++)
+		printf("{%s}->", words[i]);
+	printf("{null}\n");
 	i = 0;
 	while (words[i])
 	{
-		// printf("{%s}->", words[i]);
 		r = expand_word(&words[i++]);
 		if (!r)
 			continue;
-		for (int i = 0; r[i]; i++)
-			printf("[%s]->", r[i]);
-		printf("(null)\n");
 		append_res(&sres, new, r);
 		my_strings_free(&r);
 	}
-	// printf("{null}\n");
 	if (sres)
 	{
 		if (my_list_push_back(new, my_list_new_elem(my_string_dup(sres), free_string)) == -1)
@@ -106,14 +105,14 @@ void	expand_term(t_ast *term)
 
 	put_to_list(term);
 
-	printf("List Before\n");
-	it = term->value_expanded;
-	while (it)
-	{
-		printf("{%s}->", it->data);
-		it = it->next;
-	}
-	printf("{null}\n");
+	// printf("List Before\n");
+	// it = term->value_expanded;
+	// while (it)
+	// {
+	// 	printf("{%s}->", it->data);
+	// 	it = it->next;
+	// }
+	// printf("{null}\n");
 	
 	expand_list(&term->value_expanded);
 
