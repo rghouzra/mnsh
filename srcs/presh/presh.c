@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   presh.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 09:15:54 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/17 18:45:56 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/20 20:42:45 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int	presh(char **env)
 	my_list_init(&(g_mnsh->export_list));
 	g_mnsh->paths_list = 0;
 	g_mnsh->fd_in = 0;
+	g_mnsh->_break = 0;
 	g_mnsh->exit_status = 0;
 	i = -1;
 	while (env[++i])

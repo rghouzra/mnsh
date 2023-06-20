@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   readinput.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 06:57:44 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/19 15:15:02 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/20 18:44:49 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,6 @@ void	read_input(void)
 		}
 		ft_tokencleaner(&token);
 		free(s);
-		g_mnsh->exit_status = 0;
 	}
 	clear_history();
 }

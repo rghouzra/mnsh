@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_syscalls.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 08:57:46 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/17 18:18:25 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/20 15:21:03 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,15 @@ pid_t	ft_fork(void)
 	return (pid);
 }
 
-int	ft_open(char *filename, int flags, int permission)
+int	ft_open(char *filename, int flags, int permission, int *exit_status)
 {
 	int	fd;
 
-	if (permission)
-		fd = open(filename, flags, permission);
-	else
-		fd = open(filename, flags);
+	fd = open(filename, flags, permission);
 	if (fd == -1)
-		show_error(strerror(errno), 1);
+	{
+		ft_putendl_fd(strerror(errno), 2);
+		*exit_status = 1;
+	}
 	return (fd);
 }

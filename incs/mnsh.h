@@ -6,7 +6,7 @@
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 21:30:50 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/17 18:31:29 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/20 20:42:22 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct s_minishell
 	int			fd_in;
 	t_my_list	*env_list;
 	t_my_list	*export_list;
+	int			_break;
 	char		**paths_list;
 	int			exit_status;
 }				t_minishell;

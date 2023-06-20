@@ -6,7 +6,7 @@
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 22:54:04 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/19 19:45:43 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/20 10:51:41 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,5 +135,5 @@ t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
 void				show_error(char *s, int exit_status);
 pid_t				ft_fork(void);
 void				ft_pipe(int fd[]);
-int					ft_open(char *filename, int flags, int permission);
+int					ft_open(char *filename, int flags, int permission, int *exit_status);
 #endif

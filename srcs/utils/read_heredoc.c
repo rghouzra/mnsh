@@ -6,37 +6,41 @@
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 15:01:02 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/17 13:27:43 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/20 20:49:26 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-char	*read_heredoc(char *delemiter)
+static void	heredoc_handler(int sig)
 {
-	char *line;
-	int fd;
-	char *name;
+	(void)sig;
+	g_mnsh->_break = 1;
+}
 
-	if (!delemiter)
+char	*read_heredoc(char *delimiter)
+{
+	char	*line;
+	int		fd;
+	char	*name;
+
+	if (!delimiter)
 		return (NULL);
 	name = generate_filename();
-	fd = ft_open(name, O_CREAT | O_RDWR | O_TRUNC, 0644);
-	if(ft_fork() == 0)
+	fd = ft_open(name, O_CREAT | O_RDWR | O_TRUNC, 0644, &g_mnsh->exit_status);
+	if (ft_fork() == 0)
 	{
-		signal(SIGINT, SIG_DFL);
-		while(1)
+		signal(SIGINT, heredoc_handler);
+		while (g_mnsh->_break == 0)
 		{
 			line = readline("> ");
-			if(!line)
-				break ;
-			if(!ft_strcmp(line, delemiter))
-				break ;
-			write(fd, line, ft_strlen(line));
-			write(fd, "\n", 1);
+			if (!line || !ft_strcmp(line, delimiter))
+				break;
+			ft_putendl_fd(line, fd);
 			free(line);
+			
 		}
 		exit(0);
 	}
-	return (waitpid(0, 0, 0), close(fd), name);
+	return (line = NULL, waitpid(-1, 0, 0), free(line), close(fd), name);
 }
