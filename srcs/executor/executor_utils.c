@@ -6,7 +6,7 @@
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 08:43:03 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/20 09:47:52 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/20 10:56:19 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	get_virual_operands(char *operands, t_openpar x, int is_running,
 		return ;
 	// my_list_clear()
 	tmp = leafs[0];
-	fd = ft_open(tmp, x.flags, x.permissions);
+	fd = ft_open(tmp, x.flags, x.permissions, &g_mnsh->exit_status);
 	if (is_running)
 	{
 		dup2(fd, x.stream);

@@ -2,22 +2,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-
+# include <fcntl.h>
 int main() {
-    pid_t pid;
-    int status;
-
-    pid = fork();
-    if (pid == 0) {
-        while(1)
-        ;
-        exit(123);
-    } else if (pid > 0) {
-        waitpid(pid, &status, 0);
-        if (WIFEXITED(status)) {
-            int exitStatus = WEXITSTATUS(status);
-            printf("Child process exit with: %d\n", exitStatus);
-        }
-    }
+    int fd = open("Makefile", O_RDWR, 0);
+    printf("%d\n", fd);
     return 0;
 }

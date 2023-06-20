@@ -6,7 +6,7 @@
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:17:53 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/20 09:48:47 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/20 16:21:49 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,18 +33,8 @@ int	ft_redir_optimizer(t_ast *tree)
 
 t_my_list	*get_expanded_values(t_ast *tree)
 {
-	t_my_list	*expanded_values;
-	t_list		*n_word;
-
-	expanded_values = NULL;
-	n_word = tree->right->next_word;
-	expand_node(&expanded_values, tree->right->value);
-	while(n_word)
-	{
-		expand_node(&expanded_values, n_word->content);
-		n_word = n_word->next_word;
-	}
-	return expanded_values;
+	expand_term(tree->right);
+	return tree->right->value_expanded;
 }
 
 void	handle_rediro(t_ast *tree, t_io x, int is_child)
@@ -56,7 +46,7 @@ void	handle_rediro(t_ast *tree, t_io x, int is_child)
 	{
 		if(get_expanded_values(tree) == NULL)
 			return ;
-		fd = ft_open(tree->right->value, O_CREAT | O_WRONLY | O_TRUNC, 0644);
+		fd = ft_open(tree->right->value, O_CREAT | O_WRONLY | O_TRUNC, 0644, &g_mnsh->exit_status);
 		if (is_child)
 			dup2(fd, x.output);
 		else if (!x.rediro_prev)
@@ -83,7 +73,7 @@ void	handle_rediri(t_ast *tree, t_io x, int is_child)
 	{
 		if(get_expanded_values(tree) == NULL)
 				return ;
-		fd = open(tree->right->value, O_RDONLY);
+		fd = ft_open(tree->right->value, O_RDONLY, 0, &g_mnsh->exit_status);
 		if (fd == -1)
 			show_error(strerror(errno), 126);
 		if (is_child)
@@ -112,9 +102,9 @@ void	handle_append(t_ast *tree, t_io x, int is_child)
 		if (get_expanded_values(tree) == NULL)
 				return ;
 		if (access(tree->right->value, F_OK))
-			fd = ft_open(tree->right->value, O_CREAT | O_WRONLY, 0777);
+			fd = ft_open(tree->right->value, O_CREAT | O_WRONLY, 0777, &g_mnsh->exit_status);
 		else
-			fd = ft_open(tree->right->value, O_WRONLY | O_APPEND, 0);
+			fd = ft_open(tree->right->value, O_WRONLY | O_APPEND, 0, &g_mnsh->exit_status);
 		if (is_child)
 			dup2(fd, x.output);
 		else if (!x.rediro_prev)
@@ -141,7 +131,7 @@ void	handle_heredoc(t_ast *tree, t_io x, int is_child)
 	{
 		if (get_expanded_values(tree) == NULL)
 				return ;
-		fd = ft_open(tree->right->value, O_RDONLY, 0);
+		fd = ft_open(tree->right->value, O_RDONLY, 0, &g_mnsh->exit_status);
 		if (is_child)
 			dup2(fd, x.input);
 		else if (!x.rediri_prev)
