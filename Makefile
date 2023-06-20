@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+         #
+#    By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/27 05:38:22 by yrhiba            #+#    #+#              #
-#    Updated: 2023/06/21 00:01:09 by rghouzra         ###   ########.fr        #
+#    Updated: 2023/06/21 00:41:25 by yrhiba           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,7 +52,8 @@ SRCS_UTILS =	srcs/utils/free_tokens.c \
 				srcs/utils/read_heredoc.c \
 				srcs/utils/heredoc_utils.c \
 				srcs/utils/get_list_pos.c \
-				srcs/utils/free_string.c
+				srcs/utils/free_string.c \
+				srcs/utils/remove_quotes.c
 
 SRCS_HEADER =	srcs/executor/eval_tree.c \
 				srcs/executor/executor_utils.c \
