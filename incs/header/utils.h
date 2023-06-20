@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 18:06:57 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/20 15:31:43 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/21 00:41:47 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,7 @@ char				*read_heredoc(char *delemiter);
 int					remove_quotes(char **s);
 void				free_string(void **arg);
 int					get_the_exitstatus();
+
+char				*remove_quotes_2(char **line);
+
 #endif

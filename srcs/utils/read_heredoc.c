@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_heredoc.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 15:01:02 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/21 00:00:27 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/21 00:46:30 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,7 @@ int	check_delim_expansion(char **line)
 		 - ( +(packed.c == DQ) + (packed.c == SQ) - (!packed.dollar)));
 	}
 	ft_free(packed.lines);
-	remove_quotes(line);
-	printf("flag->%d\n", packed.flag);
+	remove_quotes_2(line);
 	return packed.flag >= packed.i;
 }
 
