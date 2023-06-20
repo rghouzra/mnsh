@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 22:54:04 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/18 13:17:07 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/19 19:45:43 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ typedef struct s_ast
 	int				side;
 	struct s_ast	*right;
 	t_my_list		*value_expanded;
-
 }					t_ast;
 
 

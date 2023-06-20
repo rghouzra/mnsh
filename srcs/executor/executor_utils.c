@@ -6,7 +6,7 @@
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 08:43:03 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/17 15:40:33 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/20 09:47:52 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,20 +52,20 @@ int	check_access(char *path, int which)
 void	get_virual_operands(char *operands, t_openpar x, int is_running,
 		t_ast *tree)
 {
-	char	**leafs;
-	int		fd;
-	char	*tmp;
+	char		**leafs;
+	int			fd;
+	char		*tmp;
+	t_my_list	*ptr;
 
-	(void)operands;
-	leafs = contrui_cmnds(tree->right);
+	ptr =  get_expanded_values(tree);
+	leafs = convert_to_table(ptr);;
 	if (!leafs)
 		return ;
+	// my_list_clear()
 	tmp = leafs[0];
-	fd = open(tmp, x.flags, x.permissions);
+	fd = ft_open(tmp, x.flags, x.permissions);
 	if (is_running)
 	{
-		if (fd == -1)
-			show_error(strerror(errno), 126);
 		dup2(fd, x.stream);
 		execute(leafs + 1);
 	}
