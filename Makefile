@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+         #
+#    By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/27 05:38:22 by yrhiba            #+#    #+#              #
-#    Updated: 2023/06/18 16:17:31 by yrhiba           ###   ########.fr        #
+#    Updated: 2023/06/19 20:30:54 by rghouzra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -101,7 +101,7 @@ INCLINK =	-I . -I incs \
 
 ODIR = objs/
 
-COMPILER = cc
+COMPILER = clang
 
 OBJS = $(addprefix $(ODIR), $(SRCS:.c=.o))
 
@@ -117,7 +117,7 @@ USER = $(shell whoami)
 
 ifeq ($(USER), rghouzra)
 	rlpath = /Volumes/REDA/.brew/opt/readline
-	FLAGS = -Wall -Wextra  -g #-fsanitize=address
+	FLAGS = -Wall -Wextra  -g -fsanitize=address
 else
 	rlpath = $(shell brew --prefix readline)
 endif

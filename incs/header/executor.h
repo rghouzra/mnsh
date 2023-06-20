@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 18:16:13 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/17 18:16:24 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/19 20:35:32 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,7 @@ void		handle_rediri(t_ast *tree, t_io x, int is_child);
 void		get_virual_operands(char *operands, t_openpar x, int is_running,
 				t_ast *tree);
 void		handle_append(t_ast *tree, t_io x, int is_child);
+char		**convert_to_table(t_my_list *list);
+t_my_list	*get_expanded_values(t_ast *tree);
 void		execute_with_fork(char **cmnds, t_io x);
 #endif
