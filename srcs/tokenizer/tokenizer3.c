@@ -110,7 +110,7 @@ static int	ft_handle_quote(const char *s, size_t *i, char c, int quotes_ctr)
 		check_quote_ctr++;
 		j++;
 	}
-	if (!quotes_ctr || !check_quote_ctr || (quotes_ctr % 2 == 0
+	if (!quotes_ctr || !check_quote_ctr || ((quotes_ctr % 2 == 0) \
 			+ check_quote_ctr % 2 == 0) % 2 != 0)
 		return (0);
 	*i = j;
