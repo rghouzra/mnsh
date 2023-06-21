@@ -6,7 +6,7 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 22:46:31 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/21 21:30:28 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/21 21:46:02 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	echo(int ac, char **av, int mode)
 		echo_scan_arg(&data, av[i], mode);
 	addbn(&data, mode);
 	i = EXIT_SUCCESS;
-	if (write(STDOUT_FILENO, data.buff, my_string_len(data.buff)) == -1)
+	if (data.buff && write(STDOUT_FILENO, data.buff, my_string_len(data.buff)) == -1)
 		i = EXIT_FAILURE;
 	free(data.buff);
 	if (i == EXIT_FAILURE)
