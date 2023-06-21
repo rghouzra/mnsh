@@ -6,7 +6,7 @@
 #    By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/27 05:38:22 by yrhiba            #+#    #+#              #
-#    Updated: 2023/06/21 00:57:47 by rghouzra         ###   ########.fr        #
+#    Updated: 2023/06/21 02:55:04 by rghouzra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -118,7 +118,7 @@ USER = $(shell whoami)
 
 ifeq ($(USER), rghouzra)
 	rlpath = /Volumes/REDA/.brew/opt/readline
-	FLAGS = -Wall -Wextra  -g #-fsanitize=address
+	FLAGS = -Wall -Wextra  -g -fsanitize=address
 else
 	rlpath = $(shell brew --prefix readline)
 endif

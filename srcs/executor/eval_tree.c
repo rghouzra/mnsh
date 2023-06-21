@@ -6,7 +6,7 @@
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 10:34:18 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/21 02:11:50 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/21 03:04:53 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void	execute_with_fork(char **cmnds, t_io x)
 	}
 	else
 		waitpid(pid, &(g_mnsh->exit_status), 0);
-	my_strings_free(&cmnds);
 }
 
 void	dup_close(int *fd, int new_fd, int index)
