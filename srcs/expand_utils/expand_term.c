@@ -6,7 +6,7 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 15:30:22 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/21 07:25:15 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/21 22:07:10 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ static void	append_res(char **s, t_my_list **new, char **r)
 	{
 		if (i)
 		{
-			if (my_list_push_back(new, my_list_new_elem(my_string_dup(*s), free_string)) == -1)
+			if (my_list_push_back(new, my_list_new_elem(my_string_dup(*s),
+						free_string)) == -1)
 				exit(EXIT_FAILURE);
 			free(*s);
 			*s = my_string_dup(r[i]);
@@ -46,7 +47,7 @@ static void	append_res(char **s, t_my_list **new, char **r)
 				exit(EXIT_FAILURE);
 		}
 		else if (my_string_append(s, r[i]) == -1)
-				exit(EXIT_FAILURE);
+			exit(EXIT_FAILURE);
 	}
 }
 
@@ -66,13 +67,14 @@ void	expand_node(t_my_list **new, char *s)
 	{
 		r = expand_word(&words[i++]);
 		if (!r)
-			continue;
+			continue ;
 		append_res(&sres, new, r);
 		my_strings_free(&r);
 	}
 	if (sres)
 	{
-		if (my_list_push_back(new, my_list_new_elem(my_string_dup(sres), free_string)) == -1)
+		if (my_list_push_back(new, my_list_new_elem(my_string_dup(sres),
+					free_string)) == -1)
 			exit(EXIT_FAILURE);
 		free(sres);
 	}

@@ -6,7 +6,7 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 16:44:32 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/15 14:53:55 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/21 22:04:34 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	swapstep(void)
 	while (it->next)
 	{
 		if (my_string_compare(((char **)it->data)[0],
-								((char **)it->next->data)[0]) == LS_GREAT)
+			((char **)it->next->data)[0]) == LS_GREAT)
 		{
 			tmp = it->data;
 			it->data = it->next->data;

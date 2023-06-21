@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   remove_quotes.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 00:30:45 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/21 02:10:31 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/21 21:58:03 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*remove_quotes_2(char **line)
 {
-	char 	*new;
+	char	*new;
 	int		i;
 
 	new = (char *)0;
@@ -23,13 +23,13 @@ char	*remove_quotes_2(char **line)
 	{
 		if ((*line)[i] == '\'')
 		{
-			while((*line)[++i] != '\'')
+			while ((*line)[++i] != '\'')
 				if (my_string_append_char(&new, (*line)[i]) == -1)
 					exit(EXIT_FAILURE);
 		}
 		else if ((*line)[i] == '"')
 		{
-			while((*line)[++i] != '"')
+			while ((*line)[++i] != '"')
 				if (my_string_append_char(&new, (*line)[i]) == -1)
 					exit(EXIT_FAILURE);
 		}
