@@ -6,7 +6,7 @@
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 04:37:03 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/21 04:48:54 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/21 10:25:33 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,11 @@ char	**check_return_gev(t_ast *tree)
 		return (g_mnsh->exit_status = 1, \
 			perror("ambiguous redirect"), ft_free(leafs), NULL);
 	return (leafs);
+}
+
+void	dup_close(int *fd, int new_fd, int index)
+{
+	dup2(fd[index], new_fd);
+	close(fd[1]);
+	close(fd[0]);
 }

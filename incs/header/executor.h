@@ -6,7 +6,7 @@
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 18:16:13 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/21 04:39:19 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/21 10:25:52 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,6 @@ void		get_virual_operands(char *operands, t_openpar x, int is_running,
 void		handle_append(t_ast *tree, t_io x, int is_child);
 char		**convert_to_table(t_my_list *list);
 t_my_list	*get_expanded_values(t_ast *tree);
+void		dup_close(int *fd, int new_fd, int index);
 void		execute_with_fork(char **cmnds, t_io x);
 #endif

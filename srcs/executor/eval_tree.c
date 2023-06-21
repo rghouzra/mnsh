@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   eval_tree.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 10:34:18 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/21 07:25:43 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/21 10:32:07 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,6 @@ void	execute_with_fork(char **cmnds, t_io x)
 	else
 		waitpid(pid, &(g_mnsh->exit_status), 0);
 	ft_free(cmnds);
-}
-
-void	dup_close(int *fd, int new_fd, int index)
-{
-	dup2(fd[index], new_fd);
-	close(fd[1]);
-	close(fd[0]);
 }
 
 void	pipeline(t_ast *tree, t_io x)
@@ -84,24 +77,10 @@ void	eval_logical_op(t_ast *tree, t_io x)
 	}
 }
 
-void	eval_tree(t_ast *tree, int is_child, t_io x)
+void	eval_other_type(t_ast *tree, t_io x, int is_child)
 {
-	char		**cmnds;
+	char	**cmnds;
 
-	if (!tree)
-		return ;
-	expand_term(tree);
-	expand_wildcard(tree);
-	if (tree->type == redir_o)
-		handle_rediro(tree, x, is_child);
-	if (tree->type == redir_i)
-		handle_rediri(tree, x, is_child);
-	if (tree->type == append_o)
-		handle_append(tree, x, is_child);
-	if (tree->type == heredoc_i)
-		handle_heredoc(tree, x, is_child);
-	if (tree->type == PIPE)
-		pipeline(tree, x);
 	if (tree->type == WORD)
 	{
 		cmnds = contrui_cmnds(tree);
@@ -112,4 +91,22 @@ void	eval_tree(t_ast *tree, int is_child, t_io x)
 	}
 	else
 		eval_logical_op(tree, x);
+}
+
+void	eval_tree(t_ast *tree, int is_child, t_io x)
+{
+	if (!tree)
+		return ;
+	if (tree->type == redir_o)
+		handle_rediro(tree, x, is_child);
+	if (tree->type == redir_i)
+		handle_rediri(tree, x, is_child);
+	if (tree->type == append_o)
+		handle_append(tree, x, is_child);
+	if (tree->type == heredoc_i)
+		handle_heredoc(tree, x, is_child);
+	if (tree->type == PIPE)
+		pipeline(tree, x);
+	else
+		eval_other_type(tree, x, is_child);
 }
