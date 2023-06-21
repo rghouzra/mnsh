@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 11:12:16 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/21 05:24:01 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/21 13:06:40 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,10 @@ static int	updat_pwd(char **old_pwd, int mode)
 	export(2, args, NO_EXIT);
 	if (old_pwd)
 	{
-		if (my_string_update(old_pwd, my_string_join("OLDPWD=", *old_pwd)) == -1)
-			return (perror("mnsh::cd"), exit_status(EXIT_FAILURE, mode), -1);
+		if (my_string_update(old_pwd, \
+			my_string_join("OLDPWD=", *old_pwd)) == -1)
+			return (perror("mnsh::cd"), \
+			exit_status(EXIT_FAILURE, mode), -1);
 		args[1] = *old_pwd;
 		export(2, args, NO_EXIT);
 		free(*old_pwd);
@@ -61,9 +63,9 @@ static int	change_dir(char *dir)
 	return (free(new), 0);
 }
 
-static	int gohome(int mode)
+static int	gohome(int mode)
 {
-	char *new;
+	char	*new;
 
 	new = my_string_dup(envgetvalue("HOME"));
 	if (!new)
@@ -79,7 +81,8 @@ int	cd(int ac, char **av, int mode)
 
 	old_pwd = getpwd();
 	if (!old_pwd)
-		return (gohome(mode), perror("mnsh::cd"), exit_status(EXIT_FAILURE, mode), 1);
+		return (gohome(mode), perror("mnsh::cd"), \
+			exit_status(EXIT_FAILURE, mode), 1);
 	if (ac > 1)
 	{
 		if (change_dir(av[1]) == -1)
