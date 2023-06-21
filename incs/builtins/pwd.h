@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 12:45:31 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/21 04:38:59 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/21 10:13:58 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 # define PWD_H
 
 int		pwd(int ac, char **av, int mode);
-char	*getpwd();
+char	*getpwd(void);
 
 #endif
