@@ -6,7 +6,7 @@
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 20:32:53 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/14 16:03:20 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/21 10:21:22 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	ft_clean_nextword(t_list **token)
 		free(tmp);
 	}
 }
+
 void	ft_tokencleaner(t_list **token)
 {
 	t_list	*tmp;

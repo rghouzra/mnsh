@@ -6,7 +6,7 @@
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 17:50:34 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/15 19:48:34 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/21 10:21:13 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 char	*generate_filename(void)
 {
-	char *file_name_base;
-	char *number;
-	int i;
+	char	*file_name_base;
+	char	*number;
+	int		i;
 
 	i = 0;
 	file_name_base = ft_strdup("/tmp/.heredoc");
