@@ -6,7 +6,7 @@
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 18:25:12 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/05/26 18:35:17 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/21 08:34:03 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # elif defined(__APPLE__) && defined(__MACH__)
 #  include "readline/history.h"
 #  include "readline/readline.h"
+# include <dirent.h>
 # endif
 
 # include <errno.h>

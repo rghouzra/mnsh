@@ -6,7 +6,7 @@
 #    By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/27 05:38:22 by yrhiba            #+#    #+#              #
-#    Updated: 2023/06/21 04:37:47 by rghouzra         ###   ########.fr        #
+#    Updated: 2023/06/21 08:33:35 by rghouzra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,6 +46,7 @@ SRCS_UTILS =	srcs/utils/free_tokens.c \
 				srcs/utils/getcmdfullpath.c \
 				srcs/utils/ifbuiltinbreak.c \
 				srcs/utils/export_sort.c \
+				srcs/utils/wildcard_utils.c \
 				srcs/utils/contrui_env.c \
 				srcs/utils/exit_status.c \
 				srcs/utils/contrui_cmnds.c \

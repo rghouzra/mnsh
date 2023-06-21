@@ -57,7 +57,7 @@
 //     return 0;
 // }
 
-
+#include "/Users/rghouzra/mnsh/libs/libmylist/my_list.h"
 int file_ismatch(char *file, char *to_match)
 {
     int        i;
@@ -87,19 +87,26 @@ int file_ismatch(char *file, char *to_match)
     return ((!file[i]) && (!to_match[j]));
 }
 
+t_my_list	*pattern_matching(char *patter)
+{
+	DIR	*dir;
+	struct dirent *entry;
+	t_my_list	*matched_pattern;
+
+	matched_pattern = NULL;
+	dir = opendir(".");
+	if(dir == NULL)
+		return (NULL);
+	entry = readdir(dir);
+	while(entry)
+	{
+		if(file_ismatch(entry->d_name, patter) == 1)
+			printf("%s\n", entry->d_name);
+		entry = readdir(dir);
+	}
+	closedir(dir);
+	return NULL;
+}
 int main(int argc, char **argv) {
-    char *pattern =  "o*s";
-	DIR *dir;
-	
-	if(argc > 1)
-		pattern = argv[1];
-	struct dirent *ent;
-    dir = opendir(".");
-    while ((ent = readdir(dir)) != NULL)
-	 {
-        if (file_ismatch(ent->d_name, pattern) )
-        // if (fnmatch(pattern, ent->d_name) == 0)
-            printf("%s\n", ent->d_name);
-    }
-    
+	pattern_matching("*");
 }
