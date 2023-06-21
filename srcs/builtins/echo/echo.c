@@ -6,7 +6,7 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 22:46:31 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/17 18:27:25 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/21 04:30:48 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,14 @@ static int	addbn(t_echo *data)
 
 static void	echo_scan_arg(t_echo *data, char *av, int mode)
 {
-	if (scan_synp(data, av))
+	if (data->flag || scan_synp(data, av))
 	{
 		if (addarg(data, av) == -1)
 		{
 			free(data->buff);
 			exit_status(EXIT_FAILURE, mode);
 		}
+		data->flag = 1;
 	}
 }
 
@@ -73,6 +74,7 @@ void	echo(int ac, char **av, int mode)
 
 	data.buff = (char *)0;
 	data.n = 0;
+	data.flag = 0;
 	i = 0;
 	while (++i < ac)
 		echo_scan_arg(&data, av[i], mode);
