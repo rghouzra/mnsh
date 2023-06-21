@@ -6,7 +6,7 @@
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 15:55:55 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/20 15:33:50 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/21 10:22:14 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ int	exit_status(int status, int mode)
 	return (status);
 }
 
-int	get_the_exitstatus()
+int	get_the_exitstatus(void)
 {
-	if (WIFEXITED(g_mnsh->exit_status)) 
-		return WEXITSTATUS(g_mnsh->exit_status);
+	if (WIFEXITED(g_mnsh->exit_status))
+		return (WEXITSTATUS(g_mnsh->exit_status));
 	else if (WIFSIGNALED(g_mnsh->exit_status))
-		return WTERMSIG(g_mnsh->exit_status) + 128;
+		return (WTERMSIG(g_mnsh->exit_status) + 128);
 	else
-		return -1;
+		return (-1);
 }
