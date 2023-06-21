@@ -6,7 +6,7 @@
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 15:55:55 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/21 10:22:14 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/21 17:12:22 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,5 @@ int	get_the_exitstatus(void)
 	else if (WIFSIGNALED(g_mnsh->exit_status))
 		return (WTERMSIG(g_mnsh->exit_status) + 128);
 	else
-		return (-1);
+		return (1);
 }
