@@ -6,13 +6,14 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 12:45:31 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/16 12:46:04 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/21 04:38:59 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PWD_H
 # define PWD_H
 
-int	pwd(int ac, char **av, int mode);
+int		pwd(int ac, char **av, int mode);
+char	*getpwd();
 
 #endif
