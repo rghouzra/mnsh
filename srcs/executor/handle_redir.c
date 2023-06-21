@@ -6,7 +6,7 @@
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:17:53 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/21 02:56:50 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/21 03:36:56 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,7 +147,7 @@ void	handle_append(t_ast *tree, t_io x, int is_child)
 void	handle_heredoc(t_ast *tree, t_io x, int is_child)
 {
 	int	fd;
-
+	char **cmnds;
 	fd = -1;
 	if (ft_redir_optimizer(tree))
 	{
@@ -168,5 +168,7 @@ void	handle_heredoc(t_ast *tree, t_io x, int is_child)
 		get_virual_operands(tree->right->value, (t_openpar){O_RDONLY, 0,
 			x.input}, is_child, tree);
 	close(fd);
-	unlink(*contrui_cmnds(tree->right));
+	cmnds = contrui_cmnds(tree->right);
+	unlink(*cmnds);
+	ft_free(cmnds);
 }

@@ -6,7 +6,7 @@
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 15:01:02 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/21 01:01:07 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/21 04:18:24 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,34 +18,23 @@ static void	heredoc_handler(int sig)
 	g_mnsh->_break = 1;
 }
 
-int	check_delim_expansion(char **line)
+int	check_delim_expansion(char **line, int	*flag)
 {
 	t_delim_expand	packed;
 	
 	if (line == NULL || *line == NULL)
 		return (-1);
-	packed.i = -1;
-	packed.flag = 0;
-	packed.lines =  ft_alphasplit2(*line, '\0', (t_alphasplit){0, 0,0, 0,0, 0,0, 0,0});
-	while(packed.lines[++packed.i])
-	{
-		packed.j = -1;
-		packed.dollar = 0;
-		packed.c = packed.lines[packed.i][0];
-		while(packed.lines[packed.i][++packed.j])
-			packed.dollar += (packed.lines[packed.i][packed.j] == '$');
-		packed.flag += (!packed.dollar) + ((packed.dollar >= 1) \
-		 - ( +(packed.c == DQ) + (packed.c == SQ) - (!packed.dollar)));
-	}
-	ft_free(packed.lines);
+	packed.lines =  ft_alphasplit2(*line, '\0', (t_alphasplit){0, 0, 0, 0,0, 0,0, 0,0});
 	remove_quotes_2(line);
-	return packed.flag >= packed.i;
+	*flag = (my_strings_count(packed.lines) == 1 && packed.lines[0][0] != '\'' && packed.lines[0][0] != '"');
+	return (ft_free(packed.lines), 0);
 }
 
 int readheredoc_init(t_read_heredoc *var, char **delimiter)
 {
-	var->flag_expansion = check_delim_expansion(delimiter);
+	check_delim_expansion(delimiter, &var->flag_expansion);
 	var->ptr = *delimiter;
+	var->line = NULL;
 	return var->flag_expansion;
 }
 char	*read_heredoc(char *delimiter)
@@ -64,12 +53,13 @@ char	*read_heredoc(char *delimiter)
 			x.line = readline("> ");
 			if (!x.line || !ft_strcmp(x.line, delimiter))
 				break;
+			my_string_append_char(&x.line, '\n');
 			if(x.flag_expansion)
 				expand(&x.line);
-			ft_putendl_fd(x.line, x.fd);
+			write(x.fd, x.line, ft_strlen(x.line));
 			free(x.line);
 		}
 		exit(0);
 	}
-	return (x.line = NULL, waitpid(-1, 0, 0), free(x.line), free(x.ptr), close(x.fd), x.name);
+	return (waitpid(-1, 0, 0), free(x.line), free(x.ptr), close(x.fd), x.name);
 }
