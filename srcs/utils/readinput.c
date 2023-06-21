@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   readinput.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 06:57:44 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/21 08:53:36 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/21 13:02:57 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	read_input(void)
 		if (!s)
 		{
 			ft_putendl_fd("exit", STDERR_FILENO);
-			exit(1);
+			exit(0);
 		}
 		token = tokenizer(s);
 		if (lexer(token))

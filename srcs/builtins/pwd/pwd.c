@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 11:40:09 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/21 05:10:40 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/21 13:06:52 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	pwd(int ac, char **av, int mode)
 	return (exit_status(EXIT_SUCCESS, mode));
 }
 
-char	*getpwd()
+char	*getpwd(void)
 {
 	char	*dir;
 
