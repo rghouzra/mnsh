@@ -3,7 +3,7 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+         #
+#    By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/27 05:38:22 by yrhiba            #+#    #+#              #
 #    Updated: 2023/06/21 08:33:35 by rghouzra         ###   ########.fr        #
@@ -34,7 +34,8 @@ SRCS_FOOTER =	srcs/expand_utils/envgetvalue.c \
 				srcs/expand_utils/expand_term.c \
 				srcs/expand_utils/expand_term_utils.c \
 				srcs/expand_utils/remove_quotes.c \
-				srcs/expand_utils/expand.c
+				srcs/expand_utils/expand.c \
+				srcs/wildcard/expand_wildcard.c
 
 SRCS_UTILS =	srcs/utils/free_tokens.c \
 				srcs/utils/queue_utils.c \
