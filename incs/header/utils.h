@@ -6,7 +6,7 @@
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 18:06:57 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/21 08:36:57 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/21 10:13:45 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@
 typedef struct s_delim_expand
 {
 	int		i;
-	char 	**lines;
+	char	**lines;
 	int		j;
 	int		dollar;
-	char 	c;
+	char	c;
 	int		flag;
 }t_delim_expand;
 
@@ -84,7 +84,7 @@ char				*read_heredoc(char *delemiter);
 
 int					remove_quotes(char **s);
 void				free_string(void **arg);
-int					get_the_exitstatus();
+int					get_the_exitstatus(void);
 
 char				*remove_quotes_2(char **line);
 t_my_list			*pattern_matching(char *patter);

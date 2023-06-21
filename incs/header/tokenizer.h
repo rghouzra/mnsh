@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 06:09:07 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/17 18:17:32 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/21 10:12:02 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 # define TOKENIZER_H
 
 # include "header.h"
-
-# define IS_A_QUOTE(c) ((c) == DQ)
 
 typedef struct s_struct
 {
