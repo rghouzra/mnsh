@@ -6,7 +6,7 @@
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 20:26:19 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/17 11:41:19 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/21 06:20:06 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ t_list	*ft_token_quote(char *line, int *ind, char c)
 	t_list	*token;
 	int		i;
 
+	(void)c;
 	i = *ind;
 	i++;
 	while (line[i])

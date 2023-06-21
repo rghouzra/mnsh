@@ -34,7 +34,7 @@ static int	to_expand(char *s, char **new, int i)
 				exit(EXIT_FAILURE);
 			if (my_string_append(new, key) == -1)
 				exit(EXIT_FAILURE);
-			return (++i);
+			return (free(key),key = NULL, ++i);
 		}
 		if (my_string_append_char(new, '$') == -1)
 			exit(EXIT_FAILURE);

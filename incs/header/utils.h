@@ -6,7 +6,7 @@
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 18:06:57 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/21 04:06:24 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/21 08:36:57 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,5 +87,5 @@ void				free_string(void **arg);
 int					get_the_exitstatus();
 
 char				*remove_quotes_2(char **line);
-
+t_my_list			*pattern_matching(char *patter);
 #endif
