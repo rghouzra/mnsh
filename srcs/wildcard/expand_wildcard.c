@@ -6,7 +6,7 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 07:26:00 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/21 09:06:23 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/21 21:40:33 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,11 @@ static	void	add_tonew_list(t_my_list *it, t_my_list **new_list)
 
 static void	wildcard_expand_word(t_my_list **new_list, char **word)
 {
-	char		*tmp;
 	t_my_list	*list;
 
 	if (**word == '\'' || **word == '"')
 	{
-		tmp = *word;
-		remove_quotes_2(word);
-		free(tmp);
+		remove_quotes(word);
 		if (my_list_push_back(new_list, my_list_new_elem(my_string_dup(*word), free_string)) == -1)
 			exit(EXIT_FAILURE);
 		return ;
