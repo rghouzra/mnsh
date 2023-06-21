@@ -119,11 +119,16 @@ LIBFT = libs/libft/libft.a
 
 USER = $(shell whoami)
 
-ifeq ($(USER), rghouzra)
-	rlpath = /Volumes/REDA/.brew/opt/readline
+OS = $(shell uname)
+ifeq ($(OS), Linux)
 	FLAGS = -Wall -Wextra  -g
 else
-	rlpath = $(shell brew --prefix readline)
+	ifeq ($(USER), rghouzra)
+		rlpath = /Volumes/REDA/.brew/opt/readline
+		FLAGS = -Wall -Wextra  -g
+	else
+		rlpath = $(shell brew --prefix readline)
+	endif
 endif
 
 RL = -L$(rlpath)/lib -lreadline -I$(rlpath)/include
