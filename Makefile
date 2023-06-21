@@ -6,7 +6,7 @@
 #    By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/27 05:38:22 by yrhiba            #+#    #+#              #
-#    Updated: 2023/06/21 03:56:27 by rghouzra         ###   ########.fr        #
+#    Updated: 2023/06/21 04:37:47 by rghouzra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,6 +58,7 @@ SRCS_UTILS =	srcs/utils/free_tokens.c \
 SRCS_HEADER =	srcs/executor/eval_tree.c \
 				srcs/executor/executor_utils.c \
 				srcs/executor/handle_redir.c \
+				srcs/executor/redirection_utils.c \
 				srcs/lexer/lexer_utils.c \
 				srcs/lexer/lexer.c \
 				srcs/parser/parser_utils.c \
