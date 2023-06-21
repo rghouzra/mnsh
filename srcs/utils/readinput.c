@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   readinput.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 06:57:44 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/21 08:47:29 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/21 08:53:36 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,12 +71,6 @@ void	read_input(void)
 	while (1)
 	{
 		signal_utils();
-		t_my_list *t = pattern_matching(".*");
-		while(t)
-		{
-			printf("[%s]\n", t->data);
-			t=  t->next;
-		}
 		s = readline("sh-1.0$ ");
 		if (!s)
 		{
