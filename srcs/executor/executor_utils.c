@@ -6,7 +6,7 @@
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 08:43:03 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/20 10:56:19 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/21 02:28:28 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,9 @@ void	get_virual_operands(char *operands, t_openpar x, int is_running,
 	t_my_list	*ptr;
 
 	ptr =  get_expanded_values(tree);
-	leafs = convert_to_table(ptr);;
+	leafs = convert_to_table(ptr);
 	if (!leafs)
 		return ;
-	// my_list_clear()
 	tmp = leafs[0];
 	fd = ft_open(tmp, x.flags, x.permissions, &g_mnsh->exit_status);
 	if (is_running)
@@ -72,4 +71,5 @@ void	get_virual_operands(char *operands, t_openpar x, int is_running,
 	else
 		execute_with_fork(leafs, (t_io){0, 0, -2, -2, fd, x.stream, 1});
 	close(fd);
+	ft_free(leafs);
 }

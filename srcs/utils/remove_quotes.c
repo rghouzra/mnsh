@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   remove_quotes.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 00:30:45 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/21 00:43:42 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/21 02:10:31 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ char	*remove_quotes_2(char **line)
 			exit(EXIT_FAILURE);
 		i++;
 	}
-	free(*line);
 	*line = new;
 	return (*line);
 }
