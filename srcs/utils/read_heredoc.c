@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_heredoc.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 15:01:02 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/21 00:46:30 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/21 01:01:07 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,6 @@ static void	heredoc_handler(int sig)
 	(void)sig;
 	g_mnsh->_break = 1;
 }
-
-typedef struct s_delim_expand
-{
-	int		i;
-	char 	**lines;
-	int		j;
-	int		dollar;
-	char 	c;
-	int		flag;
-}t_delim_expand;
 
 int	check_delim_expansion(char **line)
 {
@@ -52,26 +42,17 @@ int	check_delim_expansion(char **line)
 	return packed.flag >= packed.i;
 }
 
-typedef struct s_read_heredoc
+int readheredoc_init(t_read_heredoc *var, char **delimiter)
 {
-	char	*line;
-	int		fd;
-	char	*name;
-	int		flag_expansion;
-	char	*ptr;
-}t_read_heredoc;
-
-int readheredoc_init(t_read_heredoc *var, char *delimiter)
-{
-	var->flag_expansion = check_delim_expansion(&delimiter);
-	var->ptr = delimiter;
+	var->flag_expansion = check_delim_expansion(delimiter);
+	var->ptr = *delimiter;
 	return var->flag_expansion;
 }
 char	*read_heredoc(char *delimiter)
 {
 	t_read_heredoc	x;
 
-	if (readheredoc_init(&x, delimiter) == -1)
+	if (readheredoc_init(&x, &delimiter) == -1)
 		return (NULL);
 	x.name = generate_filename();
 	x.fd = ft_open(x.name, O_CREAT | O_RDWR | O_TRUNC, 0644, &g_mnsh->exit_status);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 18:06:57 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/21 00:41:47 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/21 01:01:22 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,25 @@
 
 # include "header.h"
 # include <stdbool.h>
+
+typedef struct s_delim_expand
+{
+	int		i;
+	char 	**lines;
+	int		j;
+	int		dollar;
+	char 	c;
+	int		flag;
+}t_delim_expand;
+
+typedef struct s_read_heredoc
+{
+	char	*line;
+	int		fd;
+	char	*name;
+	int		flag_expansion;
+	char	*ptr;
+}t_read_heredoc;
 
 typedef struct s_queue
 {
