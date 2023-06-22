@@ -6,7 +6,7 @@
 #    By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/27 05:38:22 by yrhiba            #+#    #+#              #
-#    Updated: 2023/06/21 21:53:32 by yrhiba           ###   ########.fr        #
+#    Updated: 2023/06/22 00:49:18 by yrhiba           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,8 @@ SRCS_FOOTER =	srcs/expand_utils/envgetvalue.c \
 				srcs/expand_utils/expand_term_utils.c \
 				srcs/expand_utils/remove_quotes.c \
 				srcs/expand_utils/expand.c \
-				srcs/wildcard/expand_wildcard.c
+				srcs/wildcard/expand_wildcard.c \
+				srcs/expand_utils/expand_term_utils_2.c
 
 SRCS_UTILS =	srcs/utils/free_tokens.c \
 				srcs/utils/queue_utils.c \

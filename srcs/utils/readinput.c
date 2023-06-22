@@ -6,7 +6,7 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 06:57:44 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/21 22:05:44 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/22 00:58:14 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,32 +62,38 @@ void	print_tk(t_list *token)
 	putchar('\n');
 }
 
+void	read_line(char *s, t_list *token, t_ast *tree)
+{
+	signal_utils();
+	s = readline("sh-1.0$ ");
+	if (!s)
+	{
+		ft_putendl_fd("exit", STDERR_FILENO);
+		exit(0);
+	}
+	token = tokenizer(s);
+	if (lexer(token))
+	{
+		add_history(s);
+		tree = shunting_algorithm(token);
+		if (tree)
+			eval_tree(tree, 0, (t_io){0, 0, 0, 1, -2, -2, 0});
+		tree_cleaner(&tree);
+	}
+	ft_tokencleaner(&token);
+	free(s);
+}
+
 void	read_input(void)
 {
 	char	*s;
 	t_list	*token;
 	t_ast	*tree;
 
+	s = NULL;
+	token = NULL;
+	tree = NULL;
 	while (1)
-	{
-		signal_utils();
-		s = readline("sh-1.0$ ");
-		if (!s)
-		{
-			ft_putendl_fd("exit", STDERR_FILENO);
-			exit(0);
-		}
-		token = tokenizer(s);
-		if (lexer(token))
-		{
-			add_history(s);
-			tree = shunting_algorithm(token);
-			if (tree)
-				eval_tree(tree, 0, (t_io){0, 0, 0, 1, -2, -2, 0});
-			tree_cleaner(&tree);
-		}
-		ft_tokencleaner(&token);
-		free(s);
-	}
+		read_line(s, token, tree);
 	clear_history();
 }

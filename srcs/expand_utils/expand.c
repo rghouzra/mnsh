@@ -3,14 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   expand.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 16:16:32 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/20 15:32:27 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/22 00:57:24 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mnsh.h"
+
+static int	to_expand_r(char *s, char **new, int i, char *key)
+{
+	if (s[i] == '?')
+	{
+		key = ft_itoa(get_the_exitstatus());
+		if (!key)
+			exit(EXIT_FAILURE);
+		if (my_string_append(new, key) == -1)
+			exit(EXIT_FAILURE);
+		return (free(key), key = NULL, ++i);
+	}
+	if (my_string_append_char(new, '$') == -1)
+		exit(EXIT_FAILURE);
+	return (i);
+}
 
 static int	to_expand(char *s, char **new, int i)
 {
@@ -26,20 +42,7 @@ static int	to_expand(char *s, char **new, int i)
 		i++;
 	}
 	if (i == j)
-	{
-		if (s[i] == '?')
-		{
-			key = ft_itoa(get_the_exitstatus());
-			if (!key)
-				exit(EXIT_FAILURE);
-			if (my_string_append(new, key) == -1)
-				exit(EXIT_FAILURE);
-			return (free(key),key = NULL, ++i);
-		}
-		if (my_string_append_char(new, '$') == -1)
-			exit(EXIT_FAILURE);
-		return (i);
-	}
+		return (to_expand_r(s, new, i, key));
 	else if (append_value(new, key) == -1)
 		exit(EXIT_FAILURE);
 	return (free(key), i);

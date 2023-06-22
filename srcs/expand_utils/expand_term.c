@@ -6,13 +6,13 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 15:30:22 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/21 22:07:10 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/22 01:00:34 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mnsh.h"
 
-static char	**expand_word(char **s)
+char	**expand_word(char **s)
 {
 	char	**strs;
 
@@ -29,7 +29,7 @@ static char	**expand_word(char **s)
 	return (strs);
 }
 
-static void	append_res(char **s, t_my_list **new, char **r)
+void	append_res(char **s, t_my_list **new, char **r)
 {
 	int	i;
 
@@ -49,36 +49,6 @@ static void	append_res(char **s, t_my_list **new, char **r)
 		else if (my_string_append(s, r[i]) == -1)
 			exit(EXIT_FAILURE);
 	}
-}
-
-void	expand_node(t_my_list **new, char *s)
-{
-	char	*sres;
-	char	**r;
-	char	**words;
-	int		i;
-
-	sres = (char *)0;
-	words = ft_alphasplit2(s, 0, (t_alphasplit){0, 0, 0, 0, 0, 0, 0, 0, 0});
-	if (!words)
-		exit(EXIT_FAILURE);
-	i = 0;
-	while (words[i])
-	{
-		r = expand_word(&words[i++]);
-		if (!r)
-			continue ;
-		append_res(&sres, new, r);
-		my_strings_free(&r);
-	}
-	if (sres)
-	{
-		if (my_list_push_back(new, my_list_new_elem(my_string_dup(sres),
-					free_string)) == -1)
-			exit(EXIT_FAILURE);
-		free(sres);
-	}
-	my_strings_free(&words);
 }
 
 static void	expand_list(t_my_list **list)
