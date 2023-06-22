@@ -57,6 +57,7 @@ t_list	*tokenizer(const char *line)
 
 	if (!line)
 		return (NULL);
+	add_history(line);
 	strs = ft_alphasplit(line, ' ', (t_alphasplit){0, 0, 0, 0, 0, 0, 0, 0, 0});
 	if (!strs)
 		return (NULL);

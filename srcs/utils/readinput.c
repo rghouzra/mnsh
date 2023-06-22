@@ -29,7 +29,7 @@ static void	print_dot(t_ast *node, int i, int *count, FILE *p)
 void	print_tree_dot(t_ast *root, char *s, FILE *p)
 {
 	int		count;
-	
+
 	fprintf(p, "/*\n%s\n*/\n", s);
 	fprintf(p, "digraph {\n");
 	count = 0;
@@ -80,7 +80,6 @@ void	read_input(void)
 		token = tokenizer(s);
 		if (lexer(token))
 		{
-			add_history(s);
 			tree = shunting_algorithm(token);
 			if (tree)
 				eval_tree(tree, 0, (t_io){0, 0, 0, 1, -2, -2, 0});
