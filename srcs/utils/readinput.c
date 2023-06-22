@@ -26,12 +26,10 @@ static void	print_dot(t_ast *node, int i, int *count, FILE *p)
 	print_dot(node->right, node_id, count, p);
 }
 
-void	print_tree_dot(t_ast *root, char *s)
+void	print_tree_dot(t_ast *root, char *s, FILE *p)
 {
 	int		count;
-	FILE	*p;
-
-	p = fopen("treegraph.dot", "w");
+	
 	fprintf(p, "/*\n%s\n*/\n", s);
 	fprintf(p, "digraph {\n");
 	count = 0;
@@ -67,7 +65,9 @@ void	read_input(void)
 	char	*s;
 	t_list	*token;
 	t_ast	*tree;
+	FILE	*p;
 
+	p = fopen("treegraph.dot", "w");
 	while (1)
 	{
 		signal_utils();
