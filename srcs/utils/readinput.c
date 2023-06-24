@@ -68,6 +68,10 @@ void	read_input(void)
 	FILE	*p;
 
 	p = fopen("treegraph.dot", "w");
+	if (!p){
+		perror(strerror(errno));
+		exit(1);
+	}
 	while (1)
 	{
 		signal_utils();
