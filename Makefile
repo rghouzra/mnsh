@@ -109,7 +109,7 @@ COMPILER = cc
 
 OBJS = $(addprefix $(ODIR), $(SRCS:.c=.o))
 
-FLAGS = -Wall -Wextra -g -fsanitize=address
+FLAGS = -Wall -Wextra -Werorr
 
 LIBSTR = libs/libmystr/libmystr.a
 
