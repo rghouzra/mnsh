@@ -65,8 +65,6 @@ void	handle_rediri(t_ast *tree, t_io x, int is_child)
 		if (leafs == NULL)
 			return ;
 		fd = ft_open(leafs[0], O_RDONLY, 0, &g_mnsh->exit_status);
-		if (fd == -1)
-			show_error(strerror(errno), 126);
 		if (is_child)
 			dup2(fd, x.input);
 		else if (!x.rediri_prev)

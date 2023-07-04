@@ -6,7 +6,7 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 18:28:17 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/21 07:25:11 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/21 22:06:57 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,15 @@ void	put_to_list(t_ast *term)
 {
 	t_list	*n;
 
-	if (my_list_push_back(&(term->value_expanded), my_list_new_elem(my_string_dup(term->value),
-				free_string)) == -1)
+	if (my_list_push_back(&(term->value_expanded),
+			my_list_new_elem(my_string_dup(term->value), free_string)) == -1)
 		exit(EXIT_FAILURE);
 	n = term->next_word;
 	while (n)
 	{
 		if (my_list_push_back(&(term->value_expanded),
-								my_list_new_elem(my_string_dup(n->content), free_string)) ==
-								-1)
+				my_list_new_elem(my_string_dup(n->content),
+					free_string)) == -1)
 			exit(EXIT_FAILURE);
 		n = n->next_word;
 	}

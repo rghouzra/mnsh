@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   readinput.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 06:57:44 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/21 17:40:01 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/21 22:05:44 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,10 @@ static void	print_dot(t_ast *node, int i, int *count, FILE *p)
 	print_dot(node->right, node_id, count, p);
 }
 
-void	print_tree_dot(t_ast *root, char *s)
+void	print_tree_dot(t_ast *root, char *s, FILE *p)
 {
 	int		count;
-	FILE	*p;
 
-	p = fopen("treegraph.dot", "w");
 	fprintf(p, "/*\n%s\n*/\n", s);
 	fprintf(p, "digraph {\n");
 	count = 0;
@@ -67,7 +65,13 @@ void	read_input(void)
 	char	*s;
 	t_list	*token;
 	t_ast	*tree;
+	FILE	*p;
 
+	p = fopen("treegraph.dot", "w");
+	if (!p){
+		perror(strerror(errno));
+		exit(1);
+	}
 	while (1)
 	{
 		signal_utils();
@@ -80,7 +84,6 @@ void	read_input(void)
 		token = tokenizer(s);
 		if (lexer(token))
 		{
-			add_history(s);
 			tree = shunting_algorithm(token);
 			if (tree)
 				eval_tree(tree, 0, (t_io){0, 0, 0, 1, -2, -2, 0});

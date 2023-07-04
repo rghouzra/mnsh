@@ -6,7 +6,7 @@
 /*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 22:46:31 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/21 04:30:48 by yrhiba           ###   ########.fr       */
+/*   Updated: 2023/06/21 21:46:02 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,14 @@ static int	addarg(t_echo *data, char *s)
 
 static int	scan_synp(t_echo *data, char *s)
 {
+	if (data->flag)
+		return (1);
 	if (my_string_compare(s, "-n") == LS_EQUAL)
 		return (data->n = 1, 0);
 	return (1);
 }
 
-static int	addbn(t_echo *data)
+static int	addbn(t_echo *data, int mode)
 {
 	if (!(data->n))
 	{
@@ -48,7 +50,7 @@ static int	addbn(t_echo *data)
 		{
 			perror("echo::");
 			free(data->buff);
-			exit(EXIT_FAILURE);
+			exit_status(EXIT_FAILURE, mode);
 		}
 	}
 	return (0);
@@ -56,7 +58,7 @@ static int	addbn(t_echo *data)
 
 static void	echo_scan_arg(t_echo *data, char *av, int mode)
 {
-	if (data->flag || scan_synp(data, av))
+	if (scan_synp(data, av))
 	{
 		if (addarg(data, av) == -1)
 		{
@@ -78,9 +80,9 @@ void	echo(int ac, char **av, int mode)
 	i = 0;
 	while (++i < ac)
 		echo_scan_arg(&data, av[i], mode);
-	addbn(&data);
+	addbn(&data, mode);
 	i = EXIT_SUCCESS;
-	if (write(STDOUT_FILENO, data.buff, my_string_len(data.buff)) == -1)
+	if (data.buff && write(STDOUT_FILENO, data.buff, my_string_len(data.buff)) == -1)
 		i = EXIT_FAILURE;
 	free(data.buff);
 	if (i == EXIT_FAILURE)

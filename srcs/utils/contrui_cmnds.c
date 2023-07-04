@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   contrui_cmnds.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 14:05:35 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/21 02:32:47 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/06/21 22:04:57 by yrhiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ char	**convert_to_table(t_my_list *list)
 	t_my_list	*it;
 	char		**cmnds;
 	int			i;
-	
+
 	cmnds = (char **)ft_malloc(sizeof(char *)
 			* (my_list_size(list) + 1));
 	if (!cmnds)
