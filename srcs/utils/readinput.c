@@ -20,7 +20,7 @@ static void	print_dot(t_ast *node, int i, int *count, FILE *p)
 		return ;
 	node_id = ++(*count);
 	fprintf(p, "  node%d [label=\"%s\"];\n", node_id, node->value);
-	if (i != -666)
+	if (i != -1)
 		fprintf(p, "  node%d -> node%d;\n", i, node_id);
 	print_dot(node->left, node_id, count, p);
 	print_dot(node->right, node_id, count, p);
@@ -33,7 +33,7 @@ void	print_tree_dot(t_ast *root, char *s, FILE *p)
 	fprintf(p, "/*\n%s\n*/\n", s);
 	fprintf(p, "digraph {\n");
 	count = 0;
-	print_dot(root, -666, &count, p);
+	print_dot(root, -1, &count, p);
 	fprintf(p, "}\n");
 	fflush(p);
 	fclose(p);
