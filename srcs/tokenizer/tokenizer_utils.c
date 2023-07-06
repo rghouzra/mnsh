@@ -42,15 +42,6 @@ int	is_an_op(char line)
 	return (0);
 }
 
-t_tokentype	invalid_token(char *line)
-{
-	if (!ft_strncmp(line, "&", ft_strlen("&")))
-		return (NONE);
-	if (!ft_strncmp(line, ";", ft_strlen(";")))
-		return (NONE);
-	return (NONE);
-}
-
 t_tokentype	get_op_token_type(char *line)
 {
 	if (!line)
@@ -73,7 +64,5 @@ t_tokentype	get_op_token_type(char *line)
 		return (opar);
 	if (!ft_strncmp(line, ")", ft_strlen(")")))
 		return (cpar);
-	else
-		return (invalid_token(line));
 	return (NONE);
 }
