@@ -12,9 +12,8 @@
 
 #include "header.h"
 
-void	ft_parse_str(char *line, int j, t_list **token, int i)
+void	ft_parse_str(char *line, t_list **token, int i)
 {
-	(void)j;
 	while (line[i])
 	{
 		if (line[i] && !is_an_op(line[i]) && line[i] != DQ && line[i] != SQ)
@@ -46,7 +45,7 @@ t_list	*ft_parser(char **line)
 	x.token = NULL;
 	x.i = -1;
 	while (line[++x.i])
-		ft_parse_str(line[x.i], 0, &x.token, 0);
+		ft_parse_str(line[x.i], &x.token, 0);
 	return (x.token);
 }
 
