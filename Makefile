@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: yrhiba <yrhiba@student.1337.ma>            +#+  +:+       +#+         #
+#    By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/27 05:38:22 by yrhiba            #+#    #+#              #
-#    Updated: 2023/06/21 21:53:32 by yrhiba           ###   ########.fr        #
+#    Updated: 2023/08/02 10:40:54 by rghouzra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -116,7 +116,7 @@ LIBSTR = libs/libmystr/libmystr.a
 LIBLIST = libs/libmylist/libmylist.a
 
 LIBFT = libs/libft/libft.a
-
+READLINE = 1
 USER = $(shell whoami)
 
 OS = $(shell uname)
@@ -128,13 +128,17 @@ else
 		FLAGS = -Wall -Wextra  -g
 	else
 		rlpath = $(shell brew --prefix readline)
+		ifeq ($(wildcard $(rlpath)),)
+			@echo "Error: readline library not found"
+			READLINE = 0
+		endif
 	endif
 endif
 
 RL = -L$(rlpath)/lib -lreadline -I$(rlpath)/include
 
 $(NAME) : $(OBJS) $(LIBLIST) $(LIBSTR) $(LIBFT)
-	$(COMPILER) $(FLAGS) $(OBJS) $(LIBLIST) $(LIBSTR) $(LIBFT) -o $(NAME) $(RL)
+	$(COMPILER) $(FLAGS) $(OBJS) $(LIBLIST) $(LIBSTR) $(LIBFT) -D READLINE -o $(NAME) $(RL)
 
 $(LIBLIST) :
 	make -C libs/libmylist
