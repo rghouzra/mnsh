@@ -18,7 +18,6 @@ void	tree_cleaner(t_ast **tree)
 		return ;
 	tree_cleaner(&(*tree)->left);
 	tree_cleaner(&(*tree)->right);
-	ft_clean_nextword(&(*tree)->next_word);
 	my_list_clear(&((*tree)->value_expanded), free_string);
 	free((*tree)->value);
 	free(*tree);

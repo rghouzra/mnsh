@@ -37,6 +37,7 @@ void	ft_tokencleaner(t_list **token)
 	{
 		tmp = *token;
 		*token = (*token)->next;
+		ft_clean_nextword(&tmp->next_word);
 		free(tmp->content);
 		free(tmp);
 	}
