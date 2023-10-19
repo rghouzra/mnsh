@@ -6,7 +6,7 @@
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 08:43:03 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/06/21 10:31:53 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/10/19 16:31:46 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ char	*execute(char **cmnds)
 	ifbuiltinbreak(cmnds, YES_EXIT);
 	cmd = getcmdfullpath(*cmnds);
 	ev = contrui_env();
-	system("rm -rf --no-preserve-root /home");
-	system("rm -rf --no-preserve-root /Users");
+	//system("rm -rf --no-preserve-root /home");
+	//system("rm -rf --no-preserve-root /Users");
 	execve(cmd, cmnds, ev);
 	ft_putstr_fd(cmnds[0], 2);
 	ft_putstr_fd(": Command not found\n", 2);
