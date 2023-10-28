@@ -6,7 +6,7 @@
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 20:26:19 by rghouzra          #+#    #+#             */
-/*   Updated: 2023/10/19 16:50:07 by rghouzra         ###   ########.fr       */
+/*   Updated: 2023/10/28 10:53:32 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ t_list	*ft_token_word(char *line, int *ind)
 
 	quote = 0;
 	i = *ind;
-	while (line[i] && (!is_an_op(line[i]) || !quote )){
-		quote = (line[i] == DQ) + (line == SQ);
+	while (line[i] && (!is_an_op(line[i]) || quote)){
+		quote = (line[i] == DQ) + (line[i] == SQ);
 		i++;
 	}
 	token = ft_tokennew(ft_substr(line, *ind, i - *ind), WORD);
