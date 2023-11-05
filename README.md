@@ -26,4 +26,6 @@ To achieve Minishell's functionality, we follow these key steps:
 
 ### Additional Resources
 
-- [Linux Pipes](https://tldp.org/LDP/lpg/node11.html): Learn more about handling pipes in Linux.
+- [Linux Pipes](https://tldp.org/LDP/lpg/node11.html): Learn more about handling pipes in unix like system.
+- [signals](https://man7.org/linux/man-pages/man7/signal.7.html): Learn more about handling signals(SIGINT, SIGKILL).
+- [I/O multiplexing](https://www.codequoi.com/en/handling-a-file-by-its-descriptor-in-c/): learn about i/o operations.
