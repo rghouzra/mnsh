@@ -6,7 +6,7 @@
 /*   By: rghouzra <rghouzra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 18:25:12 by yrhiba            #+#    #+#             */
-/*   Updated: 2023/06/21 13:05:23 by rghouzra         ###   ########.fr       */
+/*   Updated: 2024/02/07 15:17:55 by rghouzra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,14 @@
 
 # ifdef __linux__
 #  include <sys/types.h>
-#  include <dirent.h>
 #  include <readline/history.h>
 #  include <sys/wait.h>
 #  include <readline/readline.h>
 # elif defined(__APPLE__) && defined(__MACH__)
 #  include "readline/history.h"
 #  include "readline/readline.h"
-#  include <dirent.h>
 # endif
-
+# include <dirent.h>
 # include <errno.h>
 # include <signal.h>
 # include <stdbool.h>
