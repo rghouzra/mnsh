@@ -121,7 +121,7 @@ USER = $(shell whoami)
 
 OS = $(shell uname)
 ifeq ($(OS), Linux)
-	FLAGS = -Wall -Wextra  -g
+	FLAGS = -Wall -Wextra -g
 else
 	ifeq ($(USER), rghouzra)
 		rlpath = /Volumes/REDA/.brew/opt/readline

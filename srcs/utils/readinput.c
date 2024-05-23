@@ -36,7 +36,6 @@ void	print_tree_dot(t_ast *root, char *s, FILE *p)
 	print_dot(root, -1, &count, p);
 	fprintf(p, "}\n");
 	fflush(p);
-	fclose(p);
 }
 
 void	print_tk(t_list *token)
@@ -62,7 +61,7 @@ void	print_tk(t_list *token)
 
 void	read_input(void)
 {
-	char	*s;
+	char	*in_line;
 	t_list	*token;
 	t_ast	*tree;
 	FILE	*p;
@@ -75,22 +74,27 @@ void	read_input(void)
 	while (1)
 	{
 		signal_utils();
-		s = readline("sh-1.0$ ");
-		if (!s)
+		in_line = readline("sh-1.0$ ");
+		if (!in_line)
 		{
 			ft_putendl_fd("exit", STDERR_FILENO);
+			fclose(p);
 			exit(0);
 		}
-		token = tokenizer(s);
+		token = tokenizer(in_line);
 		if (lexer(token))
 		{
 			tree = shunting_algorithm(token);
-			if (tree)
+			if (tree){
+				print_tree_dot(tree, in_line, p);
 				eval_tree(tree, 0, (t_io){0, 0, 0, 1, -2, -2, 0});
+			}
 			tree_cleaner(&tree);
 		}
 		ft_tokencleaner(&token);
-		free(s);
+		free(in_line);
 	}
 	clear_history();
+	fclose(p);
 }
+
