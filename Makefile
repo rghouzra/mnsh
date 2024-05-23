@@ -123,15 +123,10 @@ OS = $(shell uname)
 ifeq ($(OS), Linux)
 	FLAGS = -Wall -Wextra -g
 else
-	ifeq ($(USER), rghouzra)
-		rlpath = /Volumes/REDA/.brew/opt/readline
-		FLAGS = -Wall -Wextra  -g
-	else
-		rlpath = $(shell brew --prefix readline)
-		ifeq ($(wildcard $(rlpath)),)
-			@echo "Error: readline library not found"
-			READLINE = 0
-		endif
+	rlpath = $(shell brew --prefix readline)
+	ifeq ($(wildcard $(rlpath)),)
+		@echo "Error: readline library not found"
+		READLINE = 0
 	endif
 endif
 
