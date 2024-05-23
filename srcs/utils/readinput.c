@@ -19,7 +19,7 @@ static void	print_dot(t_ast *node, int i, int *count, FILE *p)
 	if (node == 0x0)
 		return ;
 	node_id = ++(*count);
-	fprintf(p, "  node%d [label=\"%s\"];\n", node_id, node->value);
+	fprintf(p, "  node%d [label=\"%s\"];\n", node_id, (char *)node->value);
 	if (i != -1)
 		fprintf(p, "  node%d -> node%d;\n", i, node_id);
 	print_dot(node->left, node_id, count, p);
@@ -36,27 +36,6 @@ void	print_tree_dot(t_ast *root, char *s, FILE *p)
 	print_dot(root, -1, &count, p);
 	fprintf(p, "}\n");
 	fflush(p);
-}
-
-void	print_tk(t_list *token)
-{
-	t_list	*tmp;
-
-	while (token)
-	{
-		printf("[%s]->:\t%d\n", token->content, token->type);
-		tmp = token->next_word;
-		if (tmp)
-		{
-			while (tmp)
-			{
-				printf("next_word: %s\n", tmp->content);
-				tmp = tmp->next_word;
-			}
-		}
-		token = token->next;
-	}
-	putchar('\n');
 }
 
 void	read_input(void)
