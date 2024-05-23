@@ -16,16 +16,17 @@ This flowchart provides an overview of both tokenization and parsing steps:
 
 To achieve Minishell's functionality, we follow these key steps:
 
-1. Tokenization: In general, we use Bash as a reference, particularly for splitting commands into tokens, handling whitespaces, and operators.
+1. **Tokenization**: In general, we use Bash as a reference, particularly for splitting commands into tokens, handling whitespaces, and operators.
    - [Bash Manual - Basic Shell Features](https://www.gnu.org/software/bash/manual/bash.html#Basic-Shell-Features)
 
-2. Parsing: We generate an abstract syntax tree (AST) using the Shunting Yard algorithm, which involves implementing our stack and queue data structures.
+2. **Parsing**: We generate an abstract syntax tree (AST) using the Shunting Yard algorithm, which involves implementing our own stack and queue data structures.
    - [Shunting Yard Algorithm](https://brilliant.org/wiki/shunting-yard-algorithm/)
-   - In the srcs/utils/readinput.c, there's a function that prints in the dot language format, producing a file named "treegraph.dot". You can visualize this tree using Graphviz or by installing the Graphviz extension if you're using VS Code.
-3. Execution: The final step is traversing the AST recursively and evaluating whether each node represents an operator or a command.
+   - In the `srcs/utils/readinput.c`, there's a function that prints in the dot language format, producing a file named `treegraph.dot`. You can visualize this tree using [Graphviz](https://shorturl.at/YV47Z) or by installing the Graphviz extension if you're using VS Code.
+
+3. **Execution**: The final step is traversing the AST recursively and evaluating whether each node represents an operator or a command.
 
 ### Additional Resources
 
-- [Linux Pipes](https://tldp.org/LDP/lpg/node11.html): Learn more about handling pipes in unix like system.
-- [signals](https://man7.org/linux/man-pages/man7/signal.7.html): Learn more about handling signals(SIGINT, SIGKILL).
-- [I/O multiplexing](https://www.codequoi.com/en/handling-a-file-by-its-descriptor-in-c/): learn about i/o operations.
+- [Linux Pipes](https://tldp.org/LDP/lpg/node11.html): Learn more about handling pipes in Unix-like systems.
+- [Signals](https://man7.org/linux/man-pages/man7/signal.7.html): Learn more about handling signals (SIGINT, SIGKILL).
+- [I/O Multiplexing](https://www.codequoi.com/en/handling-a-file-by-its-descriptor-in-c/): Learn about I/O operations.
