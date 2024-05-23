@@ -21,7 +21,7 @@ To achieve Minishell's functionality, we follow these key steps:
 
 2. Parsing: We generate an abstract syntax tree (AST) using the Shunting Yard algorithm, which involves implementing our stack and queue data structures.
    - [Shunting Yard Algorithm](https://brilliant.org/wiki/shunting-yard-algorithm/)
-
+   - In the srcs/utils/readinput.c, there's a function that prints in the dot language format, producing a file named "treegraph.dot". You can visualize this tree using Graphviz or by installing the Graphviz extension if you're using VS Code.
 3. Execution: The final step is traversing the AST recursively and evaluating whether each node represents an operator or a command.
 
 ### Additional Resources
