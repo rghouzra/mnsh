@@ -28,10 +28,12 @@ static void	insert_in_tree(t_ast **root, t_ast *new, int side)
 		insert_in_tree(&(*root)->right, new, RIGHT);
 }
 
-void	insert_subtree_in_tree(t_ast **tree, t_ast *subtree)
+void	insert_subtree_in_tree(t_ast **tree, t_ast *subtree, int *indexref)
 {
 	static int	index;
 
+	if(index == 0)
+		indexref = &index;
 	if (!subtree)
 		return ;
 	if (!*tree)
@@ -42,12 +44,12 @@ void	insert_subtree_in_tree(t_ast **tree, t_ast *subtree)
 	if ((*tree)->left == NULL && !(index % 2))
 	{
 		(*tree)->left = subtree;
-		insert_subtree_in_tree(&(*tree)->left, subtree);
+		insert_subtree_in_tree(&(*tree)->left, subtree, indexref);
 	}
 	if ((*tree)->right == NULL && (index % 2))
 	{
 		(*tree)->right = subtree;
-		insert_subtree_in_tree(&(*tree)->right, subtree);
+		insert_subtree_in_tree(&(*tree)->right, subtree, indexref);
 	}
 	index++;
 }
@@ -55,7 +57,9 @@ void	insert_subtree_in_tree(t_ast **tree, t_ast *subtree)
 static void	ast_constructor(t_ast **tree, t_list **prefix, int index)
 {
 	t_ast	*sub_tree;
+	int *subtreeindexref;
 
+	subtreeindexref = NULL;
 	if (!*prefix)
 		return ;
 	if (index)
@@ -74,7 +78,9 @@ static void	ast_constructor(t_ast **tree, t_list **prefix, int index)
 	else
 		insert_in_tree(tree, ft_newastnode((*prefix)->type, (*prefix)->content, \
 			(*prefix)->next_word), index);
-	insert_subtree_in_tree(tree, sub_tree);
+	insert_subtree_in_tree(tree, sub_tree, subtreeindexref);
+	if(subtreeindexref)
+		*subtreeindexref = 0;
 }
 
 static t_ast	*generate_ast(t_queue **q)
