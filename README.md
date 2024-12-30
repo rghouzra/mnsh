@@ -30,3 +30,27 @@ To achieve Minishell's functionality, we follow these key steps:
 - [Linux Pipes](https://tldp.org/LDP/lpg/node11.html): Learn more about handling pipes in Unix-like systems.
 - [Signals](https://man7.org/linux/man-pages/man7/signal.7.html): Learn more about handling signals (SIGINT, SIGKILL).
 - [I/O Multiplexing](https://www.codequoi.com/en/handling-a-file-by-its-descriptor-in-c/): Learn about I/O operations.
+
+
+## Usage
+
+### Installation
+
+1. Clone the repository:
+
+```bash
+git clone git@github.com:rghouzra/mnsh.git
+
+cd mnsh
+```
+
+2. Compile the project:
+
+```bash
+mkdir build && cd build
+
+cmake ..
+
+make
+```
+
