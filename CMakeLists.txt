@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.10)
-project(minishell C CXX)
+project(minishell C)
 
 set(CMAKE_C_STANDARD 99)
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Wextra")
@@ -62,14 +62,3 @@ link_directories(/opt/homebrew/opt/readline/lib)
 add_executable(${PROJECT_NAME} ${SRCS})
 add_dependencies(${PROJECT_NAME} libmylist_build libmystr_build libft_build)
 target_link_libraries(${PROJECT_NAME} libmylist libmystr libft readline)
-
-# Google Test
-enable_testing()
-add_subdirectory(googletest)
-include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
-
-# Add test executable
-file(GLOB_RECURSE TEST_SRCS tests/*.cpp)
-add_executable(runTests ${TEST_SRCS})
-target_link_libraries(runTests gtest gtest_main)
-add_test(NAME runTests COMMAND runTests)
