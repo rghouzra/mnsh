@@ -1,0 +1,6 @@
+/home/runner/work/mnsh/mnsh/build/CMakeFiles/libmylist_build.dir
+/home/runner/work/mnsh/mnsh/build/CMakeFiles/libmystr_build.dir
+/home/runner/work/mnsh/mnsh/build/CMakeFiles/libft_build.dir
+/home/runner/work/mnsh/mnsh/build/CMakeFiles/minishell.dir
+/home/runner/work/mnsh/mnsh/build/CMakeFiles/edit_cache.dir
+/home/runner/work/mnsh/mnsh/build/CMakeFiles/rebuild_cache.dir
